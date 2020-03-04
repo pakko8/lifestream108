@@ -1,0 +1,33 @@
+--- *** ---
+drop table if exists public.languages;
+create table public.languages
+(
+	id serial not null,
+	sort_order int not null,
+	name varchar(30) not null,
+	short_name varchar(10) not null,
+	reg_time timestamp not null,
+	constraint languages_pkey primary key (id)
+);
+
+insert into public.languages (id, sort_order, name, short_name, reg_time)
+values
+(1, 2, 'English', 'en', current_timestamp),
+(2, 1, 'Русский', 'ru', current_timestamp);
+
+
+--- *** ---
+drop table if exists public.currencies;
+create table public.currencies
+(
+	id serial not null,
+	sort_order int not null,
+	name varchar(30) not null,
+	letter_code varchar(20) not null,
+	reg_time timestamp not null,
+	constraint currencies_pkey primary key (id)
+);
+
+insert into public.currencies (id, sort_order, name, letter_code, reg_time)
+values
+(1, 1, 'Тенге', 'KZT', current_timestamp);

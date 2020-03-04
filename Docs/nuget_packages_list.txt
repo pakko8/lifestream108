@@ -1,0 +1,8 @@
+Install-Package NLog -Version 4.6.8
+
+Install-Package FluentNHibernate -Version 2.1.2
+(Install-Package NHibernate -Version 5.2.6)
+
+Install-Package Npgsql -Version 4.1.2
+
+Install-Package Telegram.Bot -Version 15.2.0

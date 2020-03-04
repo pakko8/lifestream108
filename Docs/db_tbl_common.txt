@@ -1,0 +1,272 @@
+create schema if not exists users;
+create schema if not exists settings;
+create schema if not exists activities;
+create schema if not exists life_activity_logs;
+
+
+--- *** ---
+drop table if exists users.users;
+create table users.users
+(
+	id serial not null,
+	name varchar(50) not null,
+	language_id int not null,
+	currency_id int not null,
+	telegram_id int not null,
+	superuser bool not null,
+	status varchar(20) not null,
+	reg_time timestamp not null,
+	constraint users_pkey primary key (id)
+);
+
+insert into users.users (id, name, language_id, currency_id, telegram_id, superuser, status, reg_time)
+values
+(1, 'Александр Серебряков', 1, 1, 302115880, 't', 'Active', current_timestamp);
+
+
+--- *** ---
+drop table if exists settings.settings;
+create table settings.settings
+(
+	id serial not null,
+	sort_order int not null,
+	code varchar(50) not null,
+	description varchar(300) not null,
+	data_type varchar(30) not null,
+	value varchar(500) not null,
+	options varchar(500) not null,
+	reg_time timestamp not null,
+	constraint settings_pkey primary key (id)
+);
+
+insert into settings.settings (id, sort_order, code, description, data_type, value, options, reg_time)
+values
+(1, 1, 'TelegramBotToken', 'Токен Телеграм бота для доступа к API', 'Text', '1013133057:AAFPqHM2bWt3FA70HLT7es58BseG5hxd4X4', '', current_timestamp),
+(2, 2, 'BotCommandsDirectory', 'Директория с библиотеками комманд для Телеграмм бота', 'Text', 'C:\_Projects\_CommandProcessors', '', current_timestamp);
+
+
+--- *** ---
+--drop table if exists activities.life_groups;
+create table activities.life_groups
+(
+	id serial not null,
+	user_code int not null,
+	user_id int not null,
+	name varchar(40) not null,
+	short_name varchar(30) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint life_groups_pkey primary key (id)
+);
+
+create index ix_life_groups_code on activities.life_groups using btree (user_code);
+create index ix_life_groups_user on activities.life_groups using btree (user_id);
+
+/*
+Духовная жизнь
+Личностный рост
+Профессиональное занятие
+Хобби
+Доходы
+Расходы
+*/
+
+
+--- *** ---
+--drop table if exists activities.life_activities;
+create table activities.life_activities
+(
+	id serial not null,
+	user_code int not null,
+	user_id int not null,
+	life_group_at_group_id int not null,
+	name varchar(40) not null,
+	short_name varchar(30) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint life_activities_pkey primary key (id)
+);
+
+create index ix_life_activities_code on activities.life_activities using btree (user_code);
+create index ix_life_activities_user on activities.life_activities using btree (user_id);
+
+
+--- *** ---
+--drop table if exists activities.life_activity_params;
+create table activities.life_activity_params
+(
+	id serial not null,
+	sort_order int not null,
+	user_code int not null,
+	user_id int not null,
+	activity_id int not null,
+	name varchar(40) not null,
+	measure_id int not null,
+	data_type varchar(20) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint life_activity_params_pkey primary key (id)
+);
+
+create index ix_life_activity_params_code on activities.life_activity_params using btree (user_code);
+create index ix_life_activity_params_user on activities.life_activity_params using btree (user_id);
+create index ix_life_activity_params_activity on activities.life_activity_params using btree (activity_id);
+
+
+/*
+Киртан
+Джапа
+Служение
+Общение с преданными
+Общение с преданными удалённо
+Пожертвование
+Чтение Шримад-Бхагаватам
+Чтение Бхагавад-гиты
+Чтение Чайтанья-Чаритамриты
+Чтение других книг Шрилы Прабхупады
+Чтение другой духовной литературы
+Распростаранение больших книг
+Распростаранение маленьких книг
+Прасад из Govindas
+Прасад из ятры
+Прасад от преданных
+Товары от преданных
+Литература
+Техника
+Зарплата
+Бонусы
+Проценты с депозита
+Найденные деньги
+Благотворительность
+Подарки
+Интернет
+Готовая еда
+Продукты питания
+Одежда
+Быт
+*/
+
+
+--- *** ---
+--drop table if exists activities.life_groups_at_groups;
+create table activities.life_groups_at_groups
+(
+	id serial not null,
+	user_id int not null,
+	life_group_id int not null,
+	parent_life_group_id int not null,
+	sort_order int not null,
+	reg_time timestamp not null,
+	constraint life_groups_at_groups_pkey primary key (id)
+);
+
+create index ix_life_groups_at_groups_code on activities.life_groups_at_groups using btree (user_code);
+create index ix_life_groups_at_groups_user on activities.life_groups_at_groups using btree (user_id);
+
+
+--- *** ---
+--drop table if exists life_activity_logs.life_activity_logs;
+create table life_activity_logs.life_activity_logs
+(
+	id bigserial not null,
+	user_id int not null,
+	life_activity_id int not null,
+	period timestamp not null,
+	comment varchar(500) not null,
+	reg_time timestamp not null,
+	update_time timestamp not null,
+	constraint life_activity_logs_pkey primary key (id)
+);
+
+create index ix_life_activity_logs_user on life_activity_logs.life_activity_logs using btree (user_id);
+create index ix_life_activity_logs_activity on life_activity_logs.life_activity_logs using btree (life_activity_id);
+create index ix_life_activity_logs_period on life_activity_logs.life_activity_logs using btree ("period");
+
+
+--- *** ---
+--drop table if exists life_activity_logs.life_activity_log_history;
+create table life_activity_logs.life_activity_log_history
+(
+	id bigserial not null,
+	user_id int not null,
+	activity_log_id bigint not null,
+	values varchar(1000) not null,
+	constraint life_activity_log_history_pkey primary key (id)
+);
+
+create index ix_life_activity_log_history_user on life_activity_logs.life_activity_log_history using btree (user_id);
+create index ix_life_activity_log_history_log on life_activity_logs.life_activity_log_history using btree (activity_log_id);
+
+
+--- *** ---
+--drop table if exists life_activity_logs.life_activity_log_values;
+create table life_activity_logs.life_activity_log_values
+(
+	id bigserial not null,
+	user_id int not null,
+	activity_log_id bigint not null,
+	period timestamp not null,
+	activity_param_id int not null,
+	numeric_value numeric(12,2) not null,
+	text_value varchar(50) not null,
+	constraint life_activity_log_values_pkey primary key (id)
+);
+
+create index ix_life_activity_log_values_user on life_activity_logs.life_activity_log_values using btree (user_id);
+create index ix_life_activity_log_values_log on life_activity_logs.life_activity_log_values using btree (activity_log_id);
+create index ix_life_activity_log_values_period on life_activity_logs.life_activity_log_values using btree ("period");
+
+
+--- *** ---
+--drop table if exists public.measures;
+create table public.measures
+(
+	id serial not null,
+	user_code int not null,
+	user_id int not null,
+	name varchar(30) not null,
+	short_name varchar(10) not null,
+	declanation1 varchar(30) not null,
+	declanation2 varchar(30) not null,
+	declanation3 varchar(30) not null,
+	reg_time timestamp not null,
+	constraint measures_pkey primary key (id)
+);
+
+create index ix_measures_code on public.measures using btree (user_code);
+create index ix_measures_user on public.measures using btree (user_id);
+
+/*
+Продолжительность
+Количество участников
+Круг
+Книга
+Стоимость
+Штука
+Грамм
+Килограмм
+*/
+
+
+--- *** ---
+--drop table if exists activities.life_activity_plans;
+create table activities.life_activity_plans
+(
+	id serial not null,
+	user_id int not null,
+	life_activity_id int not null,
+	year int not null,
+	month int not null,
+	min_plan_value numeric(12,2) not null,
+	middle_plan_value numeric(12,2) not null,
+	max_plan_value numeric(12,2) not null,
+	notify_time_min_plan timestamp not null,
+	notify_time_middle_plan timestamp not null,
+	notify_time_max_plan timestamp not null,
+	notify_time_resume timestamp not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint life_activity_plans_pkey primary key (id)
+);
+
+create index ix_life_activity_plans_user on activities.life_activity_plans using btree (user_id);

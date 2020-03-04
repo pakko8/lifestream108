@@ -1,0 +1,14 @@
+-- 2020-01-31
+alter table activities.life_activity_params
+add func varchar(100) not null default '';
+
+-- 2020-02-02
+alter table activities.life_activities
+rename column parent_life_group_id to life_group_at_group_id;
+
+alter table activities.life_groups_at_groups
+drop column user_code;
+
+-- 2020-02-18
+alter table life_activity_logs.life_activity_logs
+add active bool not null default 't';

@@ -1,0 +1,266 @@
+--- *** ---
+drop table if exists public.commands;
+create table public.commands
+(
+	id serial not null,
+	sort_order int not null,
+	entity_type int not null,
+	name varchar(40) not null,
+	description varchar(500) not null,
+	processor_class_name varchar(50) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint commands_pkey primary key (id)
+);
+
+insert into public.commands (id, sort_order, entity_type, name, description, processor_class_name, active, reg_time)
+values
+(1, 1, 0, 'Помощь', 'Показывает справку', 'HelpProcessor', 't', current_timestamp),
+(2, 2, 0, 'Регистрация', 'Регистрация нового пользователя', '', 'f', current_timestamp),
+(3, 3, 1, 'Список команд', 'Показывает список доступных команд', 'CommandListProcessor', 't', current_timestamp),
+(4, 4, 0, 'Список языков. Или установка языка', 'Показывает список доступных языков. Также позволяет выбрать нужный язык', '', 'f', current_timestamp),
+(5, 5, 0, 'Сброс сессии', 'Сбрасывает текущую команду и возвращает в начало работы с ботом. Можно задавать команды заново', 'ResetSessionProcessor', 't', current_timestamp),
+(6, 6, 0, 'Статистика', 'Показывает статистику о совершённых действиях', '', 't', current_timestamp),
+(7, 7, 0, 'Ошибки', 'Показывает список случившихся ошибок', '', 't', current_timestamp),
+(8, 8, 0, 'Очистка сообщений', 'Очищает сообщения в чате с ботом', 'ClearChatProcessor', 't', current_timestamp),
+(31, 31, 0, 'Список групп', '', 'LifeGroupListProcessor', 't', current_timestamp),
+(32, 32, 0, 'Добавить группу', '', 'AddLifeGroupProcessor', 't', current_timestamp),
+(33, 33, 0, 'Переименовать группу', '', 'RenameLifeGroupProcessor', 't', current_timestamp),
+(34, 34, 0, 'Удалить группу', '', 'DeleteLifeGroupProcessor', 't', current_timestamp),
+(35, 35, 2, 'Отсортировать группы', '', '', 'f', current_timestamp),
+(36, 36, 0, 'Привязать группу к группе', '', 'BindLifeGroupToGroupProcessor', 't', current_timestamp),
+(37, 37, 0, 'Отвязать группу от группы', '', 'UnbindLifeGroupFromGroupProcessor', 't', current_timestamp),
+(51, 51, 0, 'Список деятельностей', '', 'LifeActivityListProcessor', 't', current_timestamp),
+(52, 52, 0, 'Добавить деятельность', '', 'AddLifeActivityProcessor', 't', current_timestamp),
+(53, 53, 0, 'Переименовать деятельность', '', 'RenameLifeActivityProcessor', 't', current_timestamp),
+(54, 54, 0, 'Удалить деятельность', '', 'DeleteLifeActivityProcessor', 't', current_timestamp),
+(55, 55, 2, 'Отсортировать деятельности', '', '', 'f', current_timestamp),
+(56, 56, 0, 'Привязать деятельность к группе', '', 'BindLifeActivityToGroupProcessor', 't', current_timestamp),
+(57, 57, 0, 'Найти деятельность', '', 'FindLifeActivityProcessor', 't', current_timestamp),
+(58, 58, 0, 'Показать информацию о деятельности', '', 'LifeActivityInfoProcessor', 't', current_timestamp),
+(71, 71, 2, 'Добавить параметр деятельности', '', 'AddLifeActivityParameterProcessor', 't', current_timestamp),
+(72, 72, 2, 'Изменить параметр деятельности', '', 'EditLifeActivityParameterProcessor', 't', current_timestamp),
+(73, 73, 2, 'Скопировать параметры деятельности', '', 'CopyLifeActivityParametersProcessor', 't', current_timestamp),
+(74, 74, 2, 'Удалить параметр деятельности', '', 'DeleteLifeActivityParameterProcessor', 't', current_timestamp),
+(91, 91, 3, 'Добавить лог деятельности', '', 'AddLifeActivityLogProcessor', 't', current_timestamp),
+(92, 92, 3, 'Изменить лог деятельности', '', 'EditLifeActivityLogProcessor', 't', current_timestamp),
+(93, 93, 3, 'Удалить лог деятельности', '', 'DeleteLifeActivityLogProcessor', 't', current_timestamp),
+(201, 201, 0, 'Отчёт по отмеченным деятельностям', '', 'ReportForActivitiesProcessor', 't', current_timestamp),
+(251, 251, 0, 'Список планов', '', 'PlanListProcessor', 't', current_timestamp),
+(252, 252, 0, 'Добавить план', '', 'AddPlanProcessor', 't', current_timestamp),
+(253, 253, 0, 'Изменить план', '', 'EditPlanProcessor', 't', current_timestamp);
+
+
+--- *** ---
+drop table if exists public.command_names;
+create table public.command_names
+(
+	id serial not null,
+	command_id int not null,
+	sort_order int not null,
+	alias varchar(30) not null,
+	space_positions varchar(50) not null,
+	language_id int not null,
+	constraint command_names_pkey primary key (id)
+);
+
+insert into public.command_names (command_id, sort_order, alias, space_positions, language_id)
+values
+(1, 1, 'help', '', 1),
+(1, 2, 'помощь', '', 2),
+
+(3, 1, 'cmd', '', 1),
+(3, 2, 'commands', '', 1),
+(3, 3, 'command', '', 1),
+(3, 4, 'команда', '', 2),
+(3, 5, 'команды', '', 2),
+
+(4, 1, 'lang', '', 1),
+(4, 2, 'language', '', 1),
+(4, 3, 'язык', '', 2),
+
+(5, 1, 'reset', '', 1),
+(5, 2, 'сброс', '', 2),
+
+(6, 1, 'stat', '', 1),
+(6, 2, 'statistics', '', 1),
+(6, 3, 'statistic', '', 1),
+(6, 4, 'стат', '', 2),
+(6, 5, 'статистика', '', 2),
+
+(7, 1, 'errors', '', 1),
+(7, 2, 'error', '', 1),
+(7, 3, 'err', '', 1),
+(7, 4, 'ошибки', '', 2),
+(7, 5, 'ошибка', '', 2),
+(7, 6, 'ош', '', 2),
+
+(8, 1, 'clearchat', '6', 1),
+(8, 2, 'очиститьчат', '9', 2),
+
+(31, 1, 'groups', '', 1),
+(31, 2, 'group', '', 1),
+(31, 3, 'grp', '', 1),
+(31, 4, 'группы', '', 2),
+(31, 5, 'группа', '', 2),
+(31, 6, 'груп', '', 2),
+
+(32, 1, 'addgroup', '4', 1),
+(32, 2, 'addgrp', '4', 1),
+(32, 3, 'добавитьгруппу', '9', 2),
+(32, 8, 'добавгруп', '6', 2),
+
+(33, 1, 'renamegroup', '7', 1),
+(33, 2, 'renamegrp', '7', 1),
+(33, 3, 'переименоватьгруппу', '14', 2),
+(33, 4, 'переименгруп', '9', 2),
+
+(34, 1, 'deletegroup', '7', 1),
+(34, 2, 'delgroup', '4', 1),
+(34, 3, 'delgrp', '4', 1),
+(34, 4, 'удалитьгруппу', '8', 2),
+(34, 5, 'удалгруп', '5', 2),
+
+(36, 1, 'bindgroup', '5', 1),
+(36, 2, 'bindgrp', '5', 1),
+(36, 3, 'привязатьгруппу', '10', 2),
+(36, 4, 'привязгруп', '7', 2),
+
+(37, 1, 'unbindgroup', '7', 1),
+(37, 2, 'unbindgrp', '7', 1),
+(37, 3, 'отвязатьгруппу', '9', 2),
+(37, 4, 'отвязгруп', '6', 2),
+
+(51, 1, 'actlist', '4', 1),
+(51, 2, 'списокдеят', '7', 2),
+
+(52, 1, 'addactivity', '4', 1),
+(52, 2, 'addact', '4', 1),
+(52, 3, 'добавитьдеятельность', '9', 2),
+(52, 4, 'добавитьдеят', '9', 2),
+(52, 5, 'добавдеятельность', '6', 2),
+(52, 6, 'добавдеят', '6', 2),
+
+(53, 1, 'renameactivity', '7', 1),
+(53, 2, 'renameact', '7', 1),
+(53, 3, 'переименоватьдеятельность', '14', 2),
+(53, 4, 'переимендеят', '9', 2),
+
+(54, 1, 'deleteactivity', '7', 1),
+(54, 2, 'delact', '4', 1),
+(54, 4, 'удалитьдеятельность', '8', 2),
+(54, 5, 'удалдеят', '5', 2),
+
+(56, 1, 'bindactivity', '5', 1),
+(56, 2, 'bindact', '5', 1),
+(56, 3, 'привязатьдеятельность', '10', 2),
+(56, 4, 'привяздеят', '7', 2),
+
+(57, 1, 'findactivity', '5', 1),
+(57, 2, 'findact', '5', 1),
+(57, 3, 'найтидеятельность', '6', 2),
+(57, 4, 'найтидеят', '6', 2),
+
+(58, 1, 'activityinfo', '9', 1),
+(58, 2, 'actinfo', '4', 1),
+(58, 3, 'деятельностьинфо', '13', 2),
+(58, 4, 'деятинфо', '5', 2),
+
+(71, 1, 'addactivityparameter', '4,12', 1),
+(71, 2, 'addactparam', '4,7', 1),
+(71, 3, 'добавитьпараметрдеятельности', '9,17', 2),
+(71, 4, 'добавпарамдеят', '6,11', 2),
+
+(72, 1, 'editactparam', '5,9', 1),
+(72, 2, 'изменпарамдеят', '6,11', 2),
+
+(73, 1, 'copyactparam', '5,9', 1),
+(73, 2, 'копирпарамдеят', '6,11', 2),
+
+(74, 1, 'deleteactparam', '7,10', 1),
+(74, 2, 'delactparam', '4,7', 1),
+(74, 3, 'удалитьпарамдеят', '8,13', 2),
+(74, 4, 'удалпарамдеят', '5,10', 2),
+
+(91, 1, 'log', '', 1),
+(91, 2, 'лог', '', 2),
+
+(92, 1, 'editlog', '5', 1),
+(92, 2, 'изменлог', '6', 2),
+
+(93, 1, 'deletelog', '7', 1),
+(93, 2, 'dellog', '4', 1),
+(93, 3, 'удалитьлог', '8', 2),
+(93, 4, 'удаллог', '5', 2),
+
+(201, 1, 'reportact', '7', 1),
+(201, 2, 'отчетдеят', '6', 2);
+
+
+--- *** ---
+drop table if exists public.command_params;
+create table public.command_params
+(
+	id serial not null,
+	command_id int not null,
+	sort_order int not null,
+	command_param_code varchar(30) not null,
+	name varchar(50) not null,
+	description varchar(200) not null,
+	data_type varchar(20) not null,
+	input_data_type varchar(30) not null,
+	data_format varchar(30) not null,
+	data_format_desc varchar(200) not null,
+	required bool not null,
+	min_length int not null,
+	max_length int not null,
+	regex varchar(50) not null,
+	predefined_values varchar(200) not null,
+	default_value varchar(50) not null,
+	example varchar(100) not null,
+	reg_time timestamp not null,
+	constraint command_params_pkey primary key (id)
+);
+
+insert into public.command_params (command_id, sort_order, command_param_code, name, description, data_type, input_data_type, data_format, data_format_desc, required, min_length, max_length, regex, predefined_values, default_value, example, reg_time)
+values
+(32, 1, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
+(33, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(33, 2, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
+(34, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(36, 1, 'LifeGroupCode', 'Какой код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(36, 2, 'LifeGroupCode2', 'К какому коду группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '1', current_timestamp),
+(37, 1, 'LifeGroupCode', 'Код группы, кот. отвязать', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(37, 2, 'LifeGroupCode2', 'Код группы, от кот. отвязать', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '1', current_timestamp),
+(52, 1, 'LifeActivityName', 'Наименование деятельности', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Киртан', current_timestamp),
+(53, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(53, 2, 'LifeActivityName', 'Наименование деятельности', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Киртан', current_timestamp),
+(54, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(56, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(56, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(57, 1, 'LifeActivityName', 'Фраза для поиска', '', 'Text', 'Simple', '', '', 't', 3, 20, '', '', '', 'Киртан', current_timestamp),
+(58, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(71, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(71, 2, 'LifeActivityParamName', 'Наименование параметра', '', 'Text', 'Simple', '', '', 't', 3, 40, '', '', '', 'Вес', current_timestamp),
+(71, 3, 'LifeActivityParamMeasureName', 'Единица измерения', '', 'Text', 'Simple', '', '', 't', 1, 40, '', '', '', 'Грамм', current_timestamp),
+(71, 4, 'LifeActivityParamDataType', 'Тип значения', '', 'Text', 'OneElementFromList', '', '', 't', 0, 0, '', 'число;текст', 'число', 'число', current_timestamp),
+(71, 5, 'LifeActivityParamFunc', 'Функция', '', 'Text', 'OneElementFromList', '', '', 'f', 0, 0, '', 'нет;сумма', '', 'нет', current_timestamp),
+(72, 1, 'LifeActivityParamCode', 'Код параметра', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(72, 2, 'LifeActivityParamName', 'Наименование параметра', '', 'Text', 'Simple', '', '', 't', 3, 40, '', '', '', 'Вес', current_timestamp),
+(72, 3, 'LifeActivityParamMeasureName', 'Единица измерения', '', 'Text', 'Simple', '', '', 't', 1, 40, '', '', '', 'Грамм', current_timestamp),
+(72, 4, 'LifeActivityParamDataType', 'Тип значения', '', 'Text', 'OneElementFromList', '', '', 't', 0, 0, '', 'число;текст', 'число', 'число', current_timestamp),
+(72, 5, 'LifeActivityParamFunc', 'Функция', '', 'Text', 'OneElementFromList', '', '', 'f', 0, 0, '', 'нет;сумма', '', 'нет', current_timestamp),
+(73, 1, 'LifeActivityCode', 'Код деятельности откуда', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(73, 2, 'LifeActivityCode2', 'Код деятельности куда', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(74, 1, 'LifeActivityParamCode', 'Код параметра', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(91, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(91, 2, 'Date', 'Дата', '', 'Date', 'Simple', 'dd.mm.yyyy', 'dd.mm.yyyy', 't', 8, 10, '[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4,4}', '', '', '1 июля 2020 года вводится так: 01.07.2020 или 1.7.2020', current_timestamp),
+(91, 3, 'LifeActivityParamValues', 'Список значений разделённых знаком +', '', 'Text', 'List', '', '', 't', 1, 50, '', '', '', '1+2+3, мой текст', current_timestamp),
+(91, 4, 'Comment', 'Комментарий', '', 'Integer', 'Simple', '', '', 'f', 0, 500, '', '', '', 'Мой комментарий', current_timestamp),
+(92, 1, 'LifeActivityLogCode', 'Код лога', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(92, 2, 'Date', 'Дата', '', 'Date', 'Simple', 'dd.mm.yyyy', 'dd.mm.yyyy', 't', 8, 10, '[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4,4}', '', '', '1 июля 2020 года вводится так: 01.07.2020 или 1.7.2020', current_timestamp),
+(92, 3, 'LifeActivityParamValues', 'Список значений разделённых знаком +', '', 'Text', 'List', '', '', 't', 1, 50, '', '', '', '1+2+3, мой текст', current_timestamp),
+(92, 4, 'Comment', 'Комментарий', '', 'Integer', 'Simple', '', '', 'f', 0, 500, '', '', '', 'Мой комментарий', current_timestamp),
+(93, 1, 'LifeActivityLogCode', 'Код лога', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
+(201, 1, 'Period', 'Период', '', 'Period', 'Simple', '', '', 't', 8, 10, '', '', '', '1 июля 2020 года вводится так: 01.07.2020 или 1.7.2020', current_timestamp),
+(201, 3, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp);
