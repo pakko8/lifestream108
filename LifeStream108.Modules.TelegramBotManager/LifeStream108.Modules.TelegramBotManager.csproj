@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{491FF39E-2D39-4082-AFEE-4647EA1962CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LifeStream108.Modules.TelegramBotManager</RootNamespace>
+    <AssemblyName>LifeStream108.Modules.TelegramBotManager</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telegram.Bot, Version=15.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.15.2.0\lib\net45\Telegram.Bot.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseTelegramBotClient.cs" />
+    <Compile Include="MainTelegramChatClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj">
+      <Project>{C5714537-677D-4E03-8EBF-1AE203912A53}</Project>
+      <Name>LifeStream108.Libs.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Libs.Entities\LifeStream108.Libs.Entities.csproj">
+      <Project>{613137C8-6839-4585-B355-8AE290326A61}</Project>
+      <Name>LifeStream108.Libs.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.CommandProcessors\LifeStream108.Modules.CommandProcessors.csproj">
+      <Project>{75C5087C-B4DA-42EA-B24D-1E88B04BBC4C}</Project>
+      <Name>LifeStream108.Modules.CommandProcessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.SettingsManagement\LifeStream108.Modules.SettingsManagement.csproj">
+      <Project>{1640FBFE-6309-45C9-BD39-04340F2435F4}</Project>
+      <Name>LifeStream108.Modules.SettingsManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.TempDataManagement\LifeStream108.Modules.TempDataManagement.csproj">
+      <Project>{93161445-BF8D-4DB5-9A32-2D6C3602BDCE}</Project>
+      <Name>LifeStream108.Modules.TempDataManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.UserManagement\LifeStream108.Modules.UserManagement.csproj">
+      <Project>{A93C05AA-0C62-41D4-A431-011C76EEF49C}</Project>
+      <Name>LifeStream108.Modules.UserManagement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
