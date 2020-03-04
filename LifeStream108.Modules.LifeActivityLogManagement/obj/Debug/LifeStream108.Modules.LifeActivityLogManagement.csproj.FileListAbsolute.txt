@@ -1,0 +1,5 @@
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.LifeActivityLogManagement\bin\Debug\LifeStream108.Modules.LifeActivityLogManagement.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.LifeActivityLogManagement\bin\Debug\LifeStream108.Modules.LifeActivityLogManagement.pdb
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.LifeActivityLogManagement\obj\Debug\LifeStream108.Modules.LifeActivityLogManagement.csproj.CoreCompileInputs.cache
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.LifeActivityLogManagement\obj\Debug\LifeStream108.Modules.LifeActivityLogManagement.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.LifeActivityLogManagement\obj\Debug\LifeStream108.Modules.LifeActivityLogManagement.pdb

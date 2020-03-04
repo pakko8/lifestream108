@@ -1,0 +1,10 @@
+﻿using LifeStream108.Libs.Entities;
+using System;
+
+namespace LifeStream108.Modules.NewsProcessors
+{
+    public abstract class BaseNewsProcessor
+    {
+        public abstract NewsItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime);
+    }
+}

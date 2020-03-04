@@ -1,0 +1,13 @@
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Modules.NewsProcessors.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Modules.NewsProcessors.pdb
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Libs.Common.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Libs.Entities.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\NLog.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Libs.Common.pdb
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\LifeStream108.Libs.Entities.pdb
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Debug\NLog.xml
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Debug\LifeStream108.Modules.NewsProcessors.csprojAssemblyReference.cache
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Debug\LifeStream108.Modules.NewsProcessors.csproj.CoreCompileInputs.cache
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Debug\LifeStream108.Modules.NewsProcessors.csproj.CopyComplete
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Debug\LifeStream108.Modules.NewsProcessors.dll
+C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Debug\LifeStream108.Modules.NewsProcessors.pdb
