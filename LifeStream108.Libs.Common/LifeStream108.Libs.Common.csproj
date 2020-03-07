@@ -54,6 +54,7 @@
     <Compile Include="DataFormatter.cs" />
     <Compile Include="DatePeriod.cs" />
     <Compile Include="DateUtils.cs" />
+    <Compile Include="Exceptions\DateNotInCorrectFormat.cs" />
     <Compile Include="Exceptions\LifeStream108Exception.cs" />
     <Compile Include="Grammar\Declanations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

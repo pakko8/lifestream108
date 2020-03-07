@@ -281,9 +281,14 @@ namespace LifeStream108.Modules.TelegramBotManager
                     SendTelegramMessage(authResult.Item2, tlgrmUser.Id, chatId, userRequestId);
                 }
             }
-            catch (LifeStream108Exception ls108ex)
+            catch (LifeStream108Exception ls108Ex)
             {
-                ProcessLifeStream108Exception(ls108ex, tlgrmUser.Id, currentDbUser);
+                ProcessLifeStream108Exception(ls108Ex, tlgrmUser.Id, currentDbUser);
+            }
+            catch (DateNotInCorrectFormat dateEx)
+            {
+                Logger.Warn("Date parse error: " + dateEx.Message);
+                SendTelegramMessage(dateEx.Message, tlgrmUser.Id, chatId, userRequestId);
             }
             catch (Exception ex)
             {

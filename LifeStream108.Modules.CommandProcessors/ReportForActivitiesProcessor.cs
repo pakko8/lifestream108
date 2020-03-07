@@ -34,21 +34,20 @@ namespace LifeStream108.Modules.CommandProcessors
             LifeActivityParameter[] allActivityParams = LifeActivityParameterManager.GetParametersForUser(session.UserId);
             Measure[] allMeasures = MeasureManager.GetMeasuresForUser(session.UserId);
 
-            DateTime dateFrom = periodFromParameter.DateValue;
-            DateTime dateTo = periodToFromParameter != null ? periodToFromParameter.DateValue : dateFrom;
-            LifeActivityLog[] logs = LifeActivityLogManager.GetLogsForPeriod(dateFrom, dateTo, session.UserId, onlyActivityId)
+            DatePeriod period = periodFromParameter.PeridValue;
+            LifeActivityLog[] logs = LifeActivityLogManager.GetLogsForPeriod(period.From, period.To, session.UserId, onlyActivityId)
                 .Where(n => n.Active).ToArray();
             var groupedLogs = from log in logs
                               group log by log.LifeActivityId into grp
                               select new { ActivityId = grp.Key, Logs = grp.ToArray() };
 
-            LifeActivityLogValue[] allLogValues = LifeActivityLogManager.GetLogValuesForPeriod(dateFrom, dateTo, session.UserId);
+            LifeActivityLogValue[] allLogValues = LifeActivityLogManager.GetLogValuesForPeriod(period.From, period.To, session.UserId);
 
             ExecuteCommandResult successCommandResult = new ExecuteCommandResult { Success = true };
 
             List<LifeActivityLogValue> allValues = new List<LifeActivityLogValue>();
-            StringBuilder sbReport = new StringBuilder($"<b>Выписка за {dateFrom.ToString("dd.MM.yyyy")}" +
-                $"{(dateTo != dateFrom ? " - " + dateTo.ToString("dd.MM.yyyy") : "")}:</b>\r\n");
+            StringBuilder sbReport = new StringBuilder($"<b>Выписка за {period.From.ToString("dd.MM.yyyy")}" +
+                $"{(period.To != period.From ? " - " + period.To.ToString("dd.MM.yyyy") : "")}:</b>\r\n");
             foreach (var groupedItem in groupedLogs)
             {
                 LifeActivityLog[] currentLogs = groupedItem.Logs.OrderBy(n => n.RegTime).ToArray();

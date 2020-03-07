@@ -7,3 +7,12 @@ C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Libs.Common\obj\
 C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.dll
 C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.pdb
 C:\Users\alexx\YandexDisk\Downloads\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csprojAssemblyReference.cache
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\LifeStream108.Libs.Common.dll
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\LifeStream108.Libs.Common.pdb
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\NLog.dll
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\NLog.xml
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csprojAssemblyReference.cache
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csproj.CoreCompileInputs.cache
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csproj.CopyComplete
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.dll
+d:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.pdb

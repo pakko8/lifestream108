@@ -1,0 +1,76 @@
+create schema if not exists todo_list;
+
+--- *** ---
+--drop table if exists todo_list.todo_categories;
+create table todo_list.todo_categories
+(
+	id serial not null,
+	sort_order int not null,
+	user_code int not null,
+	user_id int not null,
+	name varchar(50) not null,
+	email varchar(50) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint todo_categories_pkey primary key (id)
+);
+
+create index ix_todo_categories_code on todo_list.todo_categories using btree (user_code);
+create index ix_todo_categories_user on todo_list.todo_categories using btree (user_id);
+
+
+--- *** ---
+--drop table if exists todo_list.todo_lists;
+create table todo_list.todo_lists
+(
+	id serial not null,
+	sort_order int not null,
+	user_code int not null,
+	category_id int not null,
+	user_id int not null,
+	name varchar(50) not null,
+	active bool not null,
+	reg_time timestamp not null,
+	constraint todo_lists_pkey primary key (id)
+);
+
+create index ix_todo_lists_code on todo_list.todo_lists using btree (user_code);
+create index ix_todo_lists_category on todo_list.todo_lists using btree (category_id);
+create index ix_todo_lists_user on todo_list.todo_lists using btree (user_id);
+
+
+--- *** ---
+--drop table if exists todo_list.todo_tasks;
+create table todo_list.todo_tasks
+(
+	id serial not null,
+	sort_order int not null,
+	user_code int not null,
+	list_id int not null,
+	user_id int not null,
+	title varchar(500) not null,
+	title text not null,
+	files text not null,
+	active bool not null,
+	reg_time timestamp not null,
+	reminder_sett varchar(100) not null,
+	reminder_last_time timestamp null,
+	constraint todo_items_pkey primary key (id)
+);
+
+create index ix_todo_tasks_code on todo_list.todo_items using btree (user_code);
+create index ix_todo_tasks_list on todo_list.todo_items using btree (list_id);
+create index ix_todo_tasks_user on todo_list.todo_items using btree (user_id);
+
+
+--- *** ---
+--drop table if exists todo_list.todo_reminder_history;
+create table todo_list.todo_reminder_history
+(
+	id serial not null,
+	task_id int not null,
+	reg_time timestamp not null,
+	constraint todo_items_pkey primary key (id)
+);
+
+create index ix_todo_reminder_history_task on todo_list.todo_reminder_history using btree (task_id);

@@ -111,6 +111,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelegramBotTester.cs" />
+    <Compile Include="WunderlistImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -147,6 +148,10 @@
     <ProjectReference Include="..\LifeStream108.Modules.TelegramBotManager\LifeStream108.Modules.TelegramBotManager.csproj">
       <Project>{491FF39E-2D39-4082-AFEE-4647EA1962CC}</Project>
       <Name>LifeStream108.Modules.TelegramBotManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.ToDoListManagement\LifeStream108.Modules.ToDoListManagement.csproj">
+      <Project>{7163BD0A-C3DC-4015-8E35-07708B4D0C89}</Project>
+      <Name>LifeStream108.Modules.ToDoListManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

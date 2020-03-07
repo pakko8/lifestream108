@@ -1,0 +1,38 @@
+﻿using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.HibernateManagement;
+using NHibernate;
+using System.Linq;
+
+namespace LifeStream108.Modules.ToDoListManagement.Managers
+{
+    public static class ToDoCategoryManager
+    {
+        public static void AddCategory(ToDoCategory item)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                item.UserCode = GetNextUserCode(item.UserId, session);
+                CommonManager<ToDoCategory>.Add(item, session);
+                session.Flush();
+            }
+        }
+
+        public static void UpdateCategory(ToDoCategory item)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                CommonManager<ToDoCategory>.Update(item, session);
+                session.Flush();
+            }
+        }
+
+        private static int GetNextUserCode(int userId, ISession session)
+        {
+            var query = from item in session.Query<ToDoCategory>()
+                        where item.UserId == userId
+                        orderby item.UserCode descending
+                        select item.UserCode;
+            return query.FirstOrDefault() + 1;
+        }
+    }
+}
