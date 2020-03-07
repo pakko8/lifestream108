@@ -5,7 +5,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Mapping
 {
     public class ToDoTaskMap : ClassMap<ToDoTask>
     {
-        private const string TableName = "todo_items";
+        private const string TableName = "todo_tasks";
 
         public ToDoTaskMap()
         {
@@ -18,6 +18,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Mapping
             Map(x => x.ListId, "list_id").Not.Nullable();
             Map(x => x.UserId, "user_id").Not.Nullable();
             Map(x => x.Title, "title").Not.Nullable();
+            Map(x => x.Note, "note").Not.Nullable();
             Map(x => x.Files, "files").Not.Nullable();
             Map(x => x.Active, "active").Not.Nullable();
             Map(x => x.RegTime, "reg_time").Not.Nullable();

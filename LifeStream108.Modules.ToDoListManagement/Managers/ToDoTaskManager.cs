@@ -7,7 +7,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
 {
     public static class ToDoTaskManager
     {
-        public static void AddToDoItem(ToDoTask item)
+        public static void AddTask(ToDoTask item)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
@@ -17,7 +17,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
-        public static void UpdateToDoItem(ToDoTask item)
+        public static void UpdateTask(ToDoTask item)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
@@ -28,7 +28,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
 
         private static int GetNextUserCode(int userId, ISession session)
         {
-            var query = from item in session.Query<ToDoCategory>()
+            var query = from item in session.Query<ToDoTask>()
                         where item.UserId == userId
                         orderby item.UserCode descending
                         select item.UserCode;

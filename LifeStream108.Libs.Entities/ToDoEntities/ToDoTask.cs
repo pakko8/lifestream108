@@ -26,6 +26,6 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         public virtual string ReminderSettings { get; set; } = "";
 
-        public virtual DateTime? ReminderLastTime { get; set; } = null;
+        public virtual DateTime ReminderLastTime { get; set; } = new DateTime(2000, 1, 1);
     }
 }
