@@ -81,6 +81,7 @@
     <Compile Include="ToDoEntities\ToDoTask.cs" />
     <Compile Include="ToDoEntities\ToDoList.cs" />
     <Compile Include="ToDoEntities\ToDoReminderHistory.cs" />
+    <Compile Include="ToDoEntities\ToDoTaskStatus.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

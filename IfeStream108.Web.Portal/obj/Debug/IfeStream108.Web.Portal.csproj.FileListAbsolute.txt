@@ -68,4 +68,3 @@ D:\Projects\LifeStream108\IfeStream108.Web.Portal\obj\Debug\IfeStream108.Web.Por
 D:\Projects\LifeStream108\IfeStream108.Web.Portal\obj\Debug\IfeStream108.Web.Portal.csproj.CopyComplete
 D:\Projects\LifeStream108\IfeStream108.Web.Portal\obj\Debug\IfeStream108.Web.Portal.dll
 D:\Projects\LifeStream108\IfeStream108.Web.Portal\obj\Debug\IfeStream108.Web.Portal.pdb
-D:\Projects\LifeStream108\IfeStream108.Web.Portal\obj\Debug\IfeStream108.Web.Portal.csprojAssemblyReference.cache

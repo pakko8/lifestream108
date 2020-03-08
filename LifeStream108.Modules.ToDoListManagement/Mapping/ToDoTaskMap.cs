@@ -20,8 +20,10 @@ namespace LifeStream108.Modules.ToDoListManagement.Mapping
             Map(x => x.Title, "title").Not.Nullable();
             Map(x => x.Note, "note").Not.Nullable();
             Map(x => x.Files, "files").Not.Nullable();
-            Map(x => x.Active, "active").Not.Nullable();
+            Map(x => x.Status, "status").CustomType<ToDoTaskStatus>().Not.Nullable();
             Map(x => x.RegTime, "reg_time").Not.Nullable();
+            Map(x => x.ContentUpdateTime, "content_update_time").Not.Nullable();
+            Map(x => x.StatusUpdateTime, "status_update_time").Not.Nullable();
             Map(x => x.ReminderSettings, "reminder_sett").Not.Nullable();
             Map(x => x.ReminderLastTime, "reminder_last_time").Not.Nullable();
         }

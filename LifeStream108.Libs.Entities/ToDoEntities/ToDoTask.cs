@@ -20,9 +20,13 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         public virtual string Files { get; set; } = "";
 
-        public virtual bool Active { get; set; } = true;
+        public virtual ToDoTaskStatus Status { get; set; } = ToDoTaskStatus.New;
 
         public virtual DateTime RegTime { get; set; } = DateTime.Now;
+
+        public virtual DateTime ContentUpdateTime { get; set; } = DateTime.Now;
+
+        public virtual DateTime StatusUpdateTime { get; set; } = new DateTime(2000, 1, 1);
 
         public virtual string ReminderSettings { get; set; } = "";
 

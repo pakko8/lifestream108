@@ -56,8 +56,10 @@ create table todo_list.todo_tasks
 	title varchar(500) not null,
 	note text not null,
 	files text not null,
-	active bool not null,
+	status int not null,
 	reg_time timestamp not null,
+	content_update_time timestamp not null,
+	status_update_time timestamp not null,
 	reminder_sett varchar(100) not null,
 	reminder_last_time timestamp not null,
 	constraint todo_tasks_pkey primary key (id)

@@ -47,7 +47,6 @@ d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\NHi
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\Remotion.Linq.xml
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\Remotion.Linq.EagerFetching.xml
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\NLog.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csprojAssemblyReference.cache
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csproj.CoreCompileInputs.cache
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.dll

@@ -1,4 +1,3 @@
-D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csprojAssemblyReference.cache
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb
