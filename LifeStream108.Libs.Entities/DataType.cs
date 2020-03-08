@@ -8,7 +8,9 @@
 
         Double,
 
-        Date
+        Date,
+
+        Period
     }
 
     public static class DataTypeExtensions
@@ -21,6 +23,7 @@
                 case DataType.Integer:
                 case DataType.Double: return "Число";
                 case DataType.Date: return "Дата";
+                case DataType.Period: return "Период дат";
                 default: return "Неизвестно";
             }
         }

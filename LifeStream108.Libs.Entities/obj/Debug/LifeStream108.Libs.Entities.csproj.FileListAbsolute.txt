@@ -15,3 +15,4 @@ d:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Li
 d:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.dll
 d:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.csprojAssemblyReference.cache

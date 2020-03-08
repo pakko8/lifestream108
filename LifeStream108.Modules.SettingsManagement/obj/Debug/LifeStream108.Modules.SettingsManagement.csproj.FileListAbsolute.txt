@@ -51,3 +51,4 @@ d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\Lif
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csprojAssemblyReference.cache

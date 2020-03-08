@@ -2,11 +2,39 @@
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
     internal class CommandParameterAndValue
     {
+        private readonly static Dictionary<string, int> _dicMonthNames = new Dictionary<string, int>()
+        {
+            { "JANUARY", 1 },
+            { "JAN", 1 },
+            { "FEBRUARY", 2 },
+            { "FEB", 2 },
+            { "MARCH", 3 },
+            { "MAR", 3 },
+            { "APRIL", 4 },
+            { "APR", 4 },
+            { "MAY", 5 },
+            { "JUNE", 6 },
+            { "JUN", 6 },
+            { "JULY", 7 },
+            { "JUL", 7 },
+            { "AUGUST", 8 },
+            { "AUG", 8 },
+            { "SEPTEMBER", 9 },
+            { "SEP", 9 },
+            { "OCTOBER", 10 },
+            { "OCT", 10 },
+            { "NOVEMBER", 11 },
+            { "NOV", 11 },
+            { "DECEMBER", 12 },
+            { "DEC", 12 }
+        };
+
         public CommandParameter Parameter { get; set; }
 
         public string Value { get; set; }
@@ -46,18 +74,26 @@ namespace LifeStream108.Modules.CommandProcessors
         {
             get
             {
-                string valueString = Value.ToUpper();
+                string valueAdj = Value.ToUpper();
 
-                if (valueString == "TODAY") return new DatePeriod(DateTime.Now.Date, DateTime.Now.Date);
+                if (valueAdj == "TODAY") return new DatePeriod(DateTime.Now.Date, DateTime.Now.Date);
 
-                if (valueString == "MON" || valueString == "MONTH")
+                if (valueAdj == "MON" || valueAdj == "MONTH")
                 {
                     DateTime now = DateTime.Now;
                     int daysInThisMonth = DateTime.DaysInMonth(now.Year, now.Month);
                     return new DatePeriod(new DateTime(now.Year, now.Month, 1), new DateTime(now.Year, now.Month, daysInThisMonth));
                 }
 
-                if (int.TryParse(valueString, out int oneDay))
+                if (_dicMonthNames.ContainsKey(valueAdj))
+                {
+                    int month = _dicMonthNames[valueAdj];
+                    DateTime now = DateTime.Now;
+                    int daysInThisMonth = DateTime.DaysInMonth(now.Year, month);
+                    return new DatePeriod(new DateTime(now.Year, month, 1), new DateTime(now.Year, month, daysInThisMonth));
+                }
+
+                if (int.TryParse(valueAdj, out int oneDay))
                 {
                     DateTime now = DateTime.Now;
                     return new DatePeriod(new DateTime(now.Year, now.Month, oneDay), new DateTime(now.Year, now.Month, oneDay));

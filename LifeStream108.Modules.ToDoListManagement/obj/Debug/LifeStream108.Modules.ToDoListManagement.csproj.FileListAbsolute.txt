@@ -23,3 +23,4 @@ D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\NLo
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csprojAssemblyReference.cache
