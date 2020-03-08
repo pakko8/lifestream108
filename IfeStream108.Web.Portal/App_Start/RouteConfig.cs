@@ -1,7 +1,7 @@
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace IfeStream108.Web.Portal
+namespace LifeStream108.Web.Portal
 {
     public static class RouteConfig
     {

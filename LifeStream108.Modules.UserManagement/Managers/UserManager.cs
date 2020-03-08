@@ -8,6 +8,14 @@ namespace LifeStream108.Modules.UserManagement.Managers
 {
     public static class UserManager
     {
+        public static User GetUser(int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                return CommonManager<User>.GetById(userId, session);
+            }
+        }
+
         public static User[] GetAllUsers()
         {
             using (ISession session = HibernateLoader.CreateSession())

@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace IfeStream108.Web.Portal
+namespace LifeStream108.Web.Portal
 {
     public class BundleConfig
     {
