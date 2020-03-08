@@ -44,9 +44,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.NewsM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.NewsProcessors", "LifeStream108.Modules.NewsProcessors\LifeStream108.Modules.NewsProcessors.csproj", "{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IfeStream108.Web.Portal", "IfeStream108.Web.Portal\IfeStream108.Web.Portal.csproj", "{26CBBC65-842D-43EA-92D1-570B07CAC4FA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.ToDoListManagement", "LifeStream108.Modules.ToDoListManagement\LifeStream108.Modules.ToDoListManagement.csproj", "{7163BD0A-C3DC-4015-8E35-07708B4D0C89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Web.Portal", "LifeStream108.Web.Portal\LifeStream108.Web.Portal.csproj", "{B96CE739-3E9D-4CCD-8B49-9A61E058348F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,14 +110,14 @@ Global
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26CBBC65-842D-43EA-92D1-570B07CAC4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26CBBC65-842D-43EA-92D1-570B07CAC4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26CBBC65-842D-43EA-92D1-570B07CAC4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26CBBC65-842D-43EA-92D1-570B07CAC4FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7163BD0A-C3DC-4015-8E35-07708B4D0C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7163BD0A-C3DC-4015-8E35-07708B4D0C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7163BD0A-C3DC-4015-8E35-07708B4D0C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7163BD0A-C3DC-4015-8E35-07708B4D0C89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96CE739-3E9D-4CCD-8B49-9A61E058348F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96CE739-3E9D-4CCD-8B49-9A61E058348F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96CE739-3E9D-4CCD-8B49-9A61E058348F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96CE739-3E9D-4CCD-8B49-9A61E058348F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
