@@ -38,6 +38,7 @@
             </Scripts>
         </asp:ScriptManager>
 
+        <% if (authorized) { %>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -57,7 +58,16 @@
                 </div>
             </div>
         </div>
+        <% } %>
+
         <div class="container body-content">
+            <% if (!string.IsNullOrEmpty(lastErrorText)) { %>
+                <div class="alert-danger">
+                    <button type="button" class="close" data-dismiss="alert"></button>
+                    <h4 class="alert-heading"><%= lastErrorText %></h4>
+                </div>
+            <% } %>
+
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

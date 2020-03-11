@@ -1,4 +1,3 @@
-D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\Antlr3.Runtime.dll
@@ -20,7 +19,8 @@ D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\NHi
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\Remotion.Linq.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\Remotion.Linq.EagerFetching.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\bin\Debug\NLog.xml
+D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.pdb
-D:\Projects\LifeStream108\LifeStream108.Modules.ToDoListManagement\obj\Debug\LifeStream108.Modules.ToDoListManagement.csprojAssemblyReference.cache

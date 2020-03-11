@@ -8,20 +8,18 @@ namespace LifeStream108.Modules.UserManagement.Managers
 {
     public static class UserManager
     {
-        public static User GetUser(int userId)
+        public static User AuthorizeUser(string email, string passwordHash)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
-                return CommonManager<User>.GetById(userId, session);
+                var query = from auth in session.Query<UserAuth>()
+                            where auth.Email.ToUpper() == email.ToUpper() && auth.PasswordHash == passwordHash
+                            select auth;
+                UserAuth userAuth = query.FirstOrDefault();
+                if (userAuth != null) return CommonManager<User>.GetById(userAuth.UserId, session);
             }
-        }
 
-        public static User[] GetAllUsers()
-        {
-            using (ISession session = HibernateLoader.CreateSession())
-            {
-                return CommonManager<User>.GetAll(session);
-            }
+            return null;
         }
 
         public static Tuple<bool, string, User> AuthorizeUser(int telegramId)
@@ -35,6 +33,22 @@ namespace LifeStream108.Modules.UserManagement.Managers
                     return new Tuple<bool, string, User>(false, "Пользователь " + user.Status.GetDescriptiveString(), null);
 
                 return new Tuple<bool, string, User>(true, "", user);
+            }
+        }
+
+        public static User GetUser(int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                return CommonManager<User>.GetById(userId, session);
+            }
+        }
+
+        public static User[] GetAllUsers()
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                return CommonManager<User>.GetAll(session);
             }
         }
 

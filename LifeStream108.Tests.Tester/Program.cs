@@ -1,4 +1,5 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities;
 using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
 using System;
@@ -7,7 +8,6 @@ namespace LifeStream108.Tests.Tester
 {
     internal static class Program
     {
-
         public static void Main(string[] args)
         {
             try

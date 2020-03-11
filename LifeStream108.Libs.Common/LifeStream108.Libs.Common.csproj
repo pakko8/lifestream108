@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Batches.cs" />
     <Compile Include="CollectionUtils.cs" />
+    <Compile Include="CryptoUtils.cs" />
     <Compile Include="DataFormatter.cs" />
     <Compile Include="DatePeriod.cs" />
     <Compile Include="DateUtils.cs" />
