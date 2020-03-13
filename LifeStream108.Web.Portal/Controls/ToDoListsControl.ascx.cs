@@ -3,15 +3,15 @@ using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Web.Portal.App_Code;
 using System;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal.Controls
 {
-    public partial class ToDoListsControl : System.Web.UI.UserControl
+    public partial class ToDoListsControl : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadLists();
         }
 
         public void LoadLists()
@@ -19,21 +19,8 @@ namespace LifeStream108.Web.Portal.Controls
             int currentCategoryId = PortalSession.SelectedCategoryId;
             if (currentCategoryId <= 0) return;
 
-            ToDoList[] listArray = PortalSession.ToDoLists;
-
-            bool needLoadLists = true;
-            if (listArray != null && listArray.Length > 0)
-            {
-                needLoadLists = listArray[0].CategoryId != currentCategoryId;
-            }
-
-            if (needLoadLists)
-            {
-                listArray = ToDoListManager.GetCategoryLists(currentCategoryId);
-                PortalSession.ToDoLists = listArray;
-            }
-
-            int selectedListId = GetSelectedList(listArray);
+            ToDoList[] listArray = GetLists(currentCategoryId);
+            int selectedListId = GetSelectedListId(listArray);
 
             divLists.Controls.Clear();
             foreach (ToDoList list in listArray)
@@ -50,7 +37,26 @@ namespace LifeStream108.Web.Portal.Controls
             }
         }
 
-        private int GetSelectedList(ToDoList[] lists)
+        private ToDoList[] GetLists(int currentCategoryId)
+        {
+            ToDoList[] listArray = PortalSession.ToDoLists;
+
+            bool needLoadListsFromDb = true;
+            if (listArray != null && listArray.Length > 0)
+            {
+                needLoadListsFromDb = listArray[0].CategoryId != currentCategoryId;
+            }
+
+            if (needLoadListsFromDb)
+            {
+                listArray = ToDoListManager.GetCategoryLists(currentCategoryId);
+                PortalSession.ToDoLists = listArray;
+            }
+
+            return listArray;
+        }
+
+        private int GetSelectedListId(ToDoList[] lists)
         {
             int selectedListId = WebUtils.GetRequestIntValue(Constants.RequestListKeyName, Request, 0);
             if (selectedListId <= 0) selectedListId = PortalSession.SelectedListId;

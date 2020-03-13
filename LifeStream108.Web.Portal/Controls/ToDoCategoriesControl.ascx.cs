@@ -14,15 +14,9 @@ namespace LifeStream108.Web.Portal.Controls
         {
         }
 
-        public void LoadCaterories()
+        public void LoadCategories()
         {
-            ToDoCategory[] categories = PortalSession.ToDoCategories;
-            if (categories == null)
-            {
-                categories = ToDoCategoryManager.GetUserCategories(PortalSession.User.Id);
-                PortalSession.ToDoCategories = categories;
-            }
-
+            ToDoCategory[] categories = GetCategories();
             int selectedCategoryId = GetSelectedCategoryId(categories);
 
             holderCategories.Controls.Clear();
@@ -41,6 +35,17 @@ namespace LifeStream108.Web.Portal.Controls
             }
         }
 
+        private ToDoCategory[] GetCategories()
+        {
+            ToDoCategory[] categories = PortalSession.ToDoCategories;
+            if (categories == null)
+            {
+                categories = ToDoCategoryManager.GetUserCategories(PortalSession.User.Id);
+                PortalSession.ToDoCategories = categories;
+            }
+            return categories;
+        }
+
         private int GetSelectedCategoryId(ToDoCategory[] categories)
         {
             int selectedCategoryId = WebUtils.GetRequestIntValue(Constants.RequestCategoryKeyName, Request, 0);
@@ -54,16 +59,6 @@ namespace LifeStream108.Web.Portal.Controls
 
             PortalSession.SelectedCategoryId = selectedCategoryId;
             return selectedCategoryId;
-        }
-
-        private void CategoryButton_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            int selectedCategoryId = Convert.ToInt32(button.CommandArgument);
-            PortalSession.SelectedCategoryId = selectedCategoryId;
-
-            LoadCaterories();
-            
         }
     }
 }

@@ -29,5 +29,23 @@ namespace LifeStream108.Web.Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::LifeStream108.Web.Portal.Controls.ToDoListsControl listsControl;
+        
+        /// <summary>
+        /// tasksControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::LifeStream108.Web.Portal.Controls.ToDoTasksControl tasksControl;
+        
+        /// <summary>
+        /// taskInfoControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::LifeStream108.Web.Portal.Controls.ToDoTaskInfo taskInfoControl;
     }
 }

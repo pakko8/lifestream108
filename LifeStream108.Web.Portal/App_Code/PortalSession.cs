@@ -61,7 +61,7 @@ namespace LifeStream108.Web.Portal.App_Code
             set { SaveSessionValue(value, "ToDoLists"); }
         }
 
-        public static ToDoTask[] ToDoTas
+        public static ToDoTask[] ToDoTasks
         {
             get
             {

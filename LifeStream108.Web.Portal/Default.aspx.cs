@@ -1,10 +1,6 @@
-﻿using LifeStream108.Libs.Entities.ToDoEntities;
-using LifeStream108.Modules.ToDoListManagement.Managers;
-using LifeStream108.Web.Portal.App_Code;
-using NLog;
+﻿using NLog;
 using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal
 {
@@ -16,22 +12,15 @@ namespace LifeStream108.Web.Portal
         {
             try
             {
-                LoadData();
+                categoriesControl.LoadCategories();
+                listsControl.LoadLists();
+                tasksControl.LoadTasks();
+                taskInfoControl.LoadTaskInfo();
             }
             catch (Exception ex)
             {
                 Logger.Error("Error loading page: " + ex);
             }
-        }
-
-        private void LoadData()
-        {
-            categoriesControl.LoadCaterories();
-         }
-
-        protected void categoriesControl_CategoryChanged()
-        {
-            listsControl.LoadLists();
         }
     }
 }
