@@ -150,6 +150,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controls\ToDoCategoriesControl.ascx" />
+    <Content Include="Controls\ToDoListsControl.ascx" />
+    <Content Include="Controls\ToDoTaskInfo.ascx" />
+    <Content Include="Controls\ToDoTasksControl.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -200,7 +204,9 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Constants.cs" />
     <Compile Include="App_Code\PortalSession.cs" />
+    <Compile Include="App_Code\WebUtils.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -216,6 +222,34 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDoCategoriesControl.ascx.cs">
+      <DependentUpon>ToDoCategoriesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ToDoCategoriesControl.ascx.designer.cs">
+      <DependentUpon>ToDoCategoriesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDoListsControl.ascx.cs">
+      <DependentUpon>ToDoListsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ToDoListsControl.ascx.designer.cs">
+      <DependentUpon>ToDoListsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDoTaskInfo.ascx.cs">
+      <DependentUpon>ToDoTaskInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ToDoTaskInfo.ascx.designer.cs">
+      <DependentUpon>ToDoTaskInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDoTasksControl.ascx.cs">
+      <DependentUpon>ToDoTasksControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ToDoTasksControl.ascx.designer.cs">
+      <DependentUpon>ToDoTasksControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

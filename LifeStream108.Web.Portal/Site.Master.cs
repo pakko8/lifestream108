@@ -17,6 +17,8 @@ namespace LifeStream108.Web.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            PortalSession.LastErrorMessage = "";
+            
             if (!Page.AppRelativeVirtualPath.ToUpper().EndsWith("LOGIN.ASPX") && !PortalSession.IsAuthorized)
             {
                 Response.Redirect("Login.aspx");

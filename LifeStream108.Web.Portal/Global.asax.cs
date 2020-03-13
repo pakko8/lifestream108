@@ -17,10 +17,5 @@ namespace LifeStream108.Web.Portal
         void Session_Start(object sender, EventArgs e)
         {
         }
-
-        void Application_BeginRequest()
-        {
-            PortalSession.LastErrorMessage = "";
-        }
     }
 }
