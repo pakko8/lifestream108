@@ -31,8 +31,8 @@ namespace LifeStream108.Web.Portal.Controls
                 HyperLink categoryLink = new HyperLink
                 {
                     ID = "linkCat_" + category.Id,
+                    NavigateUrl = $"/Default?{Constants.RequestCategoryKeyName}={category.Id}",
                     Text = category.Name,
-                    NavigateUrl = "/Default?cat=" + category.Id,
                     Enabled = selectedCategoryId != category.Id,
                     CssClass = selectedCategoryId == category.Id ? "btn btn-success btn-lg" : "btn btn-primary btn-lg"
                 };

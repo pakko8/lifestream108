@@ -38,17 +38,15 @@ namespace LifeStream108.Web.Portal.Controls
             divLists.Controls.Clear();
             foreach (ToDoList list in listArray)
             {
-                Button listButton = new Button
+                HyperLink listLink = new HyperLink
                 {
                     ID = "btnList_" + list.Id,
-                    CommandArgument = list.Id.ToString(),
-                    Text = list.Name,
+                    NavigateUrl = $"/Default?{Constants.RequestListKeyName}={list.Id}",
                     Enabled = selectedListId != list.Id,
-                    CausesValidation = false,
-                    CssClass = selectedListId == list.Id ? "btn btn-info text-left" : "btn btn-secondary text-left"
+                    CssClass = selectedListId == list.Id ? "btn btn-info btn-lg" : "btn btn-secondary btn-lg"
                 };
-                divLists.Controls.Add(listButton);
-                divLists.Controls.Add(new Literal { Text = "&nbsp;" });
+                listLink.Controls.Add(new Literal { Text = $"<span class=\"pull-left\">{list.Name}</span>&nbsp;" });
+                divLists.Controls.Add(listLink);
             }
         }
 
