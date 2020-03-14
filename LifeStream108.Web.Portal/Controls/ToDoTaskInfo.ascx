@@ -2,7 +2,7 @@
 
 <div class="bd-example">
     <asp:Button ID="btnSaveTask" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSaveTask_Click" />
-
+    <hr />
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">Title</span>
