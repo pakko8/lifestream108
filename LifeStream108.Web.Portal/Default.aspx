@@ -12,16 +12,21 @@
     <hr />
     <uc1:ToDoCategoriesControl runat="server" ID="categoriesControl" OnCategoryChanged="categoriesControl_CategoryChanged" />
     <hr />
-    <table>
+    <table style="width:100%">
         <tr>
             <td style="vertical-align:top">
                 <uc1:ToDoListsControl runat="server" ID="listsControl" />
             </td>
-            <td>&nbsp;</td>
+            <td>
+                &nbsp;
+            </td>
             <td style="vertical-align:top">
                 <uc1:ToDoTasksControl runat="server" ID="tasksControl" />
             </td>
             <td>
+                &nbsp;
+            </td>
+            <td style="vertical-align:top">
                 <uc1:ToDoTaskInfo runat="server" ID="taskInfoControl" />
             </td>
         </tr>

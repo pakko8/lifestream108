@@ -10,6 +10,8 @@ namespace LifeStream108.Web.Portal.Controls
 {
     public partial class ToDoTasksControl : UserControl
     {
+        private const int TaskTitleMaxLength = 80;
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -32,7 +34,10 @@ namespace LifeStream108.Web.Portal.Controls
                     Enabled = selectedTaskId != task.Id,
                     CssClass = selectedTaskId == task.Id ? "btn btn-info" : "btn btn-secondary"
                 };
-                taskLink.Controls.Add(new Literal { Text = $"<span class=\"pull-left\">{task.Title}</span>&nbsp;" });
+                string taskTitle = task.Title.Length > TaskTitleMaxLength
+                    ? task.Title.Substring(0, TaskTitleMaxLength) + " ..."
+                    : task.Title;
+                taskLink.Controls.Add(new Literal { Text = $"<span class=\"pull-left\">{taskTitle}</span>&nbsp;" });
                 divTasks.Controls.Add(taskLink);
             }
         }
