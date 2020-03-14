@@ -54,7 +54,7 @@ namespace LifeStream108.Web.Portal.Controls
 
             if (needLoadTasksFromDb)
             {
-                taskArray = ToDoTaskManager.GetListTasks(currentListId);
+                taskArray = ToDoTaskManager.GetListTasks(currentListId).Where(n => n.Status != ToDoTaskStatus.Deleted).ToArray();
                 PortalSession.ToDoTasks = taskArray;
             }
 

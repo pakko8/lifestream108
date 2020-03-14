@@ -48,5 +48,21 @@ namespace LifeStream108.Web.Portal.Controls
             tasks[index] = task;
             PortalSession.ToDoTasks = tasks;
         }
+
+        protected void btnDeleteTask_Click(object sender, EventArgs e)
+        {
+            int taskId = PortalSession.SelectedTaskId;
+            ToDoTask task = ToDoTaskManager.GetTask(taskId);
+            task.Status = ToDoTaskStatus.Deleted;
+            ToDoTaskManager.UpdateTask(task);
+
+            ToDoTask[] tasks = PortalSession.ToDoTasks;
+            tasks = tasks.Where(n => n.Id != task.Id).ToArray();
+            PortalSession.ToDoTasks = tasks;
+
+            PortalSession.SelectedTaskId = 0;
+            PortalSession.DeletedTaskId = task.Id;
+            Visible = false;
+        }
     }
 }

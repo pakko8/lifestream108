@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using LifeStream108.Web.Portal.App_Code;
+using NLog;
 using System;
 using System.Web.UI;
 
@@ -15,7 +16,7 @@ namespace LifeStream108.Web.Portal
                 categoriesControl.LoadCategories();
                 listsControl.LoadLists();
                 tasksControl.LoadTasks();
-                //taskInfoControl.LoadTaskInfo();
+                taskInfoControl.Visible = PortalSession.SelectedTaskId > 0;
             }
             catch (Exception ex)
             {

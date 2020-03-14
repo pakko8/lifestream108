@@ -91,6 +91,12 @@ namespace LifeStream108.Web.Portal.App_Code
             set { SaveSessionValue(value, "SelectedToDoTaskId"); }
         }
 
+        public static int DeletedTaskId
+        {
+            get { return GetSessionIntValue("DeletedToDoTaskId", 0); }
+            set { SaveSessionValue(value, "DeletedToDoTaskId"); }
+        }
+
         public static string LastErrorMessage
         {
             get

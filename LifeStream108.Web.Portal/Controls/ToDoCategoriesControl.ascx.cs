@@ -16,7 +16,7 @@ namespace LifeStream108.Web.Portal.Controls
 
         public void LoadCategories()
         {
-            ToDoCategory[] categories = GetCategories();
+            ToDoCategory[] categories = GetCategories().Where(n => n.Active).ToArray();
             int selectedCategoryId = GetSelectedCategoryId(categories);
 
             holderCategories.Controls.Clear();

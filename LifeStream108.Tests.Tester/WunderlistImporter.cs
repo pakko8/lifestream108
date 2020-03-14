@@ -109,7 +109,7 @@ namespace LifeStream108.Tests.Tester
                 (long TaskId, DateTime Reminder) reminder = reminders.FirstOrDefault(n => n.TaskId == taskId);
                 if (reminder.ToTuple() != null && reminder.Reminder.Year > 2019)
                 {
-                    taskInfo.ReminderSettings = $"once{{{reminder.Reminder.ToString("yyyy-MM-ddTHH:mm")}}}";
+                    taskInfo.ReminderSettings = $"{reminder.Reminder.ToString("yyyy-MM-dd HH:mm")}{{once}}";
                 }
 
                 taskArray.Add(taskInfo);

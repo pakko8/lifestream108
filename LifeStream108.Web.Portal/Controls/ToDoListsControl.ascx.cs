@@ -49,7 +49,7 @@ namespace LifeStream108.Web.Portal.Controls
 
             if (needLoadListsFromDb)
             {
-                listArray = ToDoListManager.GetCategoryLists(currentCategoryId);
+                listArray = ToDoListManager.GetCategoryLists(currentCategoryId).Where(n => n.Active).ToArray();
                 PortalSession.ToDoLists = listArray;
             }
 

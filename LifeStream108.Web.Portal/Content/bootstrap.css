@@ -2709,6 +2709,9 @@ fieldset[disabled] .form-control {
 textarea.form-control {
   height: auto;
 }
+.input-mini {
+  width: 50px !important;
+}
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"].form-control,
   input[type="time"].form-control,
