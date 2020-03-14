@@ -67,10 +67,7 @@ namespace LifeStream108.Web.Portal.Controls
             if (selectedTaskId <= 0) selectedTaskId = PortalSession.SelectedTaskId;
 
             ToDoTask foundTask = tasks.FirstOrDefault(n => n.Id == selectedTaskId);
-            if (foundTask == null)
-            {
-                selectedTaskId = tasks.Length > 0 ? tasks[0].Id : 0;
-            }
+            if (foundTask == null) return 0;
 
             PortalSession.SelectedTaskId = selectedTaskId;
             return selectedTaskId;

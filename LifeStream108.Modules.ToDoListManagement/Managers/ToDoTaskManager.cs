@@ -7,6 +7,14 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
 {
     public static class ToDoTaskManager
     {
+        public static ToDoTask GetTask(int taskId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                return CommonManager<ToDoTask>.GetById(taskId, session);
+            }
+        }
+
         public static ToDoTask[] GetListTasks(int listId)
         {
             using (ISession session = HibernateLoader.CreateSession())

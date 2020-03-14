@@ -15,7 +15,7 @@ namespace LifeStream108.Web.Portal
                 categoriesControl.LoadCategories();
                 listsControl.LoadLists();
                 tasksControl.LoadTasks();
-                taskInfoControl.LoadTaskInfo();
+                //taskInfoControl.LoadTaskInfo();
             }
             catch (Exception ex)
             {
