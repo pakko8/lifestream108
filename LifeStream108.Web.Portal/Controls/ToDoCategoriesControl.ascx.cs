@@ -10,8 +10,11 @@ namespace LifeStream108.Web.Portal.Controls
 {
     public partial class ToDoCategoriesControl : UserControl
     {
+        protected int deletedTaskId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            deletedTaskId = PortalSession.DeletedTaskId;
         }
 
         public void LoadCategories()
@@ -28,7 +31,7 @@ namespace LifeStream108.Web.Portal.Controls
                     NavigateUrl = $"/Default?{Constants.RequestCategoryKeyName}={category.Id}",
                     Text = category.Name,
                     Enabled = selectedCategoryId != category.Id,
-                    CssClass = selectedCategoryId == category.Id ? "btn btn-success btn-lg" : "btn btn-primary btn-lg"
+                    CssClass = selectedCategoryId == category.Id ? "btn btn-success" : "btn btn-link"
                 };
                 holderCategories.Controls.Add(categoryLink);
                 holderCategories.Controls.Add(new Literal { Text = "&nbsp;&nbsp;&nbsp;" });
@@ -59,6 +62,21 @@ namespace LifeStream108.Web.Portal.Controls
 
             PortalSession.SelectedCategoryId = selectedCategoryId;
             return selectedCategoryId;
+        }
+
+        protected void btnUndoDeleteTask_Click(object sender, EventArgs e)
+        {
+            int taskId = PortalSession.SelectedTaskId;
+            ToDoTask task = ToDoTaskManager.GetTask(taskId);
+            task.Status = ToDoTaskStatus.New;
+            ToDoTaskManager.UpdateTask(task);
+
+            PortalSession.ToDoTasks = ToDoTaskManager.GetListTasks(
+                PortalSession.SelectedListId).Where(n => n.Status != ToDoTaskStatus.Deleted).ToArray();
+
+            PortalSession.SelectedTaskId = 0;
+            PortalSession.DeletedTaskId = 0;
+            Visible = false;
         }
     }
 }

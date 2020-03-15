@@ -35,6 +35,8 @@ namespace LifeStream108.Web.Portal.Controls
                 listLink.Controls.Add(new Literal { Text = $"<span class=\"pull-left\">{list.Name}</span>&nbsp;" });
                 divLists.Controls.Add(listLink);
             }
+
+            PortalSession.SelectedTaskId = 0;
         }
 
         private ToDoList[] GetLists(int currentCategoryId)
