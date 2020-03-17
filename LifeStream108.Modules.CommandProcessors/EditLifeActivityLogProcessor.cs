@@ -44,9 +44,9 @@ namespace LifeStream108.Modules.CommandProcessors
             }
 
             // Sort this parameters
-            LifeActivityParameter[] activityParameters = actWithParams.Parameters
+            actWithParams.Parameters = actWithParams.Parameters
                 .Where(n => n.Active).OrderBy(n => n.SortOrder).ToArray();
-            if (activityParameters.Length == 0)
+            if (actWithParams.Parameters.Length == 0)
                 return ExecuteCommandResult.CreateErrorObject(
                     $"У деятельности \"{actWithParams.Activity.NameForUser}\" отсутствуют параметры.");
 
