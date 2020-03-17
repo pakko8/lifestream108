@@ -12,11 +12,13 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
         private const string UserTimeFormat = "dd.MM.yyyy HH:mm";
         private const string SystemTimeFormat = "yyyy-MM-dd HH:mm";
 
-        public DateTime Time { get; private set; }
+        public DateTime Time { get; private set; } = DateTime.MinValue;
 
-        public int RepeaterValue { get; private set; }
+        public string UserFormattedTime => Time.ToString(UserTimeFormat);
 
-        public ReminderRepeaterType RepeaterType { get; private set; }
+        public int RepeaterValue { get; private set; } = 0;
+
+        public ReminderRepeaterType RepeaterType { get; private set; } = ReminderRepeaterType.Once;
 
         public string ReminderFormat
         {
@@ -33,6 +35,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         public void Load(string reminderFormat)
         {
+            if (string.IsNullOrEmpty(reminderFormat)) return;
+
             string[] formatParts = reminderFormat.Split(new[] { '{' });
             Time = DateTime.ParseExact(formatParts[0], SystemTimeFormat, null);
 

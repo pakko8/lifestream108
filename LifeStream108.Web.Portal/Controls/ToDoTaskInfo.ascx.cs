@@ -4,6 +4,7 @@ using LifeStream108.Web.Portal.App_Code;
 using System;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal.Controls
 {
@@ -13,6 +14,15 @@ namespace LifeStream108.Web.Portal.Controls
         {
             if (!Page.IsPostBack)
             {
+                foreach (ReminderRepeaterType reminderType in Enum.GetValues(typeof(ReminderRepeaterType)))
+                {
+                    ListItem listItem = new ListItem
+                    {
+                        Value = reminderType.ToString(),
+                        Text = reminderType.ToString()
+                    };
+                    ddlReminderRepeatType.Items.Add(listItem);
+                }
                 LoadTaskInfo();
             }
         }
@@ -24,6 +34,15 @@ namespace LifeStream108.Web.Portal.Controls
             ToDoTask task = tasks.FirstOrDefault(n => n.Id == taskId);
             if (task == null) return;
 
+            ToDoTaskReminder reminder = new ToDoTaskReminder();
+            reminder.Load(task.ReminderSettings);
+            if (reminder.Time != DateTime.MinValue)
+            {
+                txtReminderTime.Text = reminder.UserFormattedTime;
+                if (reminder.RepeaterValue > 0) txtReminderRepeatValue.Text = reminder.RepeaterValue.ToString();
+                ddlReminderRepeatType.SelectedValue = reminder.RepeaterType.ToString();
+
+            }
             PortalSession.SelectedTaskId = task.Id;
 
             txtTitle.Text = task.Title;
@@ -34,6 +53,13 @@ namespace LifeStream108.Web.Portal.Controls
         {
             int taskId = PortalSession.SelectedTaskId;
             ToDoTask task = ToDoTaskManager.GetTask(taskId);
+
+            if (!string.IsNullOrEmpty(txtReminderTime.Text))
+            {
+                ToDoTaskReminder reminder = new ToDoTaskReminder();
+                int repeatValue = int.Parse(txtReminderRepeatValue.Text);
+                //reminder.Load(txtReminderTime.Text.Trim(), )
+            }
             task.Title = txtTitle.Text;
             task.Note = txtNote.Text;
             ToDoTaskManager.UpdateTask(task);
