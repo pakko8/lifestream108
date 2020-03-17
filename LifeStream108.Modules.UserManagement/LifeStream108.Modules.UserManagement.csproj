@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="UserAuth.cs" />
     <Compile Include="Mapping\Constants.cs" />
     <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Mapping\UserPasswordMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

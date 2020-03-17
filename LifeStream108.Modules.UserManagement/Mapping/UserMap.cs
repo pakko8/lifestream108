@@ -13,6 +13,7 @@ namespace LifeStream108.Modules.UserManagement.Mapping
             Table(TableName);
             Id(x => x.Id, "id").GeneratedBy.Sequence(TableName + "_id_seq");
 
+            Map(x => x.Email, "email").Not.Nullable();
             Map(x => x.Name, "name").Not.Nullable();
             Map(x => x.TelegramId, "telegram_id").Not.Nullable();
             Map(x => x.LanguageId, "language_id").Not.Nullable();

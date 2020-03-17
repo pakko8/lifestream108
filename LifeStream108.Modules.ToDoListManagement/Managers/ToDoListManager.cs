@@ -7,6 +7,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
 {
     public static class ToDoListManager
     {
+        public static ToDoList[] GetCategoryLists(int categoryId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from list in session.Query<ToDoList>()
+                            where list.CategoryId == categoryId
+                            select list;
+                return query.ToArray();
+            }
+        }
+
         public static void AddList(ToDoList item)
         {
             using (ISession session = HibernateLoader.CreateSession())

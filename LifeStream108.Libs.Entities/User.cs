@@ -6,6 +6,8 @@ namespace LifeStream108.Libs.Entities
     {
         public virtual int Id { get; set; }
 
+        public virtual string Email { get; set; }
+
         public virtual string Name { get; set; }
 
         public virtual int TelegramId { get; set; }
