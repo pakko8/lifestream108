@@ -18,7 +18,7 @@ namespace LifeStream108.Web.Portal.App_Code
             User user = UserManager.AuthorizeUser(email, passwordHash);
             if (user == null)
             {
-                LastErrorMessage = "По введенным логину и паролю пользователь не найден";
+                SetLastMessage("По введенным логину и паролю пользователь не найден", LastMessageType.Error);
                 return false;
             }
 
@@ -97,19 +97,24 @@ namespace LifeStream108.Web.Portal.App_Code
             set { SaveSessionValue(value, "DeletedToDoTaskId"); }
         }
 
-        public static string LastErrorMessage
+        public static LastMessageType LastMessageType
         {
             get
             {
-                return GetSessionStringValue("LastErrorMessage", "");
+                string messageTypeString = GetSessionStringValue("LastMessageType", LastMessageType.None.ToString());
+                return (LastMessageType)Enum.Parse(typeof(LastMessageType), messageTypeString);
             }
-            set
-            {
-                HttpSessionState session = HttpContext.Current.Session;
-                if (session == null) return;
+        }
 
-                session["LastErrorMessage"] = value;
-            }
+        public static string LastMessage
+        {
+            get { return GetSessionStringValue("LastMessage", ""); }
+        }
+
+        public static void SetLastMessage(string message, LastMessageType type)
+        {
+            SaveSessionValue(message, "LastMessage");
+            SaveSessionValue(type.ToString(), "LastMessageType");
         }
 
         private static string GetSessionStringValue(string keyName, string defaultValue)
@@ -135,7 +140,10 @@ namespace LifeStream108.Web.Portal.App_Code
 
         private static void SaveSessionValue(object obj, string keyName)
         {
-            HttpContext.Current.Session[keyName] = obj;
+            HttpSessionState session = HttpContext.Current.Session;
+            if (session == null) return;
+
+            session[keyName] = obj;
         }
     }
 }

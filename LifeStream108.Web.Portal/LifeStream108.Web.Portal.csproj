@@ -205,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Constants.cs" />
+    <Compile Include="App_Code\LastMessageType.cs" />
     <Compile Include="App_Code\PortalSession.cs" />
     <Compile Include="App_Code\WebUtils.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

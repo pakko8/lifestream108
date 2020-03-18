@@ -39,11 +39,7 @@
         </asp:ScriptManager>
 
         <div class="container body-content">
-            <% if (!string.IsNullOrEmpty(lastErrorText)) { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= lastErrorText %>
-                </div>
-            <% } %>
+            <div id="divAlert" runat="server"></div>
 
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

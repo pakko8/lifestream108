@@ -46,11 +46,32 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
             RepeaterValue = repeaterParts.Length > 1 ? int.Parse(repeaterParts[1]) : 0;
         }
 
-        public string Load(string timeValue, int repeaterValue, ReminderRepeaterType repeaterType)
+        public string Load(string timeValue, string repeaterValueString, string repeaterTypeString)
         {
-            bool parseTimeSuccess = DateTime.TryParseExact(
+            if (string.IsNullOrEmpty(repeaterValueString)) repeaterValueString = "0";
+            bool parseFlag = int.TryParse(repeaterValueString, out int repeaterValue);
+            if (!parseFlag) return $"Количество повторений '{repeaterValueString}' должно быть целым числом";
+
+            ReminderRepeaterType repeaterType;
+            if (string.IsNullOrEmpty(repeaterTypeString))
+            {
+                repeaterType = ReminderRepeaterType.Once;
+            }
+            else
+            {
+                parseFlag = Enum.TryParse(repeaterTypeString, out repeaterType);
+                if (!parseFlag) return "Не удалось распознать тип повторения: " + repeaterTypeString;
+            }
+
+            if (repeaterValue > 0 && repeaterType == ReminderRepeaterType.Once)
+                return $"Если указано количество повторений, то тип повторения не должен быть '{ReminderRepeaterType.Once.ToString()}'";
+
+            if (repeaterType != ReminderRepeaterType.Once && repeaterValue == 0)
+                return $"Если указан тип повторения, то также должно быть указано количество повторений";
+
+            parseFlag = DateTime.TryParseExact(
                 timeValue, UserTimeFormat, null, DateTimeStyles.None, out DateTime time);
-            if (!parseTimeSuccess) return "Время в неверном формате. Верный формат: " + UserTimeFormat;
+            if (!parseFlag) return "Время в неверном формате. Верный формат: " + UserTimeFormat;
 
             Time = time;
             RepeaterValue = repeaterValue;

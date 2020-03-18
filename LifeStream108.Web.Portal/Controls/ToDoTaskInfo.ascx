@@ -2,8 +2,6 @@
 
 <div class="bd-example">
     <asp:Button ID="btnSaveTask" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSaveTask_Click" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnDeleteTask" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btnDeleteTask_Click" />
     <hr />
 
     <div class="input-group">
@@ -37,4 +35,7 @@
         </div>
         <asp:TextBox ID="txtNote" runat="server" Rows="20" Columns="30" TextMode="MultiLine" CssClass="form-control" />
     </div>
+    <hr />
+
+    <asp:Button ID="btnDeleteTask" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btnDeleteTask_Click" />
 </div>
