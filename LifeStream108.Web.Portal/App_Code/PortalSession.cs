@@ -12,18 +12,17 @@ namespace LifeStream108.Web.Portal.App_Code
     {
         public static bool IsAuthorized => User != null;
 
-        public static bool AuthorizeUser(string email, string password)
+        public static string AuthorizeUser(string email, string password)
         {
             string passwordHash = CryptoUtils.GenerateSha256Hash(password);
             User user = UserManager.AuthorizeUser(email, passwordHash);
             if (user == null)
             {
-                SetLastMessage("По введенным логину и паролю пользователь не найден", LastMessageType.Error);
-                return false;
+                return "По введенным логину и паролю пользователь не найден";
             }
 
             SaveSessionValue(user, "User");
-            return true;
+            return null;
         }
 
         public static User User
@@ -95,26 +94,6 @@ namespace LifeStream108.Web.Portal.App_Code
         {
             get { return GetSessionIntValue("DeletedToDoTaskId", 0); }
             set { SaveSessionValue(value, "DeletedToDoTaskId"); }
-        }
-
-        public static LastMessageType LastMessageType
-        {
-            get
-            {
-                string messageTypeString = GetSessionStringValue("LastMessageType", LastMessageType.None.ToString());
-                return (LastMessageType)Enum.Parse(typeof(LastMessageType), messageTypeString);
-            }
-        }
-
-        public static string LastMessage
-        {
-            get { return GetSessionStringValue("LastMessage", ""); }
-        }
-
-        public static void SetLastMessage(string message, LastMessageType type)
-        {
-            SaveSessionValue(message, "LastMessage");
-            SaveSessionValue(type.ToString(), "LastMessageType");
         }
 
         private static string GetSessionStringValue(string keyName, string defaultValue)

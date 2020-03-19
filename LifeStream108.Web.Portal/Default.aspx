@@ -4,7 +4,7 @@
 <%@ Register Src="~/Controls/ToDoCategoriesControl.ascx" TagPrefix="uc1" TagName="ToDoCategoriesControl" %>
 <%@ Register Src="~/Controls/ToDoListsControl.ascx" TagPrefix="uc1" TagName="ToDoListsControl" %>
 <%@ Register Src="~/Controls/ToDoTasksControl.ascx" TagPrefix="uc1" TagName="ToDoTasksControl" %>
-<%@ Register Src="~/Controls/ToDoTaskInfo.ascx" TagPrefix="uc1" TagName="ToDoTaskInfo" %>
+<%@ Register Src="~/Controls/ToDoTaskInfoControl.ascx" TagPrefix="uc1" TagName="ToDoTaskInfoControl" %>
 
 
 
@@ -27,7 +27,7 @@
                 &nbsp;
             </td>
             <td style="vertical-align:top">
-                <uc1:ToDoTaskInfo runat="server" ID="taskInfoControl" />
+                <uc1:ToDoTaskInfoControl runat="server" ID="taskInfoControl" />
             </td>
         </tr>
     </table>

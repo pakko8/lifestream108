@@ -8,16 +8,21 @@ namespace LifeStream108.Web.Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
-            bool authFlag = PortalSession.AuthorizeUser(email, password);
+            string authFlag = PortalSession.AuthorizeUser(email, password);
 
-            if (authFlag) Response.Redirect("Default.aspx");
+            if (!string.IsNullOrEmpty(authFlag))
+            {
+                showInfoControl.SetMessage(authFlag, LastMessageType.Error);
+                return;
+            }
+
+            Response.Redirect("Default.aspx");
         }
     }
 }

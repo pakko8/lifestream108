@@ -46,6 +46,6 @@ namespace LifeStream108.Web.Portal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::LifeStream108.Web.Portal.Controls.ToDoTaskInfo taskInfoControl;
+        protected global::LifeStream108.Web.Portal.Controls.ToDoTaskInfoControl taskInfoControl;
     }
 }

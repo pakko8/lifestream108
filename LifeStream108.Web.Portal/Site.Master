@@ -39,8 +39,6 @@
         </asp:ScriptManager>
 
         <div class="container body-content">
-            <div id="divAlert" runat="server"></div>
-
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
