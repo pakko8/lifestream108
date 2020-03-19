@@ -27,7 +27,7 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
                 StringBuilder sbFormat = new StringBuilder(Time.ToString(SystemTimeFormat, null));
                 sbFormat.Append('{');
                 sbFormat.Append(RepeaterType.ToString().ToLower());
-                if (RepeaterType != ReminderRepeaterType.Once) sbFormat.Append(':' + RepeaterValue);
+                if (RepeaterType != ReminderRepeaterType.Once) sbFormat.Append(":" + RepeaterValue);
                 sbFormat.Append('}');
                 return sbFormat.ToString();
             }
