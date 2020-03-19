@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal.Controls
 {
-    public partial class ToDoTaskInfoControl : UserControl
+    public partial class ToDoTaskInfoControl : CommonUserControl
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -68,7 +68,7 @@ namespace LifeStream108.Web.Portal.Controls
                         txtReminderTime.Text.Trim(), txtReminderRepeatValue.Text, ddlReminderRepeatType.SelectedValue);
                     if (!string.IsNullOrEmpty(loadReminderError))
                     {
-                        showInfoControl.SetMessage(loadReminderError, LastMessageType.Error);
+                        ShowInfoControl.SetMessage(loadReminderError, LastMessageType.Error);
                         return;
                     }
 
@@ -86,12 +86,12 @@ namespace LifeStream108.Web.Portal.Controls
 
                 UpdateTaskInSession(task);
 
-                showInfoControl.SetMessage("Задача сохранена", LastMessageType.Success);
+                ShowInfoControl.SetMessage("Задача сохранена", LastMessageType.Success);
             }
             catch (Exception ex)
             {
                 Logger.Error($"Error updating task with id {taskId}: {ex}");
-                showInfoControl.SetMessage("Ошибка сохранения задачи: " + ex.Message, LastMessageType.Error);
+                ShowInfoControl.SetMessage("Ошибка сохранения задачи: " + ex.Message, LastMessageType.Error);
             }
         }
 

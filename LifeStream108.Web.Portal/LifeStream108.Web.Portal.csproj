@@ -225,6 +225,9 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CommonUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Controls\ShowInfoControl.ascx.cs">
       <DependentUpon>ShowInfoControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

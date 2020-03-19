@@ -1,7 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ToDoTaskInfoControl.ascx.cs" Inherits="LifeStream108.Web.Portal.Controls.ToDoTaskInfoControl" %>
-<%@ Register Src="~/Controls/ShowInfoControl.ascx" TagPrefix="uc1" TagName="ShowInfoControl" %>
-
-<uc1:ShowInfoControl runat="server" id="showInfoControl" />
 
 <div class="bd-example">
     <asp:Button ID="btnSaveTask" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSaveTask_Click" />

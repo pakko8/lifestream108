@@ -3,12 +3,11 @@ using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Web.Portal.App_Code;
 using System;
 using System.Linq;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal.Controls
 {
-    public partial class ToDoTasksControl : UserControl
+    public partial class ToDoTasksControl : CommonUserControl
     {
         private const int TaskTitleMaxLength = 80;
 
