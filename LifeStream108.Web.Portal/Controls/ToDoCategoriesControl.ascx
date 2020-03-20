@@ -9,6 +9,23 @@
                     <td>
                         <asp:PlaceHolder runat="server" ID="holderCategories"></asp:PlaceHolder>
                     </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"></asp:TextBox>
+                                </td>
+                                <td>
+                                    &nbsp;
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-outline-info my-2 my-sm-0" />
+                                </td>
+                                <td>
+                                    &nbsp;
+                                    <asp:Button ID="btnCancelSearch" runat="server" Text="Clear" OnClick="btnCancelSearch_Click" CssClass="btn btn-outline-info my-2 my-sm-0" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                     <td style="text-align:right">
                         <% if (deletedTaskId > 0) { %>
                             &nbsp;&nbsp;&nbsp;

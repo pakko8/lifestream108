@@ -17,14 +17,26 @@ namespace LifeStream108.Web.Portal.Controls
 
         public void LoadTasks()
         {
+            divTasks.Controls.Clear();
+
+            ToDoTask[] foundTasks = PortalSession.ToDoTasksFound;
+            if (foundTasks != null && foundTasks.Length > 0)
+            {
+                AddTasksToControl(foundTasks, 0);
+                return;
+            }
+
             int currentListId = PortalSession.SelectedListId;
             if (currentListId <= 0) return;
 
-            ToDoTask[] taskArray = GetTasks(currentListId);
-            int selectedTaskId = GetSelectedTaskId(taskArray);
+            ToDoTask[] tasksToShow = GetTasks(currentListId);
+            int selectedTaskId = GetSelectedTaskId(tasksToShow);
+            AddTasksToControl(tasksToShow, selectedTaskId);
+        }
 
-            divTasks.Controls.Clear();
-            foreach (ToDoTask task in taskArray)
+        private void AddTasksToControl(ToDoTask[] tasks, int selectedTaskId)
+        {
+            foreach (ToDoTask task in tasks)
             {
                 HyperLink taskLink = new HyperLink
                 {

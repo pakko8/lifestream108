@@ -26,6 +26,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
+        public static ToDoTask[] FindTasks(string word, int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from task in session.Query<ToDoTask>()
+                            where task.UserId == userId && task.Title.ToUpper().Contains(word.ToUpper())
+                            select task;
+                return query.ToArray();
+            }
+        }
+
         public static void AddTask(ToDoTask item)
         {
             using (ISession session = HibernateLoader.CreateSession())

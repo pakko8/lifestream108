@@ -13,6 +13,7 @@
     <hr />
     <uc1:ToDoCategoriesControl runat="server" ID="categoriesControl" OnCategoryChanged="categoriesControl_CategoryChanged" />
     <hr />
+
     <table style="width:100%">
         <tr>
             <td style="vertical-align:top">

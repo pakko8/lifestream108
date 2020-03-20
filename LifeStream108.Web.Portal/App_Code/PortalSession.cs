@@ -72,6 +72,18 @@ namespace LifeStream108.Web.Portal.App_Code
             set { SaveSessionValue(value, "ToDoTasks"); }
         }
 
+        public static ToDoTask[] ToDoTasksFound
+        {
+            get
+            {
+                object sessionObject = GetSessionObjectValue("ToDoTasksFound");
+                if (sessionObject == null) return null;
+
+                return (ToDoTask[])sessionObject;
+            }
+            set { SaveSessionValue(value, "ToDoTasksFound"); }
+        }
+
         public static int SelectedCategoryId
         {
             get { return GetSessionIntValue("SelectedToDoCatId", 0); }

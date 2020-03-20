@@ -11,8 +11,6 @@ namespace LifeStream108.Web.Portal.Controls
 {
     public partial class ToDoTaskInfoControl : CommonUserControl
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
