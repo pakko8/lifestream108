@@ -73,12 +73,11 @@ namespace LifeStream108.Web.Portal.Controls
             task.Status = ToDoTaskStatus.New;
             ToDoTaskManager.UpdateTask(task);
 
-            PortalSession.ToDoTasks = ToDoTaskManager.GetListTasks(
-                PortalSession.SelectedListId).Where(n => n.Status != ToDoTaskStatus.Deleted).ToArray();
+            PortalSession.ToDoTasks = ToDoTaskManager.GetListActiveTasks(PortalSession.SelectedListId);
 
             PortalSession.SelectedTaskId = 0;
             PortalSession.DeletedTaskId = 0;
-            Visible = false;
+            btnUndoDeleteTask.Visible = false;
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

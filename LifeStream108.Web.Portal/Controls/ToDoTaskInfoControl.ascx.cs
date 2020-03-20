@@ -31,10 +31,19 @@ namespace LifeStream108.Web.Portal.Controls
         public void LoadTaskInfo()
         {
             int taskId = WebUtils.GetRequestIntValue(Constants.RequestTaskKeyName, Request, 0);
-            ToDoTask[] tasks = PortalSession.ToDoTasks;
+            ToDoTask[] tasks = PortalSession.ToDoTasksFound;
+            if (tasks == null) tasks = PortalSession.ToDoTasks;
+            if (tasks == null) return;
+
             ToDoTask task = tasks.FirstOrDefault(n => n.Id == taskId);
             if (task == null) return;
 
+            ShowTaskInfo(task);
+            PortalSession.SelectedTaskId = task.Id;
+        }
+
+        private void ShowTaskInfo(ToDoTask task)
+        {
             ToDoTaskReminder reminder = new ToDoTaskReminder();
             reminder.Load(task.ReminderSettings);
             if (reminder.Time != DateTime.MinValue)
@@ -44,7 +53,6 @@ namespace LifeStream108.Web.Portal.Controls
                 ddlReminderRepeatType.SelectedValue = reminder.RepeaterType.ToString();
 
             }
-            PortalSession.SelectedTaskId = task.Id;
 
             txtTitle.Text = task.Title;
             txtNote.Text = task.Note;

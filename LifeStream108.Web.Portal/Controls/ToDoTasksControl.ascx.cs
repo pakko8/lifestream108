@@ -1,4 +1,5 @@
-﻿using LifeStream108.Libs.Entities.ToDoEntities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Web.Portal.App_Code;
 using System;
@@ -36,7 +37,7 @@ namespace LifeStream108.Web.Portal.Controls
 
         private void AddTasksToControl(ToDoTask[] tasks, int selectedTaskId)
         {
-            foreach (ToDoTask task in tasks)
+            foreach (ToDoTask task in tasks.OrderByDescending(n => n.RegTime))
             {
                 HyperLink taskLink = new HyperLink
                 {
@@ -65,7 +66,7 @@ namespace LifeStream108.Web.Portal.Controls
 
             if (needLoadTasksFromDb)
             {
-                taskArray = ToDoTaskManager.GetListTasks(currentListId).Where(n => n.Status != ToDoTaskStatus.Deleted).ToArray();
+                taskArray = ToDoTaskManager.GetListActiveTasks(currentListId);
                 PortalSession.ToDoTasks = taskArray;
             }
 
@@ -74,7 +75,7 @@ namespace LifeStream108.Web.Portal.Controls
 
         private int GetSelectedTaskId(ToDoTask[] tasks)
         {
-            int selectedTaskId = WebUtils.GetRequestIntValue(Constants.RequestTaskKeyName, Request, 0);
+            int selectedTaskId = App_Code.WebUtils.GetRequestIntValue(Constants.RequestTaskKeyName, Request, 0);
             if (selectedTaskId <= 0) selectedTaskId = PortalSession.SelectedTaskId;
 
             ToDoTask foundTask = tasks.FirstOrDefault(n => n.Id == selectedTaskId);
@@ -82,6 +83,36 @@ namespace LifeStream108.Web.Portal.Controls
 
             PortalSession.SelectedTaskId = selectedTaskId;
             return selectedTaskId;
+        }
+
+        protected void btnAddNewTask_Click(object sender, EventArgs e)
+        {
+            int selectedListId = PortalSession.SelectedListId;
+            if (selectedListId == 0)
+            {
+                ShowInfoControl.SetMessage("Не выбран список", LastMessageType.Error);
+                return;
+            }
+
+            string newTitle = txtNewTaskTitle.Text.Trim();
+            ToDoTask[] tasks = PortalSession.ToDoTasks;
+            ToDoTask existsTask = tasks.FirstOrDefault(n => n.Title.ToUpper() == newTitle.ToUpper());
+            if (existsTask != null)
+            {
+                ShowInfoControl.SetMessage($"Задача с заголовком '{newTitle}' уже существует", LastMessageType.Error);
+                return;
+            }
+
+            ToDoTask newTask = new ToDoTask
+            {
+                UserId = PortalSession.User.Id,
+                ListId = selectedListId,
+                Title = newTitle
+            };
+            ToDoTaskManager.AddTask(newTask);
+            PortalSession.ToDoTasks = CollectionUtils.Merge(tasks, newTask);
+            txtNewTaskTitle.Text = "";
+            LoadTasks();
         }
     }
 }
