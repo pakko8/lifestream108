@@ -36,5 +36,10 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
         {
             return ((ToDoTask)obj).Id == Id;
         }
+
+        public override int GetHashCode()
+        {
+            return 2108858624 + Id.GetHashCode();
+        }
     }
 }

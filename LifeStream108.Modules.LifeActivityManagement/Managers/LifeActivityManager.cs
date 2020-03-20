@@ -77,12 +77,12 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
             }
         }
 
-        public static LifeActivity[] FindActivitiesByName(string activityNameContainsString, int userId)
+        public static LifeActivity[] FindActivitiesByName(string word, int userId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
                 var query = from act in session.Query<LifeActivity>()
-                            where act.UserId == userId && act.Name.ToUpper().Contains(activityNameContainsString.ToUpper())
+                            where act.UserId == userId && act.Name.ToUpper().Contains(word.ToUpper())
                             select act;
                 return query.ToArray();
             }

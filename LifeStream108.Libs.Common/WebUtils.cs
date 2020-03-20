@@ -5,7 +5,7 @@ namespace LifeStream108.Libs.Common
 {
     public static class WebUtils
     {
-        public static string LoadPage(string url)
+        public static string DownloadPage(string url)
         {
             WebClient client = new WebClient();
             Stream data = client.OpenRead(url);

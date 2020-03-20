@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - LifeStream108</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -39,17 +39,11 @@
         </asp:ScriptManager>
 
         <div class="container body-content">
-            <% if (!string.IsNullOrEmpty(lastErrorText)) { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= lastErrorText %>
-                </div>
-            <% } %>
-
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Life Stream 108</p>
             </footer>
         </div>
     </form>

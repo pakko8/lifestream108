@@ -1,14 +1,15 @@
-﻿using LifeStream108.Libs.Entities.ToDoEntities;
+﻿using LifeStream108.Libs.Common.Grammar;
+using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Web.Portal.App_Code;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace LifeStream108.Web.Portal.Controls
 {
-    public partial class ToDoCategoriesControl : UserControl
+    public partial class ToDoCategoriesControl : CommonUserControl
     {
         protected int deletedTaskId;
 
@@ -52,6 +53,7 @@ namespace LifeStream108.Web.Portal.Controls
         private int GetSelectedCategoryId(ToDoCategory[] categories)
         {
             int selectedCategoryId = WebUtils.GetRequestIntValue(Constants.RequestCategoryKeyName, Request, 0);
+
             if (selectedCategoryId <= 0) selectedCategoryId = PortalSession.SelectedCategoryId;
 
             ToDoCategory foundCategory = categories.FirstOrDefault(n => n.Id == selectedCategoryId);
@@ -71,12 +73,55 @@ namespace LifeStream108.Web.Portal.Controls
             task.Status = ToDoTaskStatus.New;
             ToDoTaskManager.UpdateTask(task);
 
-            PortalSession.ToDoTasks = ToDoTaskManager.GetListTasks(
-                PortalSession.SelectedListId).Where(n => n.Status != ToDoTaskStatus.Deleted).ToArray();
+            PortalSession.ToDoTasks = ToDoTaskManager.GetListActiveTasks(PortalSession.SelectedListId);
 
             PortalSession.SelectedTaskId = 0;
             PortalSession.DeletedTaskId = 0;
-            Visible = false;
+            btnUndoDeleteTask.Visible = false;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchWord = txtSearch.Text.Trim();
+            Logger.Info($"Searching tasks by word '{searchWord}'");
+            ToDoTask[] foundTasks = ToDoTaskManager.FindTasks(searchWord, PortalSession.User.Id);
+            Logger.Info($"Found {foundTasks.Length} tasks before filteration");
+
+            ToDoList[] lists = ToDoListManager.GetCategoryLists(PortalSession.SelectedCategoryId);
+            List<ToDoTask> selectedTasks = new List<ToDoTask>();
+            foreach (ToDoTask task in foundTasks)
+            {
+                ToDoList foundList = lists.FirstOrDefault(n => n.Id == task.ListId);
+                if (foundList != null) selectedTasks.Add(task);
+            }
+            Logger.Info($"Found {selectedTasks.Count} tasks after filteration");
+            PortalSession.ToDoTasksFound = selectedTasks.Count > 0 ? selectedTasks.ToArray() : null;
+
+            if (selectedTasks.Count == 0)
+            {
+                ShowInfoControl.SetMessage($"Задач со словом '{searchWord}' задач не найдено", LastMessageType.Warning);
+                return;
+            }
+
+            ShowInfoControl.SetMessage(
+                $"Со словом '{searchWord}' найдено {selectedTasks.Count} " +
+                $"{Declanations.DeclineByNumeral(selectedTasks.Count, "задача", "задачи", "задач")}", LastMessageType.Info);
+
+            RefreshTasksControl();
+        }
+
+        protected void btnCancelSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            PortalSession.ToDoTasksFound = null;
+            PortalSession.SelectedTaskId = 0;
+            RefreshTasksControl();
+        }
+
+        private void RefreshTasksControl()
+        {
+            _Default parentPage = (_Default)Page;
+            parentPage.TaskListControl.LoadTasks();
         }
     }
 }

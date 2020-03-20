@@ -24,5 +24,24 @@ namespace LifeStream108.Libs.Common
             }
             return sbDictionary.ToString();
         }
+
+        public static T[] Merge<T>(T[] array1, T[] array2)
+        {
+            if (array1 == null || array1.Length == 0) return array2;
+            if (array2 == null || array2.Length == 0) return array1;
+
+            // Another methods for merging arrays: https://stackoverflow.com/questions/59217/merging-two-arrays-in-net
+            return array1.Concat(array2).ToArray();
+        }
+
+        public static T[] Merge<T>(T[] array, T value)
+        {
+            return Merge(array, new[] { value });
+        }
+
+        public static T[] Merge<T>(T value, T[] array)
+        {
+            return Merge(new[] { value }, array);
+        }
     }
 }

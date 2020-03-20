@@ -12,18 +12,17 @@ namespace LifeStream108.Web.Portal.App_Code
     {
         public static bool IsAuthorized => User != null;
 
-        public static bool AuthorizeUser(string email, string password)
+        public static string AuthorizeUser(string email, string password)
         {
             string passwordHash = CryptoUtils.GenerateSha256Hash(password);
             User user = UserManager.AuthorizeUser(email, passwordHash);
             if (user == null)
             {
-                LastErrorMessage = "По введенным логину и паролю пользователь не найден";
-                return false;
+                return "По введенным логину и паролю пользователь не найден";
             }
 
             SaveSessionValue(user, "User");
-            return true;
+            return null;
         }
 
         public static User User
@@ -73,6 +72,18 @@ namespace LifeStream108.Web.Portal.App_Code
             set { SaveSessionValue(value, "ToDoTasks"); }
         }
 
+        public static ToDoTask[] ToDoTasksFound
+        {
+            get
+            {
+                object sessionObject = GetSessionObjectValue("ToDoTasksFound");
+                if (sessionObject == null) return null;
+
+                return (ToDoTask[])sessionObject;
+            }
+            set { SaveSessionValue(value, "ToDoTasksFound"); }
+        }
+
         public static int SelectedCategoryId
         {
             get { return GetSessionIntValue("SelectedToDoCatId", 0); }
@@ -95,21 +106,6 @@ namespace LifeStream108.Web.Portal.App_Code
         {
             get { return GetSessionIntValue("DeletedToDoTaskId", 0); }
             set { SaveSessionValue(value, "DeletedToDoTaskId"); }
-        }
-
-        public static string LastErrorMessage
-        {
-            get
-            {
-                return GetSessionStringValue("LastErrorMessage", "");
-            }
-            set
-            {
-                HttpSessionState session = HttpContext.Current.Session;
-                if (session == null) return;
-
-                session["LastErrorMessage"] = value;
-            }
         }
 
         private static string GetSessionStringValue(string keyName, string defaultValue)
@@ -135,7 +131,10 @@ namespace LifeStream108.Web.Portal.App_Code
 
         private static void SaveSessionValue(object obj, string keyName)
         {
-            HttpContext.Current.Session[keyName] = obj;
+            HttpSessionState session = HttpContext.Current.Session;
+            if (session == null) return;
+
+            session[keyName] = obj;
         }
     }
 }

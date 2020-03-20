@@ -4,14 +4,16 @@
 <%@ Register Src="~/Controls/ToDoCategoriesControl.ascx" TagPrefix="uc1" TagName="ToDoCategoriesControl" %>
 <%@ Register Src="~/Controls/ToDoListsControl.ascx" TagPrefix="uc1" TagName="ToDoListsControl" %>
 <%@ Register Src="~/Controls/ToDoTasksControl.ascx" TagPrefix="uc1" TagName="ToDoTasksControl" %>
-<%@ Register Src="~/Controls/ToDoTaskInfo.ascx" TagPrefix="uc1" TagName="ToDoTaskInfo" %>
-
-
+<%@ Register Src="~/Controls/ToDoTaskInfoControl.ascx" TagPrefix="uc1" TagName="ToDoTaskInfoControl" %>
+<%@ Register Src="~/Controls/ShowInfoControl.ascx" TagPrefix="uc1" TagName="ShowInfoControl" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <uc1:ShowInfoControl runat="server" ID="showInfoControl" />
+
     <hr />
     <uc1:ToDoCategoriesControl runat="server" ID="categoriesControl" OnCategoryChanged="categoriesControl_CategoryChanged" />
     <hr />
+
     <table style="width:100%">
         <tr>
             <td style="vertical-align:top">
@@ -27,7 +29,7 @@
                 &nbsp;
             </td>
             <td style="vertical-align:top">
-                <uc1:ToDoTaskInfo runat="server" ID="taskInfoControl" />
+                <uc1:ToDoTaskInfoControl runat="server" ID="taskInfoControl" />
             </td>
         </tr>
     </table>

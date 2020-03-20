@@ -15,13 +15,24 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
-        public static ToDoTask[] GetListTasks(int listId)
+        public static ToDoTask[] GetListActiveTasks(int listId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
-                var query = from list in session.Query<ToDoTask>()
-                            where list.ListId == listId
-                            select list;
+                var query = from task in session.Query<ToDoTask>()
+                            where task.ListId == listId && task.Status != ToDoTaskStatus.Deleted
+                            select task;
+                return query.ToArray();
+            }
+        }
+
+        public static ToDoTask[] FindTasks(string word, int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from task in session.Query<ToDoTask>()
+                            where task.UserId == userId && task.Status != ToDoTaskStatus.Deleted && task.Title.ToUpper().Contains(word.ToUpper())
+                            select task;
                 return query.ToArray();
             }
         }

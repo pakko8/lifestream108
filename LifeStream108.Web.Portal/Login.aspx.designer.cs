@@ -13,6 +13,15 @@ namespace LifeStream108.Web.Portal {
     public partial class Login {
         
         /// <summary>
+        /// showInfoControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::LifeStream108.Web.Portal.Controls.ShowInfoControl showInfoControl;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>

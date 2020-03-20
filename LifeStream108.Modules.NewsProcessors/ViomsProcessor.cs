@@ -13,7 +13,7 @@ namespace LifeStream108.Modules.NewsProcessors
 
         public override NewsItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime)
         {
-            string pageContent = WebUtils.LoadPage(url);
+            string pageContent = WebUtils.DownloadPage(url);
             bool allowParseData = false;
             string line;
             List<NewsItem> newsList = new List<NewsItem>();

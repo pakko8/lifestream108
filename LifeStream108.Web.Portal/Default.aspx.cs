@@ -1,4 +1,5 @@
 ﻿using LifeStream108.Web.Portal.App_Code;
+using LifeStream108.Web.Portal.Controls;
 using NLog;
 using System;
 using System.Web.UI;
@@ -23,5 +24,7 @@ namespace LifeStream108.Web.Portal
                 Logger.Error("Error loading page: " + ex);
             }
         }
+
+        public ToDoTasksControl TaskListControl => tasksControl;
     }
 }
