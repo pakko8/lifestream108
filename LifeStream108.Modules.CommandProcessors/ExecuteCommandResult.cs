@@ -1,4 +1,5 @@
 ﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +8,20 @@ namespace LifeStream108.Modules.CommandProcessors
     public class ExecuteCommandResult
     {
         #region Methods for session
+        private ProjectType _projectType;
+
+        public bool NeedUpdateProjectType { get; private set; }
+
+        public ProjectType ProjectType
+        {
+            get { return _projectType; }
+            set
+            {
+                _projectType = value;
+                NeedUpdateProjectType = true;
+            }
+        }
+
         private int _commandId;
 
         public bool NeedUpdateCommandId { get; private set; }

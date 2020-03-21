@@ -83,3 +83,5 @@ D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\obj\Debug\Life
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb

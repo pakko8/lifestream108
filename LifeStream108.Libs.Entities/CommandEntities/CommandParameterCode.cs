@@ -2,6 +2,8 @@
 {
     public enum CommandParameterCode
     {
+        ProjectType,
+
         Date,
 
         Period,
@@ -32,6 +34,12 @@
 
         LifeActivityParamValues,
 
-        LifeActivityLogCode
+        LifeActivityLogCode,
+
+        ToDoCategoryCode,
+
+        ToDoListCode,
+
+        ToDoTaskCode
     }
 }

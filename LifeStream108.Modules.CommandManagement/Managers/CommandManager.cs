@@ -1,7 +1,12 @@
-﻿using LifeStream108.Libs.Entities.CommandEntities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.HibernateManagement;
 using NHibernate;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 
 namespace LifeStream108.Modules.CommandManagement.Managers
@@ -16,12 +21,26 @@ namespace LifeStream108.Modules.CommandManagement.Managers
             }
         }
 
-        public static CommandName[] GetAllCommandNames()
+        public static CommandName[] GetCommandNames(ProjectType project)
         {
+            List<CommandName> commandNames = new List<CommandName>();
             using (ISession session = HibernateLoader.CreateSession())
             {
-                return CommonManager<CommandName>.GetAll(session);
+                string commandText =
+                    "select nm.* from command_names as nm " +
+                    "inner join commands cmd on nm.command_id=cmd.id " +
+                    $"where cmd.project_type in ({(int)ProjectType.None}, {(int)project})";
+                DbCommand command = session.Connection.CreateCommand();
+                command.CommandText = commandText;
+                using (IDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        commandNames.Add(ReadCommandName(reader));
+                    }
+                }
             }
+            return commandNames.ToArray();
         }
 
         public static CommandName[] GetCommandNames(int commandId)
@@ -51,6 +70,18 @@ namespace LifeStream108.Modules.CommandManagement.Managers
                         where param.CommandId == commandId
                         select param;
             return query.ToArray();
+        }
+
+        private static CommandName ReadCommandName(IDataReader reader)
+        {
+            CommandName commandName = new CommandName();
+            commandName.Id = PgsqlUtils.GetInt("id", reader, 0);
+            commandName.SortOrder = PgsqlUtils.GetInt("sort_order", reader, 0);
+            commandName.CommandId = PgsqlUtils.GetInt("command_id", reader, 0);
+            commandName.Alias = PgsqlUtils.GetString("alias", reader, "");
+            commandName.SpacePositions = PgsqlUtils.GetString("space_positions", reader, "");
+            commandName.LanguageId = PgsqlUtils.GetInt("language_id", reader, 0);
+            return commandName;
         }
     }
 }

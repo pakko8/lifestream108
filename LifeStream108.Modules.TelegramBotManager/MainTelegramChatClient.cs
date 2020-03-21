@@ -246,6 +246,7 @@ namespace LifeStream108.Modules.TelegramBotManager
                     Logger.Info("Command result:\r\n" + execCmdResult);
 
                     currentSession.Data = execCmdResult.Success ? execCmdResult.SessionData : currentSession.Data;
+                    if (execCmdResult.NeedUpdateProjectType) currentSession.ProjectType = execCmdResult.ProjectType;
                     if (execCmdResult.NeedUpdateCommandId) currentSession.LastCommandId = execCmdResult.CommandId;
                     if (execCmdResult.NeedUpdateLifeGroupId) currentSession.LastLifeGroupId = execCmdResult.LifeGroupId;
                     if (execCmdResult.NeedUpdateLifeActivityId) currentSession.LastLifeActivityId = execCmdResult.LifeActivityId;

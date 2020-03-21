@@ -58,6 +58,7 @@
     <Compile Include="Exceptions\DateNotInCorrectFormat.cs" />
     <Compile Include="Exceptions\LifeStream108Exception.cs" />
     <Compile Include="Grammar\Declanations.cs" />
+    <Compile Include="PgsqlUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionUtils.cs" />
     <Compile Include="WebUtils.cs" />

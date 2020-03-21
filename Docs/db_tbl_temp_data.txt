@@ -7,6 +7,7 @@ create table temp_data.sessions
 (
 	id serial not null,
 	user_id int not null,
+	project_type int not null,
 	last_command_id int not null,
 	last_life_group_id int not null,
 	last_life_activity_id int not null,

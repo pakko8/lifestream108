@@ -1,11 +1,9 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
-using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Modules.CommandManagement.Managers;
-using LifeStream108.Modules.DictionaryManagement.Managers;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -21,7 +19,7 @@ namespace LifeStream108.Modules.CommandProcessors
 
         private CommandName[] _commandNames = null;
 
-        public ExecuteCommandResult Run(string requestText, Session userSession)
+        public ExecuteCommandResult Run(string requestText, Session session)
         {
             if (requestText.ToUpper().StartsWith("BACKMETHOD"))
             {
@@ -37,13 +35,13 @@ namespace LifeStream108.Modules.CommandProcessors
                 return (ExecuteCommandResult)method.Invoke(backgroundProcessor, paramsArray);
             }
 
-            _commandNames = CommandManager.GetAllCommandNames();
+            _commandNames = CommandManager.GetCommandNames(session.ProjectType);
 
             Tuple<Command, CommandParameterAndValue[], string> commandInfo = ParseRequest(requestText);
             if (!string.IsNullOrEmpty(commandInfo.Item3)) return new ExecuteCommandResult { ErrorText = commandInfo.Item3 };
 
             BaseCommandProcessor commandProcessor = (BaseCommandProcessor)LoadClass(commandInfo.Item1.ProcessorClassName, requestText);
-            ExecuteCommandResult executeResult = commandProcessor.Execute(commandInfo.Item2, userSession);
+            ExecuteCommandResult executeResult = commandProcessor.Execute(commandInfo.Item2, session);
             executeResult.CommandId = commandInfo.Item1.Id;
             return executeResult;
         }

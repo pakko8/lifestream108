@@ -18,6 +18,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
+        public static ToDoCategory GetCategoryByCode(int categoryCode, int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from cat in session.Query<ToDoCategory>()
+                            where cat.UserCode == categoryCode && cat.UserId == userId
+                            select cat;
+                return query.FirstOrDefault();
+            }
+        }
+
         public static void AddCategory(ToDoCategory item)
         {
             using (ISession session = HibernateLoader.CreateSession())

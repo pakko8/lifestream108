@@ -1,6 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.CommandEntities;
-using LifeStream108.Modules.DictionaryManagement.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +14,7 @@ namespace LifeStream108.Modules.CommandProcessors
         {
             Command[] commands = CommandManager.GetAllCommands();
             commands = PickupAppropriateCommands(commands, session);
-            CommandName[] allCommandNames = CommandManager.GetAllCommandNames();
+            CommandName[] allCommandNames = CommandManager.GetCommandNames(session.ProjectType);
 
             StringBuilder sbCommandsInfo = new StringBuilder();
             Command[] availableCommands = commands.Where(n => n.Active).OrderBy(n => n.SortOrder).ToArray();
