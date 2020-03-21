@@ -62,13 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Managers\CurrencyManager.cs" />
     <Compile Include="Managers\LanguageManager.cs" />
     <Compile Include="Managers\MeasureManager.cs" />
-    <Compile Include="Mapping\CommandMap.cs" />
-    <Compile Include="Mapping\CommandNameMap.cs" />
-    <Compile Include="Mapping\CommandParameterMap.cs" />
     <Compile Include="Mapping\Constants.cs" />
     <Compile Include="Mapping\CurrencyMap.cs" />
     <Compile Include="Mapping\LanguageMap.cs" />

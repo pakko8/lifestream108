@@ -1,4 +1,5 @@
 ﻿using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.LifeActityEntities;
 using System;
 using System.Globalization;
 

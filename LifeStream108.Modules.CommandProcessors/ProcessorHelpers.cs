@@ -2,9 +2,12 @@
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
 using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.CommandEntities;
+using LifeStream108.Libs.Entities.DictionaryEntities;
+using LifeStream108.Libs.Entities.LifeActityEntities;
+using LifeStream108.Modules.CommandManagement.Managers;
 using LifeStream108.Modules.DictionaryManagement.Managers;
 using LifeStream108.Modules.LifeActivityManagement.Managers;
-using System;
 using System.Linq;
 using System.Text;
 

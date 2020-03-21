@@ -1,4 +1,4 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.NewsEntities;
 using System;
 
 namespace LifeStream108.Modules.NewsProcessors

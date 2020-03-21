@@ -100,3 +100,6 @@ d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\Lif
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Modules.CommandManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Modules.CommandManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Modules.CommandManagement.dll.config

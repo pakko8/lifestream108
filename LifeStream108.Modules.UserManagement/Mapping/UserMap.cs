@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.UserEntities;
 
 namespace LifeStream108.Modules.UserManagement.Mapping
 {

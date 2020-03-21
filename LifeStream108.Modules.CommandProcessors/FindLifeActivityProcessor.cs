@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Text;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Libs.Entities.CommandEntities;
+using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Modules.LifeActivityManagement.Managers;
 
 namespace LifeStream108.Modules.CommandProcessors

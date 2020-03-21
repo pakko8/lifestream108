@@ -1,6 +1,8 @@
 ﻿using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.MessageEntities;
+using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Libs.Entities.TicketEntities;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.TempDataManagement.Managers;
 using LifeStream108.Modules.UserManagement.Managers;
@@ -12,7 +14,7 @@ using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-using OurUser = LifeStream108.Libs.Entities.User;
+using OurUser = LifeStream108.Libs.Entities.UserEntities.User;
 using TelegramUser = Telegram.Bot.Types.User;
 
 namespace LifeStream108.Modules.TelegramBotManager

@@ -1,11 +1,11 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.NewsEntities;
+using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Modules.NewsManagement.Managers;
 using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
 using LifeStream108.Modules.UserManagement.Managers;
 using NLog;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;

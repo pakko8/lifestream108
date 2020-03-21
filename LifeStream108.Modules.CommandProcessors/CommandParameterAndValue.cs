@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.CommandEntities;
 using System;
 using System.Collections.Generic;
 

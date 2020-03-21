@@ -1,4 +1,4 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.SessionEntities;
 using NLog;
 
 namespace LifeStream108.Modules.CommandProcessors

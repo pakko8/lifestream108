@@ -1,8 +1,7 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.SettingsEntities;
 using LifeStream108.Modules.SettingsManagement.Managers;
 using NLog;
 using System;
-using System.Net;
 using Telegram.Bot;
 using TelegramUser = Telegram.Bot.Types.User;
 

@@ -1,4 +1,5 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Modules.TempDataManagement.Managers;
 using LifeStream108.Modules.UserManagement.Managers;
 using NLog;
