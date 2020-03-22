@@ -27,7 +27,7 @@ namespace LifeStream108.Modules.CommandProcessors
                     return ExecuteCommandResult.CreateErrorObject("Неизвестный тип проекта: " + projectTypeParameter.Value);
             }
 
-            ExecuteCommandResult commandResult = ExecuteCommandResult.CreateSuccessObject("Проект изменён");
+            ExecuteCommandResult commandResult = ExecuteCommandResult.CreateSuccessObject("Проект выбран");
             commandResult.ProjectType = projectType;
             return commandResult;
         }

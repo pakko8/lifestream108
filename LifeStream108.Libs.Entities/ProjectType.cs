@@ -2,7 +2,10 @@
 {
     public enum ProjectType
     {
-        None = 0,
+        /// <summary>
+        /// Не определён
+        /// </summary>
+        Indefined = 0,
 
         LifeActivity = 1,
 

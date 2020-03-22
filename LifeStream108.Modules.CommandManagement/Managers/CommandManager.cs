@@ -13,11 +13,14 @@ namespace LifeStream108.Modules.CommandManagement.Managers
 {
     public static class CommandManager
     {
-        public static Command[] GetAllCommands()
+        public static Command[] GetCommands(ProjectType project)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
-                return CommonManager<Command>.GetAll(session);
+                var query = from cmd in session.Query<Command>()
+                            where cmd.ProjectType == ProjectType.Indefined || cmd.ProjectType == project
+                            select cmd;
+                return query.ToArray();
             }
         }
 
@@ -29,7 +32,7 @@ namespace LifeStream108.Modules.CommandManagement.Managers
                 string commandText =
                     "select nm.* from command_names as nm " +
                     "inner join commands cmd on nm.command_id=cmd.id " +
-                    $"where cmd.project_type in ({(int)ProjectType.None}, {(int)project})";
+                    $"where cmd.project_type in ({(int)ProjectType.Indefined}, {(int)project})";
                 DbCommand command = session.Connection.CreateCommand();
                 command.CommandText = commandText;
                 using (IDataReader reader = command.ExecuteReader())

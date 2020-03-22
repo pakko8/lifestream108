@@ -202,7 +202,7 @@ values
 (93, 4, 'удаллог', '5', 2),
 
 (201, 1, 'reportact', '7', 1),
-(201, 2, 'отчетдеят', '6', 2);
+(201, 2, 'отчетдеят', '6', 2),
 
 (501, 1, 'categories', '', 1),
 (501, 2, 'categ', '', 1),
@@ -240,7 +240,7 @@ create table public.command_params
 
 insert into public.command_params (command_id, sort_order, command_param_code, name, description, data_type, input_data_type, data_format, data_format_desc, required, min_length, max_length, regex, predefined_values, default_value, example, reg_time)
 values
-(9, 1, 'ProjectType', 'Тип проекта', '', 'Text', 'OneElementFromList', '', '', 't', 2, 40, '', '', 'life,todo,жизнь,туду', 'life', current_timestamp),
+(9, 1, 'ProjectType', 'Тип проекта', '', 'Text', 'OneElementFromList', '', '', 't', 2, 40, '', 'life;todo;жизнь;туду', '', 'life', current_timestamp),
 (32, 1, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
 (33, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (33, 2, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
@@ -282,4 +282,4 @@ values
 (201, 1, 'Period', 'Период', '', 'Period', 'Simple', '', '', 't', 1, 0, '', '', '', '', current_timestamp),
 (201, 3, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp),
 
-(501, 1, 'ToDoCategoryCode', 'Код категории', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp);
+(502, 1, 'ToDoCategoryCode', 'Код категории', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp);
