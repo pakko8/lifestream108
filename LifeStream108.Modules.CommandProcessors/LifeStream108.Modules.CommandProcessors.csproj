@@ -58,6 +58,7 @@
     <Compile Include="CommandParameterAndValue.cs" />
     <Compile Include="ExecuteCommandResult.cs" />
     <Compile Include="HelpProcessor.cs" />
+    <Compile Include="ProjectListProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResetSessionProcessor.cs" />
     <Compile Include="SpecialCommandForTelegramBot.cs" />

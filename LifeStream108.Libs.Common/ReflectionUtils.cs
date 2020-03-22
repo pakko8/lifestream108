@@ -11,6 +11,7 @@ namespace LifeStream108.Libs.Common
 
         public static object LoadClass(string className, string assemblyName, string assemblyDirectory)
         {
+            if (!assemblyName.ToUpper().EndsWith(".DLL")) assemblyName += ".dll";
             Logger.Info($"Loading class <{className}> from assembly <{assemblyName}> in directory <{assemblyDirectory}>");
 
             Assembly assembly = Assembly.LoadFrom(Path.Combine(assemblyDirectory, assemblyName));

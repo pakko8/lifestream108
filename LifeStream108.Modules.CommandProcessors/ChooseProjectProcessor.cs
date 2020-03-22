@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
@@ -18,7 +17,8 @@ namespace LifeStream108.Modules.CommandProcessors
             if (project == null) return ExecuteCommandResult.CreateErrorObject(
                 $"Проект с кодом '{projectCodeParameter.Value}' не найден");
 
-            ExecuteCommandResult commandResult = ExecuteCommandResult.CreateSuccessObject("Проект выбран");
+            ExecuteCommandResult commandResult =
+                ExecuteCommandResult.CreateSuccessObject($"Проект '{project.Name}' выбран");
             commandResult.ProjectId = project.Id;
             return commandResult;
         }

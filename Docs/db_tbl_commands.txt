@@ -104,6 +104,10 @@ values
 (8, 1, 'clearchat', '6', 1),
 (8, 2, 'очиститьчат', '9', 2),
 
+(9, 1, 'projects', '', 1),
+(9, 2, 'projs', '', 1),
+(9, 2, 'проекты', '', 2),
+
 (10, 1, 'project', '', 1),
 (10, 2, 'proj', '', 1),
 (10, 2, 'проект', '', 2),
@@ -242,7 +246,7 @@ create table public.command_params
 
 insert into public.command_params (command_id, sort_order, command_param_code, name, description, data_type, input_data_type, data_format, data_format_desc, required, min_length, max_length, regex, predefined_values, default_value, example, reg_time)
 values
-(9, 1, 'ProjectCode', 'Код проекта', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'life', current_timestamp),
+(10, 1, 'ProjectCode', 'Код проекта', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'life', current_timestamp),
 (32, 1, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
 (33, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (33, 2, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),

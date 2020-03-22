@@ -31,7 +31,7 @@ namespace LifeStream108.Modules.CommandManagement.Managers
                 string commandText =
                     "select nm.* from command_names as nm " +
                     "inner join commands cmd on nm.command_id=cmd.id " +
-                    $"where cmd.project_type in (0, {projectId})";
+                    $"where cmd.project_id in (0, {projectId})";
                 DbCommand command = session.Connection.CreateCommand();
                 command.CommandText = commandText;
                 using (IDataReader reader = command.ExecuteReader())

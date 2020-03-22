@@ -83,3 +83,8 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.pdb
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.dll.config
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.pdb

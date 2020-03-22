@@ -43,7 +43,7 @@ namespace LifeStream108.Modules.CommandProcessors
                 */
             }
 
-            _commandNames = CommandManager.GetCommandNames(session.ProjectId);
+            _commandNames = CommandManager.GetCommandNamesForProject(session.ProjectId);
 
             var commandInfo = ParseRequest(requestText);
             if (!string.IsNullOrEmpty(commandInfo.Error)) return ExecuteCommandResult.CreateErrorObject(commandInfo.Error);
@@ -185,6 +185,8 @@ namespace LifeStream108.Modules.CommandProcessors
                         $"Command with id <{uniqueCommandIds.First()}> not found",
                         "Эта команда неверно настроена.",
                         $"Ошибка во время выполнения команды '{commandName}'");
+
+                return foundCommand;
             }
 
             return (null, null);
@@ -219,7 +221,7 @@ namespace LifeStream108.Modules.CommandProcessors
         {
             try
             {
-                if (string.IsNullOrEmpty(assemblyName))
+                if (!string.IsNullOrEmpty(assemblyName))
                     return ReflectionUtils.LoadClass(className, assemblyName, assemblyPath);
 
                 // Load class from this assembly

@@ -133,6 +133,18 @@
       <Project>{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}</Project>
       <Name>LifeStream108.Libs.HibernateManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.CommandLifeActProcessors\LifeStream108.Modules.CommandLifeActProcessors.csproj">
+      <Project>{60cff12d-2084-4b69-a154-75d59aa66f3c}</Project>
+      <Name>LifeStream108.Modules.CommandLifeActProcessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.CommandProcessors\LifeStream108.Modules.CommandProcessors.csproj">
+      <Project>{75c5087c-b4da-42ea-b24d-1e88b04bbc4c}</Project>
+      <Name>LifeStream108.Modules.CommandProcessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.CommandToDoProcessors\LifeStream108.Modules.CommandToDoProcessors.csproj">
+      <Project>{f12910b6-7179-4c97-b3f1-4b67601b3647}</Project>
+      <Name>LifeStream108.Modules.CommandToDoProcessors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeStream108.Modules.LifeActivityManagement\LifeStream108.Modules.LifeActivityManagement.csproj">
       <Project>{8F71B651-CECD-47FE-9009-65BEDD68EFD0}</Project>
       <Name>LifeStream108.Modules.LifeActivityManagement</Name>
