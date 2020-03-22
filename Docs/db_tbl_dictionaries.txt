@@ -1,4 +1,24 @@
 --- *** ---
+drop table if exists public.projects;
+create table public.projects
+(
+	id serial not null,
+	user_code varchar(10) not null,
+	name varchar(50) not null,
+	description varchar(500) not null,
+	help_url varchar(100) not null,
+	assembly_name varchar(50) not null,
+	reg_time timestamp not null,
+	constraint projects_pkey primary key (id)
+);
+
+insert into public.projects (id, user_code, name, description, help_url, assembly_name, reg_time)
+values
+(1, 'Act', 'Жизненная деятельность', '', '', 'LifeStream108.Modules.CommandLifeActProcessors', current_timestamp),
+(2, 'ToDo', 'Задачи и заметки', '', '', 'LifeStream108.Modules.CommandToDoProcessors', current_timestamp);
+
+
+--- *** ---
 drop table if exists public.languages;
 create table public.languages
 (

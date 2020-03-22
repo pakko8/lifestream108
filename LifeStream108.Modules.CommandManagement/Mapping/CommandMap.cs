@@ -14,7 +14,7 @@ namespace LifeStream108.Modules.CommandManagement.Mapping
             Table(TableName);
             Id(x => x.Id, "id").GeneratedBy.Sequence(TableName + "_id_seq");
             Map(x => x.SortOrder, "sort_order").Not.Nullable();
-            Map(x => x.ProjectType, "project_type").CustomType<ProjectType>().Not.Nullable();
+            Map(x => x.ProjectId, "project_id").Not.Nullable();
             Map(x => x.EntityType, "entity_type").CustomType<EntityType>().Not.Nullable();
             Map(x => x.Name, "name").Not.Nullable();
             Map(x => x.Description, "description").Not.Nullable();

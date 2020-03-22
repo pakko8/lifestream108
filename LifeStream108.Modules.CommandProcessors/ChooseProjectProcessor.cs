@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
+using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Modules.DictionaryManagement.Managers;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
@@ -9,26 +11,15 @@ namespace LifeStream108.Modules.CommandProcessors
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
-            CommandParameterAndValue projectTypeParameter = commandParameters.FirstOrDefault(
-                n => n.Parameter.ParameterCode == CommandParameterCode.ProjectType);
+            CommandParameterAndValue projectCodeParameter = commandParameters.FirstOrDefault(
+                n => n.Parameter.ParameterCode == CommandParameterCode.ProjectCode);
 
-            ProjectType projectType;
-            switch (projectTypeParameter.Value.ToUpper())
-            {
-                case "LIFE":
-                case "ЖИЗНЬ":
-                    projectType = ProjectType.LifeActivity;
-                    break;
-                case "TODO":
-                case "ТУДУ":
-                    projectType = ProjectType.ToDo;
-                    break;
-                default:
-                    return ExecuteCommandResult.CreateErrorObject("Неизвестный тип проекта: " + projectTypeParameter.Value);
-            }
+            Project project = ProjectManager.GetProjectByCode(projectCodeParameter.Value);
+            if (project == null) return ExecuteCommandResult.CreateErrorObject(
+                $"Проект с кодом '{projectCodeParameter.Value}' не найден");
 
             ExecuteCommandResult commandResult = ExecuteCommandResult.CreateSuccessObject("Проект выбран");
-            commandResult.ProjectType = projectType;
+            commandResult.ProjectId = project.Id;
             return commandResult;
         }
     }

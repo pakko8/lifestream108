@@ -1,5 +1,4 @@
 ﻿using LifeStream108.Libs.Common;
-using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.HibernateManagement;
 using NHibernate;
@@ -13,18 +12,18 @@ namespace LifeStream108.Modules.CommandManagement.Managers
 {
     public static class CommandManager
     {
-        public static Command[] GetCommands(ProjectType project)
+        public static Command[] GetCommands(int projectId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
                 var query = from cmd in session.Query<Command>()
-                            where cmd.ProjectType == ProjectType.Indefined || cmd.ProjectType == project
+                            where cmd.ProjectId == 0 || cmd.ProjectId == projectId
                             select cmd;
                 return query.ToArray();
             }
         }
 
-        public static CommandName[] GetCommandNames(ProjectType project)
+        public static CommandName[] GetCommandNamesForProject(int projectId)
         {
             List<CommandName> commandNames = new List<CommandName>();
             using (ISession session = HibernateLoader.CreateSession())
@@ -32,7 +31,7 @@ namespace LifeStream108.Modules.CommandManagement.Managers
                 string commandText =
                     "select nm.* from command_names as nm " +
                     "inner join commands cmd on nm.command_id=cmd.id " +
-                    $"where cmd.project_type in ({(int)ProjectType.Indefined}, {(int)project})";
+                    $"where cmd.project_type in (0, {projectId})";
                 DbCommand command = session.Connection.CreateCommand();
                 command.CommandText = commandText;
                 using (IDataReader reader = command.ExecuteReader())
@@ -57,13 +56,13 @@ namespace LifeStream108.Modules.CommandManagement.Managers
             }
         }
 
-        public static Tuple<Command, CommandParameter[]> GetCommand(int commandId)
+        public static (Command Command, CommandParameter[] Parameters) GetCommand(int commandId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
                 Command command = CommonManager<Command>.GetById(commandId, session);
-                CommandParameter[] parameters = GetParametersForCommand(command.Id, session);
-                return new Tuple<Command, CommandParameter[]>(command, parameters);
+                CommandParameter[] parameters = command != null ? GetParametersForCommand(command.Id, session) : null;
+                return (command, parameters);
             }
         }
 

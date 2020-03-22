@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.SessionEntities;
 
 namespace LifeStream108.Modules.TempDataManagement.Mapping
@@ -15,7 +14,7 @@ namespace LifeStream108.Modules.TempDataManagement.Mapping
             Id(x => x.Id, "id").GeneratedBy.Sequence(TableName + "_id_seq");
 
             Map(x => x.UserId, "user_id").Not.Nullable();
-            Map(x => x.ProjectType, "project_type").CustomType<ProjectType>().Not.Nullable();
+            Map(x => x.ProjectId, "project_id").Not.Nullable();
             Map(x => x.LastCommandId, "last_command_id").Not.Nullable();
             Map(x => x.LastLifeGroupId, "last_life_group_id").Not.Nullable();
             Map(x => x.LastLifeActivityId, "last_life_activity_id").Not.Nullable();

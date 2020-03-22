@@ -10,13 +10,15 @@ namespace LifeStream108.Libs.Entities.UserEntities
 
         public virtual string Name { get; set; }
 
+        public virtual bool Superuser { get; set; }
+
         public virtual int TelegramId { get; set; }
 
         public virtual int LanguageId { get; set; }
 
         public virtual int CurrencyId { get; set; }
 
-        public virtual bool Superuser { get; set; }
+        public virtual int DefaultProjectId { get; set; }
 
         public virtual UserStatus Status { get; set; }
 

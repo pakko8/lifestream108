@@ -2,7 +2,7 @@
 {
     public enum CommandParameterCode
     {
-        ProjectType,
+        ProjectCode,
 
         Date,
 

@@ -8,7 +8,7 @@ namespace LifeStream108.Libs.Entities.CommandEntities
 
         public virtual int SortOrder { get; set; }
 
-        public virtual ProjectType ProjectType { get; set; }
+        public virtual int ProjectId { get; set; }
 
         public virtual EntityType EntityType { get; set; }
 

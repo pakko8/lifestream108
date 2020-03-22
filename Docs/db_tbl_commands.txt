@@ -4,7 +4,7 @@ create table public.commands
 (
 	id serial not null,
 	sort_order int not null,
-	project_type int not null,
+	project_id int not null,
 	entity_type int not null,
 	name varchar(40) not null,
 	description varchar(500) not null,
@@ -14,17 +14,18 @@ create table public.commands
 	constraint commands_pkey primary key (id)
 );
 
-insert into public.commands (id, sort_order, project_type, entity_type, name, description, processor_class_name, active, reg_time)
+insert into public.commands (id, sort_order, project_id, entity_type, name, description, processor_class_name, active, reg_time)
 values
 (1, 1, 0, 0, 'Помощь', 'Показывает справку', 'HelpProcessor', 't', current_timestamp),
 (2, 2, 0, 0, 'Регистрация', 'Регистрация нового пользователя', '', 'f', current_timestamp),
-(3, 4, 0, 1, 'Список команд', 'Показывает список доступных команд', 'CommandListProcessor', 't', current_timestamp),
-(4, 5, 0, 0, 'Список языков. Или установка языка', 'Показывает список доступных языков. Также позволяет выбрать нужный язык', '', 'f', current_timestamp),
-(5, 6, 0, 0, 'Сброс сессии', 'Сбрасывает текущую команду и возвращает в начало работы с ботом. Можно задавать команды заново', 'ResetSessionProcessor', 't', current_timestamp),
-(6, 7, 0, 0, 'Статистика', 'Показывает статистику о совершённых действиях', '', 't', current_timestamp),
-(7, 8, 0, 0, 'Ошибки', 'Показывает список случившихся ошибок', '', 't', current_timestamp),
-(8, 9, 0, 0, 'Очистка сообщений', 'Очищает сообщения в чате с ботом', 'ClearChatProcessor', 't', current_timestamp),
-(9, 3, 0, 0, 'Выбор проекта', '', 'ChooseProjectProcessor', 't', current_timestamp),
+(3, 5, 0, 1, 'Список команд', 'Показывает список доступных команд', 'CommandListProcessor', 't', current_timestamp),
+(4, 6, 0, 0, 'Список языков. Или установка языка', 'Показывает список доступных языков. Также позволяет выбрать нужный язык', '', 'f', current_timestamp),
+(5, 7, 0, 0, 'Сброс сессии', 'Сбрасывает текущую команду и возвращает в начало работы с ботом. Можно задавать команды заново', 'ResetSessionProcessor', 't', current_timestamp),
+(6, 8, 0, 0, 'Статистика', 'Показывает статистику о совершённых действиях', '', 't', current_timestamp),
+(7, 9, 0, 0, 'Ошибки', 'Показывает список случившихся ошибок', '', 't', current_timestamp),
+(8, 10, 0, 0, 'Очистка сообщений', 'Очищает сообщения в чате с ботом', 'ClearChatProcessor', 't', current_timestamp),
+(9, 3, 0, 0, 'Список проектов', '', 'ProjectListProcessor', 't', current_timestamp),
+(10, 4, 0, 0, 'Выбор проекта', '', 'ChooseProjectProcessor', 't', current_timestamp),
 (31, 31, 1, 0, 'Список групп', '', 'LifeGroupListProcessor', 't', current_timestamp),
 (32, 32, 1, 0, 'Добавить группу', '', 'AddLifeGroupProcessor', 't', current_timestamp),
 (33, 33, 1, 0, 'Переименовать группу', '', 'RenameLifeGroupProcessor', 't', current_timestamp),
@@ -103,9 +104,9 @@ values
 (8, 1, 'clearchat', '6', 1),
 (8, 2, 'очиститьчат', '9', 2),
 
-(9, 1, 'project', '', 1),
-(9, 2, 'proj', '', 1),
-(9, 2, 'проект', '', 2),
+(10, 1, 'project', '', 1),
+(10, 2, 'proj', '', 1),
+(10, 2, 'проект', '', 2),
 
 (31, 1, 'groups', '', 1),
 (31, 2, 'group', '', 1),
@@ -241,7 +242,7 @@ create table public.command_params
 
 insert into public.command_params (command_id, sort_order, command_param_code, name, description, data_type, input_data_type, data_format, data_format_desc, required, min_length, max_length, regex, predefined_values, default_value, example, reg_time)
 values
-(9, 1, 'ProjectType', 'Тип проекта', '', 'Text', 'OneElementFromList', '', '', 't', 2, 40, '', 'life;todo;жизнь;туду', '', 'life', current_timestamp),
+(9, 1, 'ProjectCode', 'Код проекта', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'life', current_timestamp),
 (32, 1, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),
 (33, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (33, 2, 'LifeGroupName', 'Наименование группы', '', 'Text', 'Simple', '', '', 't', 2, 40, '', '', '', 'Духовная жизнь', current_timestamp),

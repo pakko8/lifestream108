@@ -65,10 +65,12 @@
     <Compile Include="Managers\CurrencyManager.cs" />
     <Compile Include="Managers\LanguageManager.cs" />
     <Compile Include="Managers\MeasureManager.cs" />
+    <Compile Include="Managers\ProjectManager.cs" />
     <Compile Include="Mapping\Constants.cs" />
     <Compile Include="Mapping\CurrencyMap.cs" />
     <Compile Include="Mapping\LanguageMap.cs" />
     <Compile Include="Mapping\MeasureMap.cs" />
+    <Compile Include="Mapping\ProjectMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

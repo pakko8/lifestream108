@@ -9,7 +9,7 @@ namespace LifeStream108.Libs.Entities.SessionEntities
 
         public virtual int UserId { get; set; }
 
-        public virtual ProjectType ProjectType { get; set; } = ProjectType.LifeActivity;
+        public virtual int ProjectId { get; set; }
 
         public virtual int LastCommandId { get; set; }
 

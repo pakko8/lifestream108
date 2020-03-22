@@ -12,9 +12,9 @@ namespace LifeStream108.Modules.CommandProcessors
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
-            Command[] commands = CommandManager.GetCommands(session.ProjectType).Where(n => n.Active).ToArray();
+            Command[] commands = CommandManager.GetCommands(session.ProjectId).Where(n => n.Active).ToArray();
             commands = PickupAppropriateCommands(commands, session);
-            CommandName[] allCommandNames = CommandManager.GetCommandNames(session.ProjectType);
+            CommandName[] allCommandNames = CommandManager.GetCommandNames(session.ProjectId);
 
             StringBuilder sbCommandsInfo = new StringBuilder();
             for (int cmdIndex = 0; cmdIndex < commands.Length; cmdIndex++)

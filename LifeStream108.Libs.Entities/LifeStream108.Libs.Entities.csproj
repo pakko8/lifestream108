@@ -52,7 +52,7 @@
     <Compile Include="CommandEntities\CommandParameterCode.cs" />
     <Compile Include="CommandEntities\InputDataType.cs" />
     <Compile Include="LifeActityEntities\LifeActivityLog.cs" />
-    <Compile Include="ProjectType.cs" />
+    <Compile Include="DictionaryEntities\Project.cs" />
     <Compile Include="TicketEntities\BugTicket.cs" />
     <Compile Include="TicketEntities\BugTicketStatus.cs" />
     <Compile Include="CommandEntities\Command.cs" />
