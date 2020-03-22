@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace LifeStream108.Modules.CommandProcessors
@@ -23,6 +24,9 @@ namespace LifeStream108.Modules.CommandProcessors
         {
             if (requestText.ToUpper().StartsWith("BACKMETHOD"))
             {
+                // TODO
+                return ExecuteCommandResult.CreateErrorObject("Запрос не поддерживается: " + requestText);
+                /*
                 int index = requestText.IndexOf(';');
                 string methodName = requestText.Substring("BACKMETHOD=".Length, index - "BACKMETHOD=".Length);
 
@@ -33,6 +37,7 @@ namespace LifeStream108.Modules.CommandProcessors
                 BackgroudCommandsProcessor backgroundProcessor = (BackgroudCommandsProcessor)LoadClass("BackgroudCommandsProcessor", requestText);
                 MethodInfo method = backgroundProcessor.GetType().GetMethod(methodName);
                 return (ExecuteCommandResult)method.Invoke(backgroundProcessor, paramsArray);
+                */
             }
 
             _commandNames = CommandManager.GetCommandNames(session.ProjectType);
@@ -67,7 +72,7 @@ namespace LifeStream108.Modules.CommandProcessors
                     return new Tuple<Command, CommandParameterAndValue[], string>(null, null,
                         $"Эта команда требует минимум {countRequiredParams} " +
                         $"{Declanations.DeclineByNumeral(countRequiredParams, "параметр", "параметра", "параметров")}. " +
-                        ProcessorHelpers.PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
+                        PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
                 // Create parameters
                 resultParameters = new CommandParameterAndValue[paramParts.Length];
                 List<string> checkParametersErrorList = new List<string>();
@@ -99,7 +104,7 @@ namespace LifeStream108.Modules.CommandProcessors
             {
                 if (commandInfo.Item2.Length > 0)
                     return new Tuple<Command, CommandParameterAndValue[], string>(null, null, $"Команда \"{commandName}\" требует параметров. " +
-                        ProcessorHelpers.PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
+                        PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
             }
 
             return new Tuple<Command, CommandParameterAndValue[], string>(commandInfo.Item1, resultParameters, "");
@@ -172,6 +177,31 @@ namespace LifeStream108.Modules.CommandProcessors
             }
 
             return foundCommand;
+        }
+
+        public static string PrepareHelpForCommand(Command command, CommandParameter[] parameters)
+        {
+            CommandName[] commandNames = CommandManager.GetCommandNames(command.Id);
+            if (commandNames.Length == 0) throw new LifeStream108Exception(ErrorType.CommandHasNoCommandNames,
+                $"Command with id <{command.Id}> has no command names",
+                "Эта команда неверно настроена", "");
+
+            commandNames = commandNames.OrderBy(n => n.SortOrder).ToArray();
+            StringBuilder sbResult = new StringBuilder();
+            sbResult.Append($"Синтаксис команды:\r\n<b>{commandNames[0].GetReadableAias()}");
+            if (parameters != null && parameters.Length > 0)
+            {
+                sbResult.Append(" : ");
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    CommandParameter parameter = parameters[i];
+                    sbResult.Append(parameter.Name);
+                    if (!string.IsNullOrEmpty(parameter.DataFormat)) sbResult.Append($" ({parameter.DataFormat})");
+                    if (i < parameters.Length - 1) sbResult.Append(" ; ");
+                }
+            }
+            sbResult.Append("</b>");
+            return sbResult.ToString();
         }
 
         private object LoadClass(string className, string requestText)

@@ -3,7 +3,7 @@ using NLog;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
-    internal abstract class BaseCommandProcessor
+    public abstract class BaseCommandProcessor
     {
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 

@@ -1,5 +1,4 @@
-﻿using LifeStream108.Libs.Entities;
-using LifeStream108.Libs.Entities.SessionEntities;
+﻿using LifeStream108.Libs.Entities.SessionEntities;
 
 namespace LifeStream108.Modules.CommandProcessors
 {

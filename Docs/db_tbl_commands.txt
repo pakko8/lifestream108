@@ -52,8 +52,9 @@ values
 (252, 252, 1, 0, 'Добавить план', '', '', 't', current_timestamp),
 (253, 253, 1, 0, 'Изменить план', '', '', 't', current_timestamp),
 
-(501, 1, 2, 21, 'Список категорий', '', 'ToDoCategoryListProcessor', 't', current_timestamp),
-(502, 2, 2, 21, 'Список', '', 'ToDoListsProcessor', 't', current_timestamp);
+(501, 1, 2, 21, 'Список категорий', '', 'CategoryListProcessor', 't', current_timestamp),
+(502, 2, 2, 21, 'Список', '', 'ListsProcessor', 't', current_timestamp),
+(503, 1, 2, 21, 'Добавить задачу', '', 'AddTaskProcessor', 't', current_timestamp);
 
 --- *** ---
 drop table if exists public.command_names;

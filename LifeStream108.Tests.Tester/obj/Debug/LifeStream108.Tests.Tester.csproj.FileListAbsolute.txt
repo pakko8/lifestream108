@@ -33,7 +33,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Lib
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandProcessors.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TempDataManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.UserManagement.dll
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.Entities.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.dll.config
@@ -73,8 +72,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TempDataManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.UserManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.UserManagement.dll.config
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.pdb
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\obj\Debug\LifeStream108.Tests.Tester.csprojAssemblyReference.cache
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\obj\Debug\LifeStream108.Tests.Tester.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\obj\Debug\LifeStream108.Tests.Tester.csproj.CopyComplete

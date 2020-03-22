@@ -83,13 +83,13 @@ namespace LifeStream108.Modules.CommandProcessors
 
         public SpecialCommandForTelegramBot SpecialCommandForTelegramBot { get; internal set; } = SpecialCommandForTelegramBot.None;
 
-        public string ResponseMessage { get; internal set; }
+        public string ResponseMessage { get; set; }
 
-        public ChoiceItem[] ChoiceItemList { get; internal set; }
+        public ChoiceItem[] ChoiceItemList { get; set; }
 
-        public int ChoiceListShowColumnsCount { get; internal set; } = 0;
+        public int ChoiceListShowColumnsCount { get; set; } = 0;
 
-        public string ErrorText { get; internal set; } = "";
+        public string ErrorText { get; set; } = "";
 
         public static ExecuteCommandResult CreateSuccessObject(string message)
         {

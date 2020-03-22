@@ -1,13 +1,12 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Common.Exceptions;
-using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
 using System;
 using System.Collections.Generic;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
-    internal class CommandParameterAndValue
+    public class CommandParameterAndValue
     {
         private readonly static Dictionary<string, int> _dicMonthNames = new Dictionary<string, int>()
         {
