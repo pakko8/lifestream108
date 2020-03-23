@@ -8,8 +8,6 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         public virtual int SortOrder { get; set; } = 1;
 
-        public virtual int UserCode { get; set; }
-
         public virtual int ListId { get; set; }
 
         public virtual int UserId { get; set; }

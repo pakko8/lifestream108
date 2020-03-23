@@ -10,6 +10,8 @@
 
         Comment,
 
+        SearchPhrase,
+
         LifeGroupCode,
 
         LifeGroupCode2,

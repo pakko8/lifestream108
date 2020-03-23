@@ -55,7 +55,14 @@ values
 
 (501, 1, 2, 21, 'Список категорий', '', 'CategoryListProcessor', 't', current_timestamp),
 (502, 2, 2, 21, 'Список', '', 'ListsProcessor', 't', current_timestamp),
-(503, 1, 2, 21, 'Добавить задачу', '', 'TaskProcessors.AddTaskProcessor', 't', current_timestamp);
+(503, 3, 2, 21, 'Добавить задачу', '', 'TaskProcessors.AddTaskProcessor', 't', current_timestamp),
+(504, 3, 2, 21, 'Информация о задаче', '', 'TaskProcessors.TaskInfoProcessor', 't', current_timestamp),
+(505, 4, 2, 21, 'Привязать задачу к списку', '', 'TaskProcessors.BindTaskToListProcessor', 't', current_timestamp),
+(506, 5, 2, 21, 'Удалить задачу', '', 'TaskProcessors.AddTaskProcessor', 't', current_timestamp),
+(507, 6, 2, 21, 'Изменить заголовок задачи', '', 'TaskProcessors.SetTaskTitleProcessor', 't', current_timestamp),
+(508, 7, 2, 21, 'Изменить заметку задачи', '', 'TaskProcessors.SetTaskNoteProcessor', 't', current_timestamp),
+(509, 8, 2, 21, 'Установить напоминание о задаче', '', 'TaskProcessors.SetTaskReminderProcessor', 't', current_timestamp),
+(510, 9, 2, 21, 'Найти задачу', '', 'TaskProcessors.FindTaskProcessor', 't', current_timestamp);
 
 --- *** ---
 drop table if exists public.command_names;
@@ -170,10 +177,8 @@ values
 (56, 3, 'привязатьдеятельность', '10', 2),
 (56, 4, 'привяздеят', '7', 2),
 
-(57, 1, 'findactivity', '5', 1),
-(57, 2, 'findact', '5', 1),
-(57, 3, 'найтидеятельность', '6', 2),
-(57, 4, 'найтидеят', '6', 2),
+(57, 1, 'find', '', 1),
+(57, 2, 'найти', '', 2),
 
 (58, 1, 'activityinfo', '9', 1),
 (58, 2, 'actinfo', '4', 1),
@@ -217,7 +222,13 @@ values
 (501, 5, 'катег', '', 2),
 
 (502, 1, 'list', '', 1),
-(502, 2, 'список', '', 2);
+(502, 2, 'список', '', 2),
+
+(504, 1, 'info', '', 1),
+(504, 2, 'инфо', '', 2),
+
+(510, 1, 'find', '', 1),
+(510, 2, 'найти', '', 2);
 
 --- *** ---
 drop table if exists public.command_params;
@@ -261,7 +272,7 @@ values
 (54, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (56, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (56, 1, 'LifeGroupCode', 'Код группы', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
-(57, 1, 'LifeActivityName', 'Фраза для поиска', '', 'Text', 'Simple', '', '', 't', 3, 20, '', '', '', 'Киртан', current_timestamp),
+(57, 1, 'SearchPhrase', 'Фраза для поиска', '', 'Text', 'Simple', '', '', 't', 3, 20, '', '', '', 'Киртан', current_timestamp),
 (58, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (71, 1, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 't', 1, 10, '', '', '', '9', current_timestamp),
 (71, 2, 'LifeActivityParamName', 'Наименование параметра', '', 'Text', 'Simple', '', '', 't', 3, 40, '', '', '', 'Вес', current_timestamp),
@@ -288,4 +299,6 @@ values
 (201, 1, 'Period', 'Период', '', 'Period', 'Simple', '', '', 't', 1, 0, '', '', '', '', current_timestamp),
 (201, 3, 'LifeActivityCode', 'Код деятельности', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp),
 
-(502, 1, 'ToDoCategoryCode', 'Код категории', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp);
+(502, 1, 'ToDoCategoryCode', 'Код категории', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp),
+(504, 1, 'ToDoTaskCode', 'Код задачи', '', 'Integer', 'Simple', '', '', 'f', 1, 10, '', '', '', '9', current_timestamp),
+(510, 1, 'SearchPhrase', 'Фраза для поиска', '', 'Text', 'Simple', '', '', 't', 3, 20, '', '', '', 'Киртан', current_timestamp);

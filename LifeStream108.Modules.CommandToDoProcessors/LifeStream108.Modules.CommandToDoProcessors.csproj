@@ -47,10 +47,14 @@
     <Compile Include="ListsProcessor.cs" />
     <Compile Include="TaskProcessors\BindTaskToListProcessor.cs" />
     <Compile Include="TaskProcessors\DeleteTaskProcessor.cs" />
+    <Compile Include="TaskProcessors\FavoriteTaskListProcessor.cs" />
     <Compile Include="TaskProcessors\FindTaskProcessor.cs" />
+    <Compile Include="TaskProcessors\LastAddedTasksProcessor.cs" />
+    <Compile Include="TaskProcessors\SetTaskFavoriteProcessor.cs" />
     <Compile Include="TaskProcessors\SetTaskNoteProcessor.cs" />
     <Compile Include="TaskProcessors\SetTaskReminderProcessor.cs" />
     <Compile Include="TaskProcessors\SetTaskTitleProcessor.cs" />
+    <Compile Include="TaskProcessors\TaskInfoProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj">

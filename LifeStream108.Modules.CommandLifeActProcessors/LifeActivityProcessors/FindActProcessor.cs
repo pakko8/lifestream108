@@ -12,17 +12,18 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityProcessors
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
-            CommandParameterAndValue activityNameParameter = commandParameters.FirstOrDefault(
-                n => n.Parameter.ParameterCode == CommandParameterCode.LifeActivityName);
+            CommandParameterAndValue searchPhraseParameter = commandParameters.FirstOrDefault(
+                n => n.Parameter.ParameterCode == CommandParameterCode.SearchPhrase);
 
-            LifeActivity[] foundActivities = LifeActivityManager.FindActivitiesByName(activityNameParameter.Value, session.UserId);
-            if (foundActivities.Length == 0)
-                return ExecuteCommandResult.CreateErrorObject($"Не найдено деятельностей, которые содержат фразу \"{activityNameParameter.Value}\"");
+            LifeActivity[] foundActivities =
+                LifeActivityManager.FindActivitiesByName(searchPhraseParameter.Value, session.UserId);
+            if (foundActivities.Length == 0) return ExecuteCommandResult.CreateErrorObject(
+                $"Не найдено деятельностей, содержащих фразу \"{searchPhraseParameter.Value}\"");
 
             StringBuilder sbResult = new StringBuilder("Подходящие деятельности:\r\n:");
             foreach (LifeActivity activity in foundActivities)
             {
-                sbResult.Append($"[{activity.UserCode}] {FormatActivityName(activity.NameForUser, activityNameParameter.Value)}\r\n");
+                sbResult.Append($"[{activity.UserCode}] {FormatActivityName(activity.NameForUser, searchPhraseParameter.Value)}\r\n");
             }
 
             return ExecuteCommandResult.CreateSuccessObject(sbResult.ToString());

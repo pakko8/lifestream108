@@ -14,7 +14,6 @@ namespace LifeStream108.Modules.ToDoListManagement.Mapping
             Id(x => x.Id, "id").GeneratedBy.Sequence(TableName + "_id_seq");
 
             Map(x => x.SortOrder, "sort_order").Not.Nullable();
-            Map(x => x.UserCode, "user_code").Not.Nullable();
             Map(x => x.ListId, "list_id").Not.Nullable();
             Map(x => x.UserId, "user_id").Not.Nullable();
             Map(x => x.Title, "title").Not.Nullable();
