@@ -48,17 +48,19 @@ namespace LifeStream108.Modules.CommandProcessors
             var commandInfo = ParseRequest(requestText);
             if (!string.IsNullOrEmpty(commandInfo.Error)) return ExecuteCommandResult.CreateErrorObject(commandInfo.Error);
 
+            string className = commandInfo.Command.ProcessorClassName;
             string assemblyName = null;
             string assemblyDirectory = null;
             if (commandInfo.Command.ProjectId != 0)
             {
                 Project project = ProjectManager.GetProject(commandInfo.Command.ProjectId);
+                className = project.AssemblyRootNamespace + "." + className;
                 assemblyName = project.AssemblyName;
                 assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             }
             
             BaseCommandProcessor commandProcessor = (BaseCommandProcessor)LoadClass(
-                commandInfo.Command.ProcessorClassName, assemblyName, assemblyDirectory, requestText);
+                className, assemblyName, assemblyDirectory, requestText);
             ExecuteCommandResult executeResult = commandProcessor.Execute(commandInfo.Values, session);
             executeResult.CommandId = commandInfo.Command.Id;
             return executeResult;

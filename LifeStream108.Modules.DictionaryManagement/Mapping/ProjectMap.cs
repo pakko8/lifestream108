@@ -18,6 +18,7 @@ namespace LifeStream108.Modules.DictionaryManagement.Mapping
             Map(x => x.Description, "description").Not.Nullable();
             Map(x => x.HelpUrl, "help_url").Not.Nullable();
             Map(x => x.AssemblyName, "assembly_name").Not.Nullable();
+            Map(x => x.AssemblyRootNamespace, "assembly_root_namespace").Not.Nullable();
             Map(x => x.RegTime, "reg_time").Not.Nullable();
         }
     }

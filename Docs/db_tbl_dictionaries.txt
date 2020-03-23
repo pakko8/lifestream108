@@ -8,14 +8,15 @@ create table public.projects
 	description varchar(500) not null,
 	help_url varchar(100) not null,
 	assembly_name varchar(50) not null,
+	assembly_root_namespace varchar(50) not null,
 	reg_time timestamp not null,
 	constraint projects_pkey primary key (id)
 );
 
-insert into public.projects (id, user_code, name, description, help_url, assembly_name, reg_time)
+insert into public.projects (id, user_code, name, description, help_url, assembly_name, assembly_root_namespace, reg_time)
 values
-(1, 'Act', 'Жизненная деятельность', '', '', 'LifeStream108.Modules.CommandLifeActProcessors', current_timestamp),
-(2, 'ToDo', 'Задачи и заметки', '', '', 'LifeStream108.Modules.CommandToDoProcessors', current_timestamp);
+(1, 'Act', 'Жизненная деятельность', '', '', 'LifeStream108.Modules.CommandLifeActProcessors', 'LifeStream108.Modules.CommandLifeActProcessors', current_timestamp),
+(2, 'ToDo', 'Задачи и заметки', '', '', 'LifeStream108.Modules.CommandToDoProcessors', 'LifeStream108.Modules.CommandToDoProcessors', current_timestamp);
 
 
 --- *** ---

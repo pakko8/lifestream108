@@ -19,6 +19,8 @@ namespace LifeStream108.Libs.Entities.DictionaryEntities
 
         public virtual string AssemblyName { get; set; }
 
+        public virtual string AssemblyRootNamespace { get; set; }
+
         public virtual DateTime RegTime { get; set; }
     }
 }

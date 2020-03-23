@@ -49,32 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddLifeActivityLogProcessor.cs" />
-    <Compile Include="AddLifeActivityParameterProcessor.cs" />
-    <Compile Include="AddLifeActivityProcessor.cs" />
-    <Compile Include="AddLifeGroupProcessor.cs" />
+    <Compile Include="LifeActivityLogProcessors\AddLogProcessor.cs" />
+    <Compile Include="ActivityParameterProcessors\AddParamProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\AddActProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\AddGroupProcessor.cs" />
     <Compile Include="BackgroudCommandsProcessor.cs" />
-    <Compile Include="BindLifeActivityToGroupProcessor.cs" />
-    <Compile Include="BindLifeGroupToGroupProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\BindActToGroupProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\BindGroupToGroupProcessor.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CopyLifeActivityParametersProcessor.cs" />
-    <Compile Include="DeleteLifeActivityLogProcessor.cs" />
-    <Compile Include="DeleteLifeActivityParameterProcessor.cs" />
-    <Compile Include="DeleteLifeActivityProcessor.cs" />
-    <Compile Include="DeleteLifeGroupProcessor.cs" />
-    <Compile Include="EditLifeActivityLogProcessor.cs" />
-    <Compile Include="EditLifeActivityParameterProcessor.cs" />
-    <Compile Include="FindLifeActivityProcessor.cs" />
-    <Compile Include="LifeActivityInfoProcessor.cs" />
-    <Compile Include="LifeActivityListProcessor.cs" />
-    <Compile Include="LifeGroupListProcessor.cs" />
+    <Compile Include="ActivityParameterProcessors\CopyParamsProcessor.cs" />
+    <Compile Include="LifeActivityLogProcessors\DeleteLogProcessor.cs" />
+    <Compile Include="ActivityParameterProcessors\DeleteParamProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\DeleteActProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\DeleteGroupProcessor.cs" />
+    <Compile Include="LifeActivityLogProcessors\EditLogProcessor.cs" />
+    <Compile Include="ActivityParameterProcessors\EditParamProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\FindActProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\ActInfoProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\ActListProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\GroupListProcessor.cs" />
     <Compile Include="ProcessorHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenameLifeActivityProcessor.cs" />
-    <Compile Include="RenameLifeGroupProcessor.cs" />
-    <Compile Include="ReportForActivitiesProcessor.cs" />
-    <Compile Include="UnbindLifeGroupFromGroupProcessor.cs" />
-    <Compile Include="WorkWithActivityLogBaseProcessor.cs" />
+    <Compile Include="LifeActivityProcessors\RenameActProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\RenameGroupProcessor.cs" />
+    <Compile Include="ReportProcessors\ReportForActivitiesProcessor.cs" />
+    <Compile Include="LifeGroupProcessors\UnbindGroupFromGroupProcessor.cs" />
+    <Compile Include="LifeActivityLogProcessors\WorkWithLogBaseProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj">
@@ -102,5 +102,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

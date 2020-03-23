@@ -41,10 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddToDoTaskProcessor.cs" />
+    <Compile Include="TaskProcessors\AddTaskProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CategoryListProcessor.cs" />
     <Compile Include="ListsProcessor.cs" />
+    <Compile Include="TaskProcessors\BindTaskToListProcessor.cs" />
+    <Compile Include="TaskProcessors\DeleteTaskProcessor.cs" />
+    <Compile Include="TaskProcessors\FindTaskProcessor.cs" />
+    <Compile Include="TaskProcessors\SetTaskNoteProcessor.cs" />
+    <Compile Include="TaskProcessors\SetTaskReminderProcessor.cs" />
+    <Compile Include="TaskProcessors\SetTaskTitleProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj">
