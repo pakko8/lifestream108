@@ -54,6 +54,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.Comma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.CommandToDoProcessors", "LifeStream108.Modules.CommandToDoProcessors\LifeStream108.Modules.CommandToDoProcessors.csproj", "{F12910B6-7179-4C97-B3F1-4B67601B3647}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpForProgrammer", "HelpForProgrammer", "{806FEA15-99B2-4903-B2C7-BA2AAEB40443}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\HelpForProgrammer\How to add new project.txt = Docs\HelpForProgrammer\How to add new project.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +144,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{806FEA15-99B2-4903-B2C7-BA2AAEB40443} = {3940B8A5-27FD-489A-A6F2-54C313E25507}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {612FAAA9-EA38-486D-873C-B0E46966F10E}
