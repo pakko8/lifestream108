@@ -88,6 +88,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         Week,
 
+        Month,
+
         Year
     }
 }

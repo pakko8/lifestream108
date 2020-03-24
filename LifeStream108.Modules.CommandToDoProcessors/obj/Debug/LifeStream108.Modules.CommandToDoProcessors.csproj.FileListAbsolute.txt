@@ -37,3 +37,4 @@ D:\Projects\LifeStream108\LifeStream108.Modules.CommandToDoProcessors\obj\Debug\
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandToDoProcessors\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandToDoProcessors\bin\Debug\LifeStream108.Modules.DictionaryManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandToDoProcessors\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandToDoProcessors\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll.config
