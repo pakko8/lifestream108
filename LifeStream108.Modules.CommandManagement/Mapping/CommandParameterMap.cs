@@ -29,7 +29,6 @@ namespace LifeStream108.Modules.CommandManagement.Mapping
             Map(x => x.PredefinedValues, "predefined_values").Not.Nullable();
             Map(x => x.DefaultValue, "default_value").Not.Nullable();
             Map(x => x.Example, "example").Not.Nullable();
-            Map(x => x.RegTime, "reg_time").Not.Nullable();
         }
     }
 }

@@ -29,6 +29,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
+        public static ToDoList GetListByCode(int code, int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from list in session.Query<ToDoList>()
+                            where list.UserCode == code && list.UserId == userId
+                            select list;
+                return query.FirstOrDefault();
+            }
+        }
+
         public static void AddList(ToDoList item)
         {
             using (ISession session = HibernateLoader.CreateSession())

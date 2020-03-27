@@ -6,6 +6,8 @@
 
         Date,
 
+        Time,
+
         Period,
 
         Comment,
@@ -42,6 +44,12 @@
 
         ToDoListCode,
 
-        ToDoTaskCode
+        ToDoTaskCode,
+
+        ToDoTaskTitle,
+
+        ToDoTaskNote,
+
+        ToDoTaskRepeater
     }
 }

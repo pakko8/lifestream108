@@ -42,7 +42,5 @@ namespace LifeStream108.Libs.Entities.CommandEntities
         public virtual string DefaultValue { get; set; }
 
         public virtual string Example { get; set; }
-
-        public virtual DateTime RegTime { get; set; }
     }
 }

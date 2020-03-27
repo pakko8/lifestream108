@@ -70,6 +70,26 @@ namespace LifeStream108.Modules.CommandProcessors
             }
         }
 
+        public (int Hours, int Minutes) TimeValue
+        {
+            get
+            {
+                try
+                {
+                    if (int.TryParse(Value, out int hh)) return (hh, 0);
+
+                    string[] timeParts = Value.Split(new[] { ':' });
+                    hh = int.Parse(timeParts[0].Trim());
+                    int mm = int.Parse(timeParts[1].Trim());
+                    return (hh, mm);
+                }
+                catch
+                {
+                    throw new TimeNotInCorrectFormat(Value);
+                }
+            }
+        }
+
         public DatePeriod PeridValue
         {
             get

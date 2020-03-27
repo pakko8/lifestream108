@@ -20,7 +20,6 @@ namespace LifeStream108.Modules.CommandManagement.Mapping
             Map(x => x.Description, "description").Not.Nullable();
             Map(x => x.ProcessorClassName, "processor_class_name").Not.Nullable();
             Map(x => x.Active, "active").Not.Nullable();
-            Map(x => x.RegTime, "reg_time").Not.Nullable();
         }
     }
 }
