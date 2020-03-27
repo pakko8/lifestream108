@@ -84,7 +84,7 @@ namespace LifeStream108.Web.Portal.Controls
         {
             string searchWord = txtSearch.Text.Trim();
             Logger.Info($"Searching tasks by word '{searchWord}'");
-            ToDoTask[] foundTasks = ToDoTaskManager.FindTasks(searchWord, PortalSession.User.Id);
+            ToDoTask[] foundTasks = ToDoTaskManager.FindTasks(searchWord, 10000, PortalSession.User.Id);
             Logger.Info($"Found {foundTasks.Length} tasks before filteration");
 
             ToDoList[] lists = ToDoListManager.GetCategoryLists(PortalSession.SelectedCategoryId);
