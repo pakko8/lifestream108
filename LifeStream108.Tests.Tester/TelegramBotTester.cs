@@ -1,4 +1,4 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.SettingsEntities;
 using LifeStream108.Modules.SettingsManagement.Managers;
 using System;
 using Telegram.Bot;

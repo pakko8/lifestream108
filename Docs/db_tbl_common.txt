@@ -12,19 +12,20 @@ create table users.users
 	email varchar(30) not null,
 	password_hash varchar(50) not null,
 	name varchar(50) not null,
+	superuser bool not null,
+	telegram_id int not null,
 	language_id int not null,
 	currency_id int not null,
-	telegram_id int not null,
-	superuser bool not null,
+	default_project_id int not null,
 	status varchar(20) not null,
 	reg_time timestamp not null,
 	constraint users_pkey primary key (id)
 );
 
 -- Password = Strong_123
-insert into users.users (id, email, password_hash, name, language_id, currency_id, telegram_id, superuser, status, reg_time)
+insert into users.users (id, email, password_hash, name, superuser, telegram_id, language_id, currency_id, default_project_id, status, reg_time)
 values
-(1, 'alexx.silver@gmail.com', 'Q+tBmr77A78+Mv5x9gZbGHjjp3SSzPPW+xYbMBI3/nM=', 'Александр Серебряков', 1, 1, 302115880, 't', 'Active', current_timestamp);
+(1, 'alexx.silver@gmail.com', 'Q+tBmr77A78+Mv5x9gZbGHjjp3SSzPPW+xYbMBI3/nM=', 'Александр Серебряков', 't', 302115880, 1, 1, 1, 'Active', current_timestamp);
 
 
 --- *** ---

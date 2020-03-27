@@ -10,6 +10,8 @@
 
         Date,
 
+        Time,
+
         Period
     }
 
@@ -23,8 +25,9 @@
                 case DataType.Integer:
                 case DataType.Double: return "Число";
                 case DataType.Date: return "Дата";
+                case DataType.Time: return "Время";
                 case DataType.Period: return "Период дат";
-                default: return "Неизвестно";
+                default: return "Неизвестный тип данных";
             }
         }
     }

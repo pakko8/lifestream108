@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.UserEntities;
 
 namespace LifeStream108.Modules.UserManagement.Mapping
 {
@@ -15,10 +15,11 @@ namespace LifeStream108.Modules.UserManagement.Mapping
 
             Map(x => x.Email, "email").Not.Nullable();
             Map(x => x.Name, "name").Not.Nullable();
+            Map(x => x.Superuser, "superuser").Not.Nullable();
             Map(x => x.TelegramId, "telegram_id").Not.Nullable();
             Map(x => x.LanguageId, "language_id").Not.Nullable();
             Map(x => x.CurrencyId, "currency_id").Not.Nullable();
-            Map(x => x.Superuser, "superuser").Not.Nullable();
+            Map(x => x.DefaultProjectId, "default_project_id").Not.Nullable();
             Map(x => x.Status, "status").Not.Nullable();
             Map(x => x.RegTime, "reg_time").Not.Nullable();
         }

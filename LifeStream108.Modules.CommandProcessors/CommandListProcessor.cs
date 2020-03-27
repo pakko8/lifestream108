@@ -1,8 +1,10 @@
-﻿using LifeStream108.Libs.Entities;
-using LifeStream108.Modules.DictionaryManagement.Managers;
+﻿using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Libs.Entities.CommandEntities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LifeStream108.Libs.Entities;
+using LifeStream108.Modules.CommandManagement.Managers;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
@@ -10,15 +12,14 @@ namespace LifeStream108.Modules.CommandProcessors
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
-            Command[] commands = CommandManager.GetAllCommands();
+            Command[] commands = CommandManager.GetCommands(session.ProjectId).Where(n => n.Active).ToArray();
             commands = PickupAppropriateCommands(commands, session);
-            CommandName[] allCommandNames = CommandManager.GetAllCommandNames();
+            CommandName[] allCommandNames = CommandManager.GetCommandNames(session.ProjectId);
 
             StringBuilder sbCommandsInfo = new StringBuilder();
-            Command[] availableCommands = commands.Where(n => n.Active).OrderBy(n => n.SortOrder).ToArray();
-            for (int cmdIndex = 0; cmdIndex < availableCommands.Length; cmdIndex++)
+            for (int cmdIndex = 0; cmdIndex < commands.Length; cmdIndex++)
             {
-                Command currentCommand = availableCommands[cmdIndex];
+                Command currentCommand = commands[cmdIndex];
                 sbCommandsInfo.Append($"<b>{currentCommand.Name}</b>");
                 if (!string.IsNullOrEmpty(currentCommand.Description)) sbCommandsInfo.Append($"\r\n<i>{currentCommand.Description}</i>");
                 CommandName[] thisCommandNames = allCommandNames.Where(n => n.CommandId == currentCommand.Id).OrderBy(n => n.SortOrder).ToArray();
@@ -33,7 +34,7 @@ namespace LifeStream108.Modules.CommandProcessors
                     }
                 }
 
-                if (cmdIndex < availableCommands.Length - 1) sbCommandsInfo.Append("\r\n\r\n");
+                if (cmdIndex < commands.Length - 1) sbCommandsInfo.Append("\r\n\r\n");
             }
 
             return ExecuteCommandResult.CreateSuccessObject(sbCommandsInfo.ToString());
@@ -41,10 +42,18 @@ namespace LifeStream108.Modules.CommandProcessors
 
         private static Command[] PickupAppropriateCommands(Command[] commands, Session userSession)
         {
+            // TODO Think over algorithm
             List<Command> resultCommands = new List<Command>();
-            if (userSession.LastLifeActivityId > 0) resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.LifeActivity));
-            else if (userSession.LastLifeGroupId > 0) resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.LifeGroup));
-            else resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.NoEntity || n. EntityType == EntityType.All));
+            if (userSession.LastLifeActivityId > 0)
+                resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.LifeActivity));
+            else if (userSession.LastLifeGroupId > 0)
+                resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.LifeGroup));
+            else
+                resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.NoEntity || n. EntityType == EntityType.All));
+
+            resultCommands = resultCommands.OrderBy(n => n.SortOrder).ToList();
+
+            resultCommands.AddRange(commands.Where(n => n.EntityType == EntityType.ToDo));
             return resultCommands.ToArray();
         }
     }

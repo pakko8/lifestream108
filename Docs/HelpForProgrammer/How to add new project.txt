@@ -1,0 +1,2 @@
+1. Write assembly following the example "LifeStream108.Modules.CommandLifeActProcessors"
+2. Add new row to the table public.projects

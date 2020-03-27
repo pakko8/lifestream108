@@ -46,6 +46,13 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
             RepeaterValue = repeaterParts.Length > 1 ? int.Parse(repeaterParts[1]) : 0;
         }
 
+        public void Load(DateTime dateAndTime, int repeaterValue, ReminderRepeaterType repeaterType)
+        {
+            Time = dateAndTime;
+            RepeaterValue = repeaterValue;
+            RepeaterType = repeaterType;
+        }
+
         public string Load(string timeValue, string repeaterValueString, string repeaterTypeString)
         {
             if (string.IsNullOrEmpty(repeaterValueString)) repeaterValueString = "0";
@@ -87,6 +94,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
         Day,
 
         Week,
+
+        Month,
 
         Year
     }

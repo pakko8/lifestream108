@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using LifeStream108.Libs.Common;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.NewsEntities;
 
 namespace LifeStream108.Modules.NewsProcessors
 {

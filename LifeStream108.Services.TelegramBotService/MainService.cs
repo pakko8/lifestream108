@@ -1,11 +1,11 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.NewsEntities;
+using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Modules.NewsManagement.Managers;
 using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
 using LifeStream108.Modules.UserManagement.Managers;
 using NLog;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -14,8 +14,6 @@ namespace LifeStream108.Services.TelegramBotService
 {
     internal class MainService : ServiceBase
     {
-        private const int ClearSessionsIntervalInMinutes = 5;
-
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly System.Timers.Timer _clearSessionsTimer;
@@ -30,7 +28,7 @@ namespace LifeStream108.Services.TelegramBotService
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
                 _clearSessionsTimer = new System.Timers.Timer();
-                _clearSessionsTimer.Interval = ClearSessionsIntervalInMinutes * 60 * 1000;
+                _clearSessionsTimer.Interval = 10 * 60 * 1000;
                 _clearSessionsTimer.Elapsed += ClearSessionsTimer_Elapsed;
 
                 _checkNewsTimer = new System.Timers.Timer();
@@ -51,7 +49,7 @@ namespace LifeStream108.Services.TelegramBotService
                 _clearSessionsTimer.Stop();
 
                 ClearSessionsProcessor clearSessionsProcessor = new ClearSessionsProcessor();
-                clearSessionsProcessor.Run(ClearSessionsIntervalInMinutes);
+                clearSessionsProcessor.Run(30); // TODO Move value to settings
             }
             catch (Exception ex)
             {

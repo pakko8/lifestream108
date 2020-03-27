@@ -7,6 +7,25 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
 {
     public static class ToDoListManager
     {
+        public static ToDoList GetList(int listId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                return CommonManager<ToDoList>.GetById(listId, session);
+            }
+        }
+
+        public static ToDoList[] GetUserLists(int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from list in session.Query<ToDoList>()
+                            where list.UserId == userId
+                            select list;
+                return query.ToArray();
+            }
+        }
+
         public static ToDoList[] GetCategoryLists(int categoryId)
         {
             using (ISession session = HibernateLoader.CreateSession())
@@ -15,6 +34,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
                             where list.CategoryId == categoryId
                             select list;
                 return query.ToArray();
+            }
+        }
+
+        public static ToDoList GetListByCode(int code, int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from list in session.Query<ToDoList>()
+                            where list.UserCode == code && list.UserId == userId
+                            select list;
+                return query.FirstOrDefault();
             }
         }
 

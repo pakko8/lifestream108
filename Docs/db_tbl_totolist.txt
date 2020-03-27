@@ -50,7 +50,6 @@ create table todo_list.todo_tasks
 (
 	id serial not null,
 	sort_order int not null,
-	user_code int not null,
 	list_id int not null,
 	user_id int not null,
 	title varchar(500) not null,
@@ -65,7 +64,6 @@ create table todo_list.todo_tasks
 	constraint todo_tasks_pkey primary key (id)
 );
 
-create index ix_todo_tasks_code on todo_list.todo_tasks using btree (user_code);
 create index ix_todo_tasks_list on todo_list.todo_tasks using btree (list_id);
 create index ix_todo_tasks_user on todo_list.todo_tasks using btree (user_id);
 

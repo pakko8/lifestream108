@@ -9,11 +9,12 @@ namespace LifeStream108.Libs.Common
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static object LoadClassObject(string className, string fileName, string fileDirectory)
+        public static object LoadClass(string className, string assemblyName, string assemblyDirectory)
         {
-            Logger.Info($"Loading class <{className}> from file <{fileName}> in directory <{fileDirectory}>");
+            if (!assemblyName.ToUpper().EndsWith(".DLL")) assemblyName += ".dll";
+            Logger.Info($"Loading class <{className}> from assembly <{assemblyName}> in directory <{assemblyDirectory}>");
 
-            Assembly assembly = Assembly.LoadFrom(Path.Combine(fileDirectory, fileName));
+            Assembly assembly = Assembly.LoadFrom(Path.Combine(assemblyDirectory, assemblyName));
             Type handlerType = assembly.GetType(className, true, true);
             return Activator.CreateInstance(handlerType);
         }

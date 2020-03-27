@@ -49,44 +49,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParameterCode.cs" />
-    <Compile Include="InputDataType.cs" />
-    <Compile Include="LifeActivityLog.cs" />
-    <Compile Include="BugTicket.cs" />
-    <Compile Include="BugTicketStatus.cs" />
-    <Compile Include="Command.cs" />
+    <Compile Include="CommandEntities\CommandParameterCode.cs" />
+    <Compile Include="CommandEntities\InputDataType.cs" />
+    <Compile Include="LifeActityEntities\LifeActivityLog.cs" />
+    <Compile Include="DictionaryEntities\Project.cs" />
+    <Compile Include="TicketEntities\BugTicket.cs" />
+    <Compile Include="TicketEntities\BugTicketStatus.cs" />
+    <Compile Include="CommandEntities\Command.cs" />
     <Compile Include="DataType.cs" />
-    <Compile Include="CommandName.cs" />
-    <Compile Include="CommandParameter.cs" />
-    <Compile Include="Currency.cs" />
+    <Compile Include="CommandEntities\CommandName.cs" />
+    <Compile Include="CommandEntities\CommandParameter.cs" />
+    <Compile Include="DictionaryEntities\Currency.cs" />
     <Compile Include="EntityType.cs" />
-    <Compile Include="Language.cs" />
-    <Compile Include="LifeActivity.cs" />
-    <Compile Include="LifeActivityLogValue.cs" />
-    <Compile Include="LifeActivityLogWithValues.cs" />
-    <Compile Include="LifeActivityParameter.cs" />
-    <Compile Include="LifeActivityPlan.cs" />
-    <Compile Include="LifeGroup.cs" />
-    <Compile Include="LifeGroupAtGroup.cs" />
+    <Compile Include="DictionaryEntities\Language.cs" />
+    <Compile Include="LifeActityEntities\LifeActivity.cs" />
+    <Compile Include="LifeActityEntities\LifeActivityLogValue.cs" />
+    <Compile Include="LifeActityEntities\LifeActivityLogWithValues.cs" />
+    <Compile Include="LifeActityEntities\LifeActivityParameter.cs" />
+    <Compile Include="LifeActityEntities\LifeActivityPlan.cs" />
+    <Compile Include="LifeActityEntities\LifeGroup.cs" />
+    <Compile Include="LifeActityEntities\LifeGroupAtGroup.cs" />
     <Compile Include="LoggerAccess.cs" />
-    <Compile Include="Measure.cs" />
-    <Compile Include="NewsGroup.cs" />
-    <Compile Include="NewsGroupRunStatus.cs" />
-    <Compile Include="NewsItem.cs" />
+    <Compile Include="DictionaryEntities\Measure.cs" />
+    <Compile Include="NewsEntities\NewsGroup.cs" />
+    <Compile Include="NewsEntities\NewsGroupRunStatus.cs" />
+    <Compile Include="NewsEntities\NewsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="SettingEntry.cs" />
-    <Compile Include="TelegramMessageEntry.cs" />
+    <Compile Include="SessionEntities\Session.cs" />
+    <Compile Include="SettingsEntities\SettingEntry.cs" />
+    <Compile Include="MessageEntities\TelegramMessageEntry.cs" />
     <Compile Include="ToDoEntities\ToDoCategory.cs" />
     <Compile Include="ToDoEntities\ToDoTask.cs" />
     <Compile Include="ToDoEntities\ToDoList.cs" />
     <Compile Include="ToDoEntities\ToDoReminderHistory.cs" />
     <Compile Include="ToDoEntities\ToDoTaskReminder.cs" />
     <Compile Include="ToDoEntities\ToDoTaskStatus.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="UserEntities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

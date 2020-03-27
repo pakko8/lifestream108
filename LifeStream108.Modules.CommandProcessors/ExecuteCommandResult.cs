@@ -7,6 +7,20 @@ namespace LifeStream108.Modules.CommandProcessors
     public class ExecuteCommandResult
     {
         #region Methods for session
+        private int _projectId;
+
+        public bool NeedUpdateProjectId { get; private set; }
+
+        public int ProjectId
+        {
+            get { return _projectId; }
+            set
+            {
+                _projectId = value;
+                NeedUpdateProjectId = true;
+            }
+        }
+
         private int _commandId;
 
         public bool NeedUpdateCommandId { get; private set; }
@@ -68,13 +82,13 @@ namespace LifeStream108.Modules.CommandProcessors
 
         public SpecialCommandForTelegramBot SpecialCommandForTelegramBot { get; internal set; } = SpecialCommandForTelegramBot.None;
 
-        public string ResponseMessage { get; internal set; }
+        public string ResponseMessage { get; set; }
 
-        public ChoiceItem[] ChoiceItemList { get; internal set; }
+        public ChoiceItem[] ChoiceItemList { get; set; }
 
-        public int ChoiceListShowColumnsCount { get; internal set; } = 0;
+        public int ChoiceListShowColumnsCount { get; set; } = 0;
 
-        public string ErrorText { get; internal set; } = "";
+        public string ErrorText { get; set; } = "";
 
         public static ExecuteCommandResult CreateSuccessObject(string message)
         {

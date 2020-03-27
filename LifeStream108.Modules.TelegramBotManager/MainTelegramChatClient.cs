@@ -1,6 +1,8 @@
 ﻿using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.MessageEntities;
+using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Libs.Entities.TicketEntities;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.TempDataManagement.Managers;
 using LifeStream108.Modules.UserManagement.Managers;
@@ -12,7 +14,7 @@ using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-using OurUser = LifeStream108.Libs.Entities.User;
+using OurUser = LifeStream108.Libs.Entities.UserEntities.User;
 using TelegramUser = Telegram.Bot.Types.User;
 
 namespace LifeStream108.Modules.TelegramBotManager
@@ -212,10 +214,10 @@ namespace LifeStream108.Modules.TelegramBotManager
             OurUser currentDbUser = null;
             try
             {
-                Tuple<bool, string, OurUser> authResult = UserManager.AuthorizeUser(tlgrmUser.Id);
-                if (authResult.Item1)
+                var authResult = UserManager.AuthorizeUser(tlgrmUser.Id);
+                if (string.IsNullOrEmpty(authResult.Error))
                 {
-                    currentDbUser = authResult.Item3;
+                    currentDbUser = authResult.User;
 
                     Session currentSession = SessionManager.GetSessionForUser(currentDbUser.Id);
                     if (currentSession != null)
@@ -227,6 +229,7 @@ namespace LifeStream108.Modules.TelegramBotManager
                     {
                         currentSession = new Session();
                         currentSession.UserId = currentDbUser.Id;
+                        currentSession.ProjectId = currentDbUser.DefaultProjectId;
                         currentSession.StartTime = DateTime.Now;
                         currentSession.LastActivityTime = DateTime.Now;
                         currentSession.LastRequestText = userRequestText;
@@ -244,6 +247,7 @@ namespace LifeStream108.Modules.TelegramBotManager
                     Logger.Info("Command result:\r\n" + execCmdResult);
 
                     currentSession.Data = execCmdResult.Success ? execCmdResult.SessionData : currentSession.Data;
+                    if (execCmdResult.NeedUpdateProjectId) currentSession.ProjectId = execCmdResult.ProjectId;
                     if (execCmdResult.NeedUpdateCommandId) currentSession.LastCommandId = execCmdResult.CommandId;
                     if (execCmdResult.NeedUpdateLifeGroupId) currentSession.LastLifeGroupId = execCmdResult.LifeGroupId;
                     if (execCmdResult.NeedUpdateLifeActivityId) currentSession.LastLifeActivityId = execCmdResult.LifeActivityId;
@@ -277,8 +281,8 @@ namespace LifeStream108.Modules.TelegramBotManager
                 }
                 else
                 {
-                    Logger.Warn($"[{tlgrmUser.Id}][{userRequestId}] Auth failed: {authResult.Item2}");
-                    SendTelegramMessage(authResult.Item2, tlgrmUser.Id, chatId, userRequestId);
+                    Logger.Warn($"[{tlgrmUser.Id}][{userRequestId}] Auth failed: {authResult.Error}");
+                    SendTelegramMessage(authResult.Error, tlgrmUser.Id, chatId, userRequestId);
                 }
             }
             catch (LifeStream108Exception ls108Ex)

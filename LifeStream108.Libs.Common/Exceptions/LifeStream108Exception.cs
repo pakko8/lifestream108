@@ -40,6 +40,8 @@ namespace LifeStream108.Libs.Common.Exceptions
 
         SpecialTelegramCommandNotImplemented,
 
-        UnknownFunction
+        UnknownFunction,
+
+        WrangReminderSettings
     }
 }

@@ -1,13 +1,18 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.CommandEntities;
+using LifeStream108.Libs.Entities.DictionaryEntities;
+using LifeStream108.Libs.Entities.SessionEntities;
+using LifeStream108.Modules.CommandManagement.Managers;
 using LifeStream108.Modules.DictionaryManagement.Managers;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace LifeStream108.Modules.CommandProcessors
@@ -18,10 +23,13 @@ namespace LifeStream108.Modules.CommandProcessors
 
         private CommandName[] _commandNames = null;
 
-        public ExecuteCommandResult Run(string requestText, Session userSession)
+        public ExecuteCommandResult Run(string requestText, Session session)
         {
             if (requestText.ToUpper().StartsWith("BACKMETHOD"))
             {
+                // TODO
+                return ExecuteCommandResult.CreateErrorObject("Запрос не поддерживается: " + requestText);
+                /*
                 int index = requestText.IndexOf(';');
                 string methodName = requestText.Substring("BACKMETHOD=".Length, index - "BACKMETHOD=".Length);
 
@@ -32,47 +40,59 @@ namespace LifeStream108.Modules.CommandProcessors
                 BackgroudCommandsProcessor backgroundProcessor = (BackgroudCommandsProcessor)LoadClass("BackgroudCommandsProcessor", requestText);
                 MethodInfo method = backgroundProcessor.GetType().GetMethod(methodName);
                 return (ExecuteCommandResult)method.Invoke(backgroundProcessor, paramsArray);
+                */
             }
 
-            _commandNames = CommandManager.GetAllCommandNames();
+            _commandNames = CommandManager.GetCommandNamesForProject(session.ProjectId);
 
-            Tuple<Command, CommandParameterAndValue[], string> commandInfo = ParseRequest(requestText);
-            if (!string.IsNullOrEmpty(commandInfo.Item3)) return new ExecuteCommandResult { ErrorText = commandInfo.Item3 };
+            var commandInfo = ParseRequest(requestText);
+            if (!string.IsNullOrEmpty(commandInfo.Error)) return ExecuteCommandResult.CreateErrorObject(commandInfo.Error);
 
-            BaseCommandProcessor commandProcessor = (BaseCommandProcessor)LoadClass(commandInfo.Item1.ProcessorClassName, requestText);
-            ExecuteCommandResult executeResult = commandProcessor.Execute(commandInfo.Item2, userSession);
-            executeResult.CommandId = commandInfo.Item1.Id;
+            string className = commandInfo.Command.ProcessorClassName;
+            string assemblyName = null;
+            string assemblyDirectory = null;
+            if (commandInfo.Command.ProjectId != 0)
+            {
+                Project project = ProjectManager.GetProject(commandInfo.Command.ProjectId);
+                className = project.AssemblyRootNamespace + "." + className;
+                assemblyName = project.AssemblyName;
+                assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            }
+            
+            BaseCommandProcessor commandProcessor = (BaseCommandProcessor)LoadClass(
+                className, assemblyName, assemblyDirectory, requestText);
+            ExecuteCommandResult executeResult = commandProcessor.Execute(commandInfo.Values, session);
+            executeResult.CommandId = commandInfo.Command.Id;
             return executeResult;
         }
 
-        private Tuple<Command, CommandParameterAndValue[], string> ParseRequest(string requestText)
+        private (Command Command, CommandParameterAndValue[] Values, string Error) ParseRequest(string requestText)
         {
             string[] requestParts = requestText.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
             // Find command and it's parameters in database
             string commandName = requestParts[0].Trim();
-            Tuple<Command, CommandParameter[]> commandInfo = FindCommand(commandName);
-            if (commandInfo == null || commandInfo.Item1 == null)
-                return new Tuple<Command, CommandParameterAndValue[], string>(null, null, $"Команда \"{commandName}\" не найдена");
+            var commandInfo = FindCommand(commandName);
+            if (commandInfo.Command == null) return (null, null, $"Команда \"{commandName}\" не найдена");
 
             CommandParameterAndValue[] resultParameters = null;
             if (requestParts.Length > 1)
             {
                 string[] paramParts = requestParts[1].Split(new char[] { ';' });
-                if (commandInfo.Item2.Length == 0 && paramParts.Length > 0)
-                    return new Tuple<Command, CommandParameterAndValue[], string>(null, null, $"Команда \"{commandName}\" не требует параметров");
+                if (commandInfo.Parameters.Length == 0 && paramParts.Length > 0)
+                    return (null, null, $"Команда \"{commandName}\" не требует параметров");
 
-                int countRequiredParams = commandInfo.Item2.Count(n => n.Required);
+                int countRequiredParams = commandInfo.Parameters.Count(n => n.Required);
                 if (paramParts.Length < countRequiredParams)
-                    return new Tuple<Command, CommandParameterAndValue[], string>(null, null,
+                    return (null, null,
                         $"Эта команда требует минимум {countRequiredParams} " +
                         $"{Declanations.DeclineByNumeral(countRequiredParams, "параметр", "параметра", "параметров")}. " +
-                        ProcessorHelpers.PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
+                        PrepareHelpForCommand(commandInfo.Command, commandInfo.Parameters));
                 // Create parameters
                 resultParameters = new CommandParameterAndValue[paramParts.Length];
                 List<string> checkParametersErrorList = new List<string>();
                 for (int paramIndex = 0; paramIndex < paramParts.Length; paramIndex++)
                 {
-                    CommandParameter cmdParam = commandInfo.Item2[paramIndex];
+                    CommandParameter cmdParam = commandInfo.Parameters[paramIndex];
                     string paramValue = paramParts[paramIndex].Trim();
 
                     string errorText = CheckParameterValue(paramValue, cmdParam, out paramValue);
@@ -91,17 +111,17 @@ namespace LifeStream108.Modules.CommandProcessors
                 if (checkParametersErrorList.Count > 0)
                 {
                     string error = CollectionUtils.Array2String(checkParametersErrorList, "\r\n");
-                    return new Tuple<Command, CommandParameterAndValue[], string>(null, null, error);
+                    return (null, null, error);
                 }
             }
             else
             {
-                if (commandInfo.Item2.Length > 0)
-                    return new Tuple<Command, CommandParameterAndValue[], string>(null, null, $"Команда \"{commandName}\" требует параметров. " +
-                        ProcessorHelpers.PrepareHelpForCommand(commandInfo.Item1, commandInfo.Item2));
+                if (commandInfo.Parameters.Length > 0)
+                    return (null, null, $"Команда \"{commandName}\" требует параметров. " +
+                        PrepareHelpForCommand(commandInfo.Command, commandInfo.Parameters));
             }
 
-            return new Tuple<Command, CommandParameterAndValue[], string>(commandInfo.Item1, resultParameters, "");
+            return (commandInfo.Command, resultParameters, "");
         }
 
         private static string CheckParameterValue(string paramValue, CommandParameter cmdParam, out string paramValueAdj)
@@ -146,9 +166,8 @@ namespace LifeStream108.Modules.CommandProcessors
             return null;
         }
 
-        private Tuple<Command, CommandParameter[]> FindCommand(string commandName)
+        private (Command Command, CommandParameter[] Parameters) FindCommand(string commandName)
         {
-            Tuple<Command, CommandParameter[]> foundCommand = null;
             string commandNameAdj = commandName.Replace(" ", "").ToUpper();
 
             var foundNames = _commandNames.Where(n => n.Alias.ToUpper() == commandNameAdj).ToArray();
@@ -161,22 +180,53 @@ namespace LifeStream108.Modules.CommandProcessors
                         $"For command name <{commandName}> found more than one command",
                         "Для этой команды не найдено точного соответствие.",
                         $"Ошибка во время выполнения команды '{commandName}'");
-                foundCommand = CommandManager.GetCommand(uniqueCommandIds.First());
-                if (foundCommand == null)
+                var foundCommand = CommandManager.GetCommand(uniqueCommandIds.First());
+                if (foundCommand.Command == null)
                     throw new LifeStream108Exception(
                         ErrorType.CommandNameHasNoCommand,
                         $"Command with id <{uniqueCommandIds.First()}> not found",
                         "Эта команда неверно настроена.",
                         $"Ошибка во время выполнения команды '{commandName}'");
+
+                return foundCommand;
             }
 
-            return foundCommand;
+            return (null, null);
         }
 
-        private object LoadClass(string className, string requestText)
+        public static string PrepareHelpForCommand(Command command, CommandParameter[] parameters)
+        {
+            CommandName[] commandNames = CommandManager.GetCommandNames(command.Id);
+            if (commandNames.Length == 0) throw new LifeStream108Exception(ErrorType.CommandHasNoCommandNames,
+                $"Command with id <{command.Id}> has no command names",
+                "Эта команда неверно настроена", "");
+
+            commandNames = commandNames.OrderBy(n => n.SortOrder).ToArray();
+            StringBuilder sbResult = new StringBuilder();
+            sbResult.Append($"Синтаксис команды:\r\n<b>{commandNames[0].GetReadableAias()}");
+            if (parameters != null && parameters.Length > 0)
+            {
+                sbResult.Append(" : ");
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    CommandParameter parameter = parameters[i];
+                    sbResult.Append(parameter.Name);
+                    if (!string.IsNullOrEmpty(parameter.DataFormat)) sbResult.Append($" ({parameter.DataFormat})");
+                    if (i < parameters.Length - 1) sbResult.Append(" ; ");
+                }
+            }
+            sbResult.Append("</b>");
+            return sbResult.ToString();
+        }
+
+        private object LoadClass(string className, string assemblyName, string assemblyPath, string requestText)
         {
             try
             {
+                if (!string.IsNullOrEmpty(assemblyName))
+                    return ReflectionUtils.LoadClass(className, assemblyName, assemblyPath);
+
+                // Load class from this assembly
                 Assembly thisAssembly = Assembly.GetAssembly(GetType());
                 Type handlerType = thisAssembly.GetType(thisAssembly.GetName().Name + "." + className, true, true);
                 return Activator.CreateInstance(handlerType);

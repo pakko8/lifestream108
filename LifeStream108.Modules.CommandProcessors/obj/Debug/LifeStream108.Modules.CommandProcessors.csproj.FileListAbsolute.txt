@@ -80,3 +80,8 @@ D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\Remo
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\Antlr3.Runtime.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\Iesi.Collections.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\obj\Debug\LifeStream108.Modules.CommandProcessors.csproj.CopyComplete
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.CommandManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.CommandProcessors\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb

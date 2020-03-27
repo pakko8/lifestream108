@@ -15,6 +15,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
+        public static ToDoTask GetTaskByTitle(string title, int listId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from task in session.Query<ToDoTask>()
+                            where task.Title == title.Trim() && task.ListId == listId && task.Status != ToDoTaskStatus.Deleted
+                            select task;
+                return query.FirstOrDefault();
+            }
+        }
+
         public static ToDoTask[] GetListActiveTasks(int listId)
         {
             using (ISession session = HibernateLoader.CreateSession())
@@ -26,14 +37,14 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
-        public static ToDoTask[] FindTasks(string word, int userId)
+        public static ToDoTask[] FindTasks(string word, int limit, int userId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
                 var query = from task in session.Query<ToDoTask>()
                             where task.UserId == userId && task.Status != ToDoTaskStatus.Deleted && task.Title.ToUpper().Contains(word.ToUpper())
                             select task;
-                return query.ToArray();
+                return query.Take(limit).ToArray();
             }
         }
 
@@ -41,7 +52,6 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
-                item.UserCode = GetNextUserCode(item.UserId, session);
                 CommonManager<ToDoTask>.Add(item, session);
                 session.Flush();
             }
@@ -54,15 +64,6 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
                 CommonManager<ToDoTask>.Update(item, session);
                 session.Flush();
             }
-        }
-
-        private static int GetNextUserCode(int userId, ISession session)
-        {
-            var query = from item in session.Query<ToDoTask>()
-                        where item.UserId == userId
-                        orderby item.UserCode descending
-                        select item.UserCode;
-            return query.FirstOrDefault() + 1;
         }
     }
 }

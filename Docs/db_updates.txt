@@ -12,3 +12,9 @@ drop column user_code;
 -- 2020-02-18
 alter table life_activity_logs.life_activity_logs
 add active bool not null default 't';
+
+-- 2020-03-23
+Update users table
+Update sessions table
+Update commands tables
+Create projects table

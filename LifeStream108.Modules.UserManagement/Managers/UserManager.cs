@@ -1,4 +1,4 @@
-﻿using LifeStream108.Libs.Entities;
+﻿using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Libs.HibernateManagement;
 using NHibernate;
 using System;
@@ -22,17 +22,17 @@ namespace LifeStream108.Modules.UserManagement.Managers
             return null;
         }
 
-        public static Tuple<bool, string, User> AuthorizeUser(int telegramId)
+        public static (User User, string Error) AuthorizeUser(int telegramId)
         {
             using (ISession session = HibernateLoader.CreateSession())
             {
                 User user = GetUserByTelegramId(telegramId, session);
                 if (user == null)
-                    return new Tuple<bool, string, User>(false, "Пользователь не зарегистрирован", null);
+                    return (null, "Пользователь не зарегистрирован");
                 if (user.Status != UserStatus.Active)
-                    return new Tuple<bool, string, User>(false, "Пользователь " + user.Status.GetDescriptiveString(), null);
+                    return (null, "Пользователь " + user.Status.GetDescriptiveString());
 
-                return new Tuple<bool, string, User>(true, "", user);
+                return (user, "");
             }
         }
 

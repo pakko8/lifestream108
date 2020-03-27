@@ -1,12 +1,12 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Common.Exceptions;
-using LifeStream108.Libs.Entities;
+using LifeStream108.Libs.Entities.CommandEntities;
 using System;
 using System.Collections.Generic;
 
 namespace LifeStream108.Modules.CommandProcessors
 {
-    internal class CommandParameterAndValue
+    public class CommandParameterAndValue
     {
         private readonly static Dictionary<string, int> _dicMonthNames = new Dictionary<string, int>()
         {
@@ -66,6 +66,26 @@ namespace LifeStream108.Modules.CommandProcessors
                 catch
                 {
                     throw new DateNotInCorrectFormat(Value);
+                }
+            }
+        }
+
+        public (int Hours, int Minutes) TimeValue
+        {
+            get
+            {
+                try
+                {
+                    if (int.TryParse(Value, out int hh)) return (hh, 0);
+
+                    string[] timeParts = Value.Split(new[] { ':' });
+                    hh = int.Parse(timeParts[0].Trim());
+                    int mm = int.Parse(timeParts[1].Trim());
+                    return (hh, mm);
+                }
+                catch
+                {
+                    throw new TimeNotInCorrectFormat(Value);
                 }
             }
         }
