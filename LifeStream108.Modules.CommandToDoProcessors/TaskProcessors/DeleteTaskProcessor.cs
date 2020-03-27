@@ -3,6 +3,7 @@ using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.ToDoListManagement.Managers;
+using System;
 using System.Linq;
 
 namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
@@ -22,7 +23,9 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             Logger.Info("Delete task " + task.Id);
 
             task.Status = ToDoTaskStatus.Deleted;
+            task.StatusUpdateTime = DateTime.Now;
             ToDoTaskManager.UpdateTask(task);
+
             return ExecuteCommandResult.CreateSuccessObject($"Задача '{task.Title}' деактивирована");
         }
     }
