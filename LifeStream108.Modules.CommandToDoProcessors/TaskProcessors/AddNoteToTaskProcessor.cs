@@ -3,12 +3,12 @@ using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.ToDoListManagement.Managers;
+using System;
 using System.Linq;
-using System.Text;
 
 namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
 {
-    public class TaskInfoProcessor : BaseCommandProcessor
+    public class AddNoteToTaskProcessor : BaseCommandProcessor
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
@@ -19,17 +19,17 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             if (!string.IsNullOrEmpty(findTaskResult.Error))
                 return ExecuteCommandResult.CreateErrorObject(findTaskResult.Error);
 
+            CommandParameterAndValue noteParameter = commandParameters.FirstOrDefault(
+                n => n.Parameter.ParameterCode == CommandParameterCode.ToDoTaskNote);
+
             ToDoTask task = ToDoTaskManager.GetTask((int)findTaskResult.Value);
-            Logger.Info("Show info for task " + task.Id);
+            Logger.Info($"Current note of task {task.Id}: <{task.Note}>");
 
-            ToDoList list = ToDoListManager.GetList(task.ListId);
-            StringBuilder sbTaskInfo = new StringBuilder($"Находится в списке: <b>{list.Name}</b>\r\n");
-            sbTaskInfo.Append($"<b>{task.Title}</b>\r\n");
-            if (!string.IsNullOrEmpty(task.ReminderSettings))
-                sbTaskInfo.Append($"    <i>Напоминание</i>: {ProcessorHelpers.PrintTaskReminder(task.ReminderSettings)}\r\n\r\n");
-            sbTaskInfo.Append(task.Note);
+            task.Note += "\r\n" + noteParameter.Value.Trim();
+            task.ContentUpdateTime = DateTime.Now;
+            ToDoTaskManager.UpdateTask(task);
 
-            return ExecuteCommandResult.CreateSuccessObject(sbTaskInfo.ToString());
+            return ExecuteCommandResult.CreateSuccessObject($"Для задачи '{task.Title}' добавлена заметка");
         }
     }
 }

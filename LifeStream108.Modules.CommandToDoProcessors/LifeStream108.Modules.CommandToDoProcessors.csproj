@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProcessorHelpers.cs" />
+    <Compile Include="TaskProcessors\AddNoteToTaskProcessor.cs" />
     <Compile Include="TaskProcessors\AddTaskProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CategoryListProcessor.cs" />
