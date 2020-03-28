@@ -1,8 +1,10 @@
 ﻿using LifeStream108.Libs.Entities.NewsEntities;
+using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Modules.NewsManagement.Managers;
 using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
+using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Modules.UserManagement.Managers;
 using NLog;
 using System;
@@ -18,6 +20,7 @@ namespace LifeStream108.Services.TelegramBotService
 
         private readonly System.Timers.Timer _clearSessionsTimer;
         private readonly System.Timers.Timer _checkNewsTimer;
+        private readonly System.Timers.Timer _checkToDoTaskReminders;
 
         private MainTelegramChatClient _chatClient = null;
 
@@ -34,11 +37,54 @@ namespace LifeStream108.Services.TelegramBotService
                 _checkNewsTimer = new System.Timers.Timer();
                 _checkNewsTimer.Interval = 10 * 60 * 1000;
                 _checkNewsTimer.Elapsed += CheckNewsTimer_Elapsed;
+
+                _checkToDoTaskReminders = new System.Timers.Timer();
+                _checkToDoTaskReminders.Interval = 3 * 60 * 1000;
+                _checkToDoTaskReminders.Elapsed += CheckToDoTaskReminders_Elapsed;
             }
             catch (Exception ex)
             {
                 Logger.Error("Constructor Exception: {0}", ex.ToString());
             }
+        }
+
+        private void CheckToDoTaskReminders_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Logger.Info("Check reminders task started");
+            try
+            {
+                _checkToDoTaskReminders.Stop();
+
+                foreach (User user in UserManager.GetAllUsers().Where(n => n.Status == UserStatus.Active))
+                {
+                    Logger.Info("Check reminders for user " + user.Id);
+                    ToDoList[] lists = ToDoListManager.GetUserLists(user.Id);
+                    foreach (ToDoTask task in ToDoTaskManager.GetTasksWithReminders(user.Id))
+                    {
+                        ToDoList list = lists.FirstOrDefault(n => n.Id == task.ListId);
+                        if (!list.Active) continue;
+
+                        ToDoTaskReminder reminder = new ToDoTaskReminder();
+                        reminder.Load(task.ReminderSettings);
+
+                        if (reminder.IsTimeToRemind(task.ReminderLastTime))
+                        {
+                            string reminderTaskInfo = $"[{task.Id}] {task.Title}: {reminder.FormatReminderForUser()}";
+                            Logger.Info($"We'll send reminder about task {reminderTaskInfo}");
+                            SendMessage($"Напоминание о задаче: {reminderTaskInfo}", user.TelegramId);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error to check reminders: " + ex);
+            }
+            finally
+            {
+                _checkToDoTaskReminders.Start();
+            }
+            Logger.Info("Check reminders task finished");
         }
 
         private void ClearSessionsTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -141,6 +187,7 @@ namespace LifeStream108.Services.TelegramBotService
                 _chatClient.Start();
                 _clearSessionsTimer.Start();
                 _checkNewsTimer.Start();
+                _checkToDoTaskReminders.Start();
             }
             catch (Exception ex)
             {
@@ -154,6 +201,8 @@ namespace LifeStream108.Services.TelegramBotService
             _chatClient.Stop();
             _clearSessionsTimer.Stop();
             _checkNewsTimer.Stop();
+            _checkToDoTaskReminders.Stop();
+
             Logger.Info("Service stopped");
         }
 

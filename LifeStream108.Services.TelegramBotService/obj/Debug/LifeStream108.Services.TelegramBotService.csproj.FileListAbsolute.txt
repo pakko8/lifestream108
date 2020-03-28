@@ -162,3 +162,5 @@ D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Li
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.DictionaryManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb

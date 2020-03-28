@@ -35,7 +35,7 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             ToDoTaskManager.AddTask(task);
 
             string reminderText = !string.IsNullOrEmpty(task.ReminderSettings)
-                ? " Напоминание: " + ProcessorHelpers.PrintTaskReminder(task.ReminderSettings)
+                ? " Напоминание: " + reminder.FormatReminderForUser()
                 : "";
             ExecuteCommandResult executeResult = ExecuteCommandResult.CreateSuccessObject(
                 $"Задача '{task.Title}' добавлена.{reminderText}");

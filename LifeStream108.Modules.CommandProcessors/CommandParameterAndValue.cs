@@ -98,6 +98,12 @@ namespace LifeStream108.Modules.CommandProcessors
 
                 if (valueAdj == "TODAY") return new DatePeriod(DateTime.Now.Date, DateTime.Now.Date);
 
+                if (valueAdj == "YEAR")
+                {
+                    DateTime now = DateTime.Now;
+                    return new DatePeriod(new DateTime(now.Year, 1, 1), new DateTime(now.Year, now.Month, now.Day));
+                }
+
                 if (valueAdj == "MON" || valueAdj == "MONTH")
                 {
                     DateTime now = DateTime.Now;

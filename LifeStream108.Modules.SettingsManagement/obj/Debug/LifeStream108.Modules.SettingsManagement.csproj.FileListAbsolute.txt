@@ -52,3 +52,5 @@ D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\Lif
 D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\obj\Debug\LifeStream108.Modules.SettingsManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.SettingsManagement\bin\Debug\LifeStream108.Libs.Common.pdb

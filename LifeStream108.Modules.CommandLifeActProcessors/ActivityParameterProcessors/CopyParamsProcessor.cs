@@ -31,7 +31,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ActivityParameterProces
                 return ExecuteCommandResult.CreateErrorObject($"У деятельности \"{actWithParamsTo.Activity.NameForUser}\" уже есть параметры. " +
                     "Копировать параметры можно в деятельность без параметров");
 
-            LifeActivityParameter[] copiedParameters = actWithParamsFrom.Parameters.Where (n => n.Active).ToArray();
+            LifeActivityParameter[] copiedParameters = actWithParamsFrom.Parameters.Where(n => n.Active).ToArray();
             foreach (LifeActivityParameter parameter in copiedParameters)
             {
                 parameter.ActivityId = actWithParamsTo.Activity.Id;

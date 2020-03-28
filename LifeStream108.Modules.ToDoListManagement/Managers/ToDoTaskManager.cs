@@ -37,6 +37,17 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             }
         }
 
+        public static ToDoTask[] GetTasksWithReminders(int userId)
+        {
+            using (ISession session = HibernateLoader.CreateSession())
+            {
+                var query = from task in session.Query<ToDoTask>()
+                            where task.UserId == userId && !string.IsNullOrEmpty(task.ReminderSettings) && task.Status != ToDoTaskStatus.Deleted
+                            select task;
+                return query.ToArray();
+            }
+        }
+
         public static ToDoTask[] FindTasks(string word, int limit, int userId)
         {
             using (ISession session = HibernateLoader.CreateSession())

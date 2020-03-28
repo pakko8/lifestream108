@@ -50,3 +50,5 @@ d:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\LifeStr
 d:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\LifeStream108.Modules.NewsManagement.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\LifeStream108.Modules.NewsManagement.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\LifeStream108.Modules.NewsManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\LifeStream108.Libs.Common.pdb

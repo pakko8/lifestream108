@@ -52,3 +52,5 @@ D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\obj\Debug\LifeStr
 D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\obj\Debug\LifeStream108.Modules.UserManagement.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\obj\Debug\LifeStream108.Modules.UserManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\obj\Debug\LifeStream108.Modules.UserManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\bin\Debug\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.UserManagement\bin\Debug\LifeStream108.Libs.Common.pdb

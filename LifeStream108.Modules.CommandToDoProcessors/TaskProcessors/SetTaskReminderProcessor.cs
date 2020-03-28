@@ -25,7 +25,7 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
 
             task.ReminderSettings = reminder != null ? reminder.ReminderFormat : "";
 
-            string reminderText = ProcessorHelpers.PrintTaskReminder(task.ReminderSettings);
+            string reminderText = reminder.FormatReminderForUser();
             return ExecuteCommandResult.CreateSuccessObject(
                 $"Для задачи '{task.Title}' установлено напоминание: {reminderText}");
         }

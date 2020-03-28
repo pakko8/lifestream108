@@ -26,7 +26,11 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             StringBuilder sbTaskInfo = new StringBuilder($"Находится в списке: <b>{list.Name}</b>\r\n");
             sbTaskInfo.Append($"<b>{task.Title}</b>\r\n");
             if (!string.IsNullOrEmpty(task.ReminderSettings))
-                sbTaskInfo.Append($"    <i>Напоминание</i>: {ProcessorHelpers.PrintTaskReminder(task.ReminderSettings)}\r\n\r\n");
+            {
+                ToDoTaskReminder reminder = new ToDoTaskReminder();
+                reminder.Load(task.ReminderSettings);
+                sbTaskInfo.Append($"    <i>Напоминание</i>: {reminder.FormatReminderForUser()}\r\n\r\n");
+            }
             sbTaskInfo.Append(task.Note);
 
             return ExecuteCommandResult.CreateSuccessObject(sbTaskInfo.ToString());

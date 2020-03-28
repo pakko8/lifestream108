@@ -25,7 +25,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityProcessors
             if (actWithParams.Parameters.Length > 0)
             {
                 Measure[] measures = MeasureManager.GetMeasuresForUser(session.UserId);
-                foreach (LifeActivityParameter parameter in actWithParams.Parameters)
+                foreach (LifeActivityParameter parameter in actWithParams.Parameters.OrderBy(n => n.SortOrder))
                 {
                     Measure measure = measures.FirstOrDefault(n => n.Id == parameter.MeasureId);
                     sbResult.Append($"    {parameter.NameForUser}, Единица измерения: {measure.Name}, " +

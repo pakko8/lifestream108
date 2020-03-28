@@ -86,7 +86,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors
 
         public static string FormatLifyActivityNames(LifeActivityParameter[] activityParameters)
         {
-            return CollectionUtils.Array2String(activityParameters.Select(n => n.NameForUser), "\", \"", "\"", "\"");
+            return CollectionUtils.Array2String(activityParameters.Select(n => n.NameForUser), ", ", "\"", "\"");
         }
 
         public static int GetMeasureId(string measureName, int userId)

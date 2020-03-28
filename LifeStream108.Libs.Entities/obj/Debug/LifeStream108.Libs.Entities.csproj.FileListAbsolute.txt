@@ -16,3 +16,5 @@ D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Li
 D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.dll
 D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Debug\LifeStream108.Libs.Entities.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Debug\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Debug\LifeStream108.Libs.Common.pdb

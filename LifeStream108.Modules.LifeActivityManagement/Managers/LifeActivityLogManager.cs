@@ -1,9 +1,12 @@
-﻿using LifeStream108.Libs.Entities.LifeActityEntities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Libs.HibernateManagement;
 using NHibernate;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 
 namespace LifeStream108.Modules.LifeActivityManagement.Managers
@@ -12,7 +15,8 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId, int activityId = 0)
+        public static LifeActivityLog[] GetLogsForPeriod(
+            DateTime dateFrom, DateTime dateTo, int userId, int activityId = 0)
         {
             Logger.Info($"Getting activity logs for user={userId}, period={dateFrom.ToString("yyyy-MM-dd")}-{dateTo.ToString("yyyy-MM-dd")}" +
                 $"{(activityId > 0 ? ", activity=" + activityId : "")}");
@@ -38,13 +42,25 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
         public static LifeActivityLogValue[] GetLogValuesForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
             Logger.Info($"Getting activity log values for user={userId}, period={dateFrom.ToString("yyyy-MM-dd")}-{dateTo.ToString("yyyy-MM-dd")}");
+            List<LifeActivityLogValue> values = new List<LifeActivityLogValue>();
             using (ISession session = HibernateLoader.CreateSession())
             {
-                var query = from logValue in session.Query<LifeActivityLogValue>()
-                            where logValue.UserId == userId && logValue.Period >= dateFrom && logValue.Period <= dateTo
-                            select logValue;
-                return query.ToArray();
+                string commandText =
+$@"select val.* from life_activity_logs.life_activity_log_values val
+inner join life_activity_logs.life_activity_logs lg on lg.id=val.activity_log_id
+where lg.active='t' and val.user_id={userId} 
+and val.period>=timestamp'{dateFrom.ToString("yyyy-MM-dd")}' and val.period<=timestamp'{dateTo.ToString("yyyy-MM-dd")}'";
+                DbCommand command = session.Connection.CreateCommand();
+                command.CommandText = commandText;
+                using (IDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        values.Add(ReadLogValue(reader));
+                    }
+                }
             }
+            return values.ToArray();
         }
 
         public static LifeActivityLogWithValues[] GetLogsForDate(
@@ -151,6 +167,19 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
                     }
                 }
             }
+        }
+
+        private static LifeActivityLogValue ReadLogValue(IDataReader reader)
+        {
+            LifeActivityLogValue value = new LifeActivityLogValue();
+            value.Id = PgsqlUtils.GetInt("id", reader, 0);
+            value.UserId = PgsqlUtils.GetInt("user_id", reader, 0);
+            value.ActivityLogId = PgsqlUtils.GetLong("activity_log_id", reader, 0);
+            value.Period = PgsqlUtils.GetDateTime("period", reader, DateTime.MinValue);
+            value.ActivityParamId = PgsqlUtils.GetInt("activity_param_id", reader, 0);
+            value.NumericValue = PgsqlUtils.GetDouble("numeric_value", reader, 0);
+            value.TextValue = PgsqlUtils.GetString("text_value", reader, "");
+            return value;
         }
     }
 }

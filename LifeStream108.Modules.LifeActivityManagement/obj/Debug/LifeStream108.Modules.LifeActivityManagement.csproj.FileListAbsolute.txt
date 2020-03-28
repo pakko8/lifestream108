@@ -52,3 +52,5 @@ d:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\obj\Debug
 d:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\obj\Debug\LifeStream108.Modules.LifeActivityManagement.csproj.CopyComplete
 d:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\obj\Debug\LifeStream108.Modules.LifeActivityManagement.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\obj\Debug\LifeStream108.Modules.LifeActivityManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\bin\Debug\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.LifeActivityManagement\bin\Debug\LifeStream108.Libs.Common.pdb

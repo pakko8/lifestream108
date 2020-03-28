@@ -152,6 +152,10 @@
       <Project>{93161445-BF8D-4DB5-9A32-2D6C3602BDCE}</Project>
       <Name>LifeStream108.Modules.TempDataManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.ToDoListManagement\LifeStream108.Modules.ToDoListManagement.csproj">
+      <Project>{7163BD0A-C3DC-4015-8E35-07708B4D0C89}</Project>
+      <Name>LifeStream108.Modules.ToDoListManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeStream108.Modules.UserManagement\LifeStream108.Modules.UserManagement.csproj">
       <Project>{A93C05AA-0C62-41D4-A431-011C76EEF49C}</Project>
       <Name>LifeStream108.Modules.UserManagement</Name>

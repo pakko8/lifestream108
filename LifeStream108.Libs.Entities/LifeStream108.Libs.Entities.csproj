@@ -89,6 +89,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj">
+      <Project>{C5714537-677D-4E03-8EBF-1AE203912A53}</Project>
+      <Name>LifeStream108.Libs.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
