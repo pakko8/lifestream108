@@ -24,7 +24,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
         {
-            return ReminderHelpers.GetComingSoonReminderTimeForDays(Time, RepeaterValue * 7, lastReminderTime);
+            return ReminderHelpers.GetComingSoonReminderTimeForDays(
+                Time, RepeaterValue * 7, lastReminderTime, GetZeroTime(lastReminderTime));
         }
     }
 }

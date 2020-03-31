@@ -144,5 +144,13 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
         {
             return $"{Declanations.DeclineByNumeral(count, "каждый", "каждые", "каждые")} {count} ";
         }
+
+        /// <summary>
+        /// Время, от которого считать, когда снова должен сработать будильник
+        /// </summary>
+        protected DateTime GetZeroTime(DateTime lastReminderTime)
+        {
+            return lastReminderTime > Time ? lastReminderTime : Time;
+        }
     }
 }

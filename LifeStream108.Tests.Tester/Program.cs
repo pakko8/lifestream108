@@ -12,15 +12,7 @@ namespace LifeStream108.Tests.Tester
         {
             try
             {
-                DateTime initialTime = new DateTime(2020, 4, 1);
-                DateTime lastRemindTime = new DateTime(2020, 4, 10);
-                DateTime zeroTime = lastRemindTime;
-                int repeatValue = 9;
-                DateTime now = new DateTime(2020, 9, 30);
-
-                int countTimes = (int)Math.Floor((now - zeroTime).TotalDays / repeatValue);
-                DateTime estimatedTime = zeroTime.AddDays(countTimes * repeatValue);
-                if (estimatedTime < now) estimatedTime = estimatedTime.AddDays(repeatValue);
+                ReminderTester.Run();
                 int a = 10;
                 /*
                 // ClientSecret = "2e780b443420a51b8e76d711eceaf1184a1294ce67b17827014705742eda";

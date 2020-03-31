@@ -101,14 +101,13 @@ namespace LifeStream108.Modules.CommandProcessors
                 if (valueAdj == "YEAR")
                 {
                     DateTime now = DateTime.Now;
-                    return new DatePeriod(new DateTime(now.Year, 1, 1), new DateTime(now.Year, now.Month, now.Day));
+                    return new DatePeriod(new DateTime(now.Year, 1, 1), now.Date);
                 }
 
                 if (valueAdj == "MON" || valueAdj == "MONTH")
                 {
                     DateTime now = DateTime.Now;
-                    int daysInThisMonth = DateTime.DaysInMonth(now.Year, now.Month);
-                    return new DatePeriod(new DateTime(now.Year, now.Month, 1), new DateTime(now.Year, now.Month, daysInThisMonth));
+                    return new DatePeriod(new DateTime(now.Year, now.Month, 1), now.Date);
                 }
 
                 if (_dicMonthNames.ContainsKey(valueAdj))

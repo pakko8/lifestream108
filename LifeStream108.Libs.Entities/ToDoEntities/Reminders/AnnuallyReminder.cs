@@ -24,7 +24,15 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
         {
-            throw new NotImplementedException();
+            DateTime now = DateTime.Now;
+            if (Time > now) return Time;
+
+            DateTime zeroTime = GetZeroTime(lastReminderTime);
+            int countTimes = (int)Math.Floor((DateTime.Now - zeroTime).TotalDays / 365 / RepeaterValue);
+            //if (countTimes == 0) countTimes = 1;
+            DateTime estimatedTime = zeroTime.AddYears(countTimes * RepeaterValue);
+            if (estimatedTime < now) estimatedTime = estimatedTime.AddYears(RepeaterValue);
+            return estimatedTime;
         }
     }
 }
