@@ -137,6 +137,10 @@
       <Project>{60cff12d-2084-4b69-a154-75d59aa66f3c}</Project>
       <Name>LifeStream108.Modules.CommandLifeActProcessors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.CommandManagement\LifeStream108.Modules.CommandManagement.csproj">
+      <Project>{26305aab-882b-48f1-b9a4-5ce3ad24ce1f}</Project>
+      <Name>LifeStream108.Modules.CommandManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeStream108.Modules.CommandProcessors\LifeStream108.Modules.CommandProcessors.csproj">
       <Project>{75c5087c-b4da-42ea-b24d-1e88b04bbc4c}</Project>
       <Name>LifeStream108.Modules.CommandProcessors</Name>
@@ -144,6 +148,10 @@
     <ProjectReference Include="..\LifeStream108.Modules.CommandToDoProcessors\LifeStream108.Modules.CommandToDoProcessors.csproj">
       <Project>{f12910b6-7179-4c97-b3f1-4b67601b3647}</Project>
       <Name>LifeStream108.Modules.CommandToDoProcessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.DictionaryManagement\LifeStream108.Modules.DictionaryManagement.csproj">
+      <Project>{2d784d1b-0b45-440b-bd6e-9c39fa73e32c}</Project>
+      <Name>LifeStream108.Modules.DictionaryManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\LifeStream108.Modules.LifeActivityManagement\LifeStream108.Modules.LifeActivityManagement.csproj">
       <Project>{8F71B651-CECD-47FE-9009-65BEDD68EFD0}</Project>
@@ -165,9 +173,17 @@
       <Project>{491FF39E-2D39-4082-AFEE-4647EA1962CC}</Project>
       <Name>LifeStream108.Modules.TelegramBotManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.TempDataManagement\LifeStream108.Modules.TempDataManagement.csproj">
+      <Project>{93161445-bf8d-4db5-9a32-2d6c3602bdce}</Project>
+      <Name>LifeStream108.Modules.TempDataManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeStream108.Modules.ToDoListManagement\LifeStream108.Modules.ToDoListManagement.csproj">
       <Project>{7163BD0A-C3DC-4015-8E35-07708B4D0C89}</Project>
       <Name>LifeStream108.Modules.ToDoListManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Modules.UserManagement\LifeStream108.Modules.UserManagement.csproj">
+      <Project>{a93c05aa-0c62-41d4-a431-011c76eef49c}</Project>
+      <Name>LifeStream108.Modules.UserManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             if (task != null) return ExecuteCommandResult.CreateErrorObject(
                 $"Задача с заголовком '{titleParameter.Value}' уже существует");
 
-            ToDoTaskReminder reminder = ProcessorHelpers.ReadReminder(commandParameters);
+            Reminder reminder = ProcessorHelpers.ReadReminder(commandParameters);
 
             task = new ToDoTask();
             task.UserId = session.UserId;
@@ -35,7 +36,7 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             ToDoTaskManager.AddTask(task);
 
             string reminderText = !string.IsNullOrEmpty(task.ReminderSettings)
-                ? " Напоминание: " + reminder.FormatReminderForUser()
+                ? " Напоминание: " + reminder.FormatReminderForUser(task.ReminderLastTime)
                 : "";
             ExecuteCommandResult executeResult = ExecuteCommandResult.CreateSuccessObject(
                 $"Задача '{task.Title}' добавлена.{reminderText}");

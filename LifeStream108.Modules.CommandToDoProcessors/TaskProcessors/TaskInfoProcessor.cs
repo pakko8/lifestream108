@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using System.Linq;
@@ -27,9 +28,11 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             sbTaskInfo.Append($"<b>{task.Title}</b>\r\n");
             if (!string.IsNullOrEmpty(task.ReminderSettings))
             {
-                ToDoTaskReminder reminder = new ToDoTaskReminder();
-                reminder.Load(task.ReminderSettings);
-                sbTaskInfo.Append($"    <i>Напоминание</i>: {reminder.FormatReminderForUser()}\r\n\r\n");
+                var createReminderResult = Reminder.Create(task.ReminderSettings);
+                if (!string.IsNullOrEmpty(createReminderResult.Error))
+                    return ExecuteCommandResult.CreateErrorObject(createReminderResult.Error);
+
+                sbTaskInfo.Append($"    <i>Напоминание</i>: {createReminderResult.Reminder.FormatReminderForUser(task.ReminderLastTime)}\r\n\r\n");
             }
             sbTaskInfo.Append(task.Note);
 

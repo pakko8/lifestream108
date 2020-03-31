@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
             ToDoTask task = ToDoTaskManager.GetTask((int)findTaskResult.Value);
             Logger.Info($"Current title of task {task.Id}: <{task.Title}>");
 
-            ToDoTaskReminder reminder = ProcessorHelpers.ReadReminder(commandParameters);
+            Reminder reminder = ProcessorHelpers.ReadReminder(commandParameters);
 
             task.ReminderSettings = reminder != null ? reminder.ReminderFormat : "";
 
-            string reminderText = reminder.FormatReminderForUser();
+            string reminderText = reminder.FormatReminderForUser(task.ReminderLastTime);
             return ExecuteCommandResult.CreateSuccessObject(
                 $"Для задачи '{task.Title}' установлено напоминание: {reminderText}");
         }

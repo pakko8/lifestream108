@@ -164,3 +164,12 @@ D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Li
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.DictionaryManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.pdb
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.dll.config
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.pdb
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll.config
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.LifeActivityManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll.config

@@ -1,4 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using LifeStream108.Web.Portal.App_Code;
 using NLog;
@@ -44,13 +45,12 @@ namespace LifeStream108.Web.Portal.Controls
 
         private void ShowTaskInfo(ToDoTask task)
         {
-            ToDoTaskReminder reminder = new ToDoTaskReminder();
-            reminder.Load(task.ReminderSettings);
-            if (reminder.Time != DateTime.MinValue)
+            var createReminderResult = Reminder.Create(task.ReminderSettings);
+            if (createReminderResult.Reminder.Time != DateTime.MinValue)
             {
-                txtReminderTime.Text = reminder.UserFormattedTime;
-                if (reminder.RepeaterValue > 0) txtReminderRepeatValue.Text = reminder.RepeaterValue.ToString();
-                ddlReminderRepeatType.SelectedValue = reminder.RepeaterType.ToString();
+                txtReminderTime.Text = createReminderResult.Reminder.UserFormattedTime;
+                if (createReminderResult.Reminder.RepeaterValue > 0) txtReminderRepeatValue.Text = createReminderResult.Reminder.RepeaterValue.ToString();
+                ddlReminderRepeatType.SelectedValue = createReminderResult.Reminder.RepeaterType.ToString();
 
             }
 
@@ -69,16 +69,15 @@ namespace LifeStream108.Web.Portal.Controls
 
                 if (!string.IsNullOrEmpty(txtReminderTime.Text))
                 {
-                    ToDoTaskReminder reminder = new ToDoTaskReminder();
-                    string loadReminderError = reminder.Load(
+                    var createReminderResult = Reminder.Create(
                         txtReminderTime.Text.Trim(), txtReminderRepeatValue.Text, ddlReminderRepeatType.SelectedValue);
-                    if (!string.IsNullOrEmpty(loadReminderError))
+                    if (!string.IsNullOrEmpty(createReminderResult.Error))
                     {
-                        ShowInfoControl.SetMessage(loadReminderError, LastMessageType.Error);
+                        ShowInfoControl.SetMessage(createReminderResult.Error, LastMessageType.Error);
                         return;
                     }
 
-                    task.ReminderSettings = reminder.ReminderFormat;
+                    task.ReminderSettings = createReminderResult.Reminder.ReminderFormat;
                 }
 
                 string newTitle = txtTitle.Text.Trim();

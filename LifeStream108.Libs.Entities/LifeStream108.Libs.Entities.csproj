@@ -78,6 +78,14 @@
     <Compile Include="SessionEntities\Session.cs" />
     <Compile Include="SettingsEntities\SettingEntry.cs" />
     <Compile Include="MessageEntities\TelegramMessageEntry.cs" />
+    <Compile Include="ToDoEntities\Reminders\AnnuallyReminder.cs" />
+    <Compile Include="ToDoEntities\Reminders\DailyReminder.cs" />
+    <Compile Include="ToDoEntities\Reminders\MonthlyReminder.cs" />
+    <Compile Include="ToDoEntities\Reminders\OnceReminder.cs" />
+    <Compile Include="ToDoEntities\Reminders\Reminder.cs" />
+    <Compile Include="ToDoEntities\Reminders\ReminderHelpers.cs" />
+    <Compile Include="ToDoEntities\Reminders\ReminderRepeaterType.cs" />
+    <Compile Include="ToDoEntities\Reminders\WeeklyReminder.cs" />
     <Compile Include="ToDoEntities\ToDoCategory.cs" />
     <Compile Include="ToDoEntities\ToDoTask.cs" />
     <Compile Include="ToDoEntities\ToDoList.cs" />

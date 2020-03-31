@@ -1,5 +1,6 @@
 ﻿using LifeStream108.Libs.Entities.NewsEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Modules.NewsManagement.Managers;
 using LifeStream108.Modules.NewsProcessors;
@@ -64,12 +65,12 @@ namespace LifeStream108.Services.TelegramBotService
                         ToDoList list = lists.FirstOrDefault(n => n.Id == task.ListId);
                         if (!list.Active) continue;
 
-                        ToDoTaskReminder reminder = new ToDoTaskReminder();
-                        reminder.Load(task.ReminderSettings);
+                        var createReminderResult = Reminder.Create(task.ReminderSettings);
 
-                        if (reminder.IsTimeToRemind(task.ReminderLastTime))
+                        if (createReminderResult.Reminder.IsTimeToRemind(task.ReminderLastTime))
                         {
-                            string reminderTaskInfo = $"[{task.Id}] {task.Title}: {reminder.FormatReminderForUser()}";
+                            string reminderTaskInfo =
+                                $"[{task.Id}] {task.Title}: {createReminderResult.Reminder.FormatReminderForUser(task.ReminderLastTime)}";
                             Logger.Info($"We'll send reminder about task {reminderTaskInfo}");
                             SendMessage($"Напоминание о задаче: {reminderTaskInfo}", user.TelegramId);
                         }
