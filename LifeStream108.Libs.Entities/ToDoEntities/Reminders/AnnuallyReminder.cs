@@ -22,17 +22,11 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override string DeclationWord3 => "лет";
 
-        public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
-        {
-            DateTime now = DateTime.Now;
-            if (Time > now) return Time;
+        protected override int CoefForCalcDiffBetweenDates => 365;
 
-            DateTime zeroTime = GetZeroTime(lastReminderTime);
-            int countTimes = (int)Math.Floor((DateTime.Now - zeroTime).TotalDays / 365 / RepeaterValue);
-            //if (countTimes == 0) countTimes = 1;
-            DateTime estimatedTime = zeroTime.AddYears(countTimes * RepeaterValue);
-            if (estimatedTime < now) estimatedTime = estimatedTime.AddYears(RepeaterValue);
-            return estimatedTime;
+        protected override DateTime AddValueToGetComingSoonReminderTime(DateTime time, int value)
+        {
+            return time.AddYears(value);
         }
     }
 }

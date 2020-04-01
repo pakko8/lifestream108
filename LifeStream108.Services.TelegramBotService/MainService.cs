@@ -66,7 +66,7 @@ namespace LifeStream108.Services.TelegramBotService
                         if (!list.Active) continue;
 
                         var createReminderResult = Reminder.Create(task.ReminderSettings);
-
+                        Logger.Info($"Checking reminder for task '{task.Title}'");
                         if (createReminderResult.Reminder.IsTimeToRemind(task.ReminderLastTime))
                         {
                             string reminderTaskInfo =

@@ -83,7 +83,6 @@
     <Compile Include="ToDoEntities\Reminders\MonthlyReminder.cs" />
     <Compile Include="ToDoEntities\Reminders\OnceReminder.cs" />
     <Compile Include="ToDoEntities\Reminders\Reminder.cs" />
-    <Compile Include="ToDoEntities\Reminders\ReminderHelpers.cs" />
     <Compile Include="ToDoEntities\Reminders\ReminderRepeaterType.cs" />
     <Compile Include="ToDoEntities\Reminders\WeeklyReminder.cs" />
     <Compile Include="ToDoEntities\ToDoCategory.cs" />

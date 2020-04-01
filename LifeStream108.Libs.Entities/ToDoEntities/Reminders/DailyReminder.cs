@@ -22,10 +22,11 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override string DeclationWord3 => "дней";
 
-        public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
+        protected override int CoefForCalcDiffBetweenDates => 1;
+
+        protected override DateTime AddValueToGetComingSoonReminderTime(DateTime time, int value)
         {
-            return ReminderHelpers.GetComingSoonReminderTimeForDays(
-                Time, RepeaterValue, lastReminderTime, GetZeroTime(lastReminderTime));
+            return time.AddDays(value);
         }
     }
 }

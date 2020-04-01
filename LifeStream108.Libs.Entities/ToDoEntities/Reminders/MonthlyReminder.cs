@@ -22,16 +22,11 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override string DeclationWord3 => "месяцев";
 
-        public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
-        {
-            DateTime now = DateTime.Now;
-            if (Time > now) return Time;
+        protected override int CoefForCalcDiffBetweenDates => 30;
 
-            DateTime zeroTime = GetZeroTime(lastReminderTime);
-            int countTimes = (int)Math.Floor((DateTime.Now - zeroTime).TotalDays / 30 / RepeaterValue);
-            DateTime estimatedTime = zeroTime.AddMonths(countTimes * RepeaterValue);
-            if (estimatedTime < now) estimatedTime = estimatedTime.AddMonths(RepeaterValue);
-            return estimatedTime;
+        protected override DateTime AddValueToGetComingSoonReminderTime(DateTime time, int value)
+        {
+            return time.AddMonths(value);
         }
     }
 }

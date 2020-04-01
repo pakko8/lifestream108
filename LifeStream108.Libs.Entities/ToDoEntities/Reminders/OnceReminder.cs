@@ -31,5 +31,12 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
         {
             return Time.ToString("dd.MM.yyyy HH:mm");
         }
+
+        protected override int CoefForCalcDiffBetweenDates => throw new NotImplementedException("No need for this reminder");
+
+        protected override DateTime AddValueToGetComingSoonReminderTime(DateTime time, int value)
+        {
+            throw new NotImplementedException("No need for this reminder");
+        }
     }
 }

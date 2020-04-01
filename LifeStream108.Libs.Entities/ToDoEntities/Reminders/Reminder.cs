@@ -2,7 +2,6 @@
 using NLog;
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 
 namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
@@ -43,13 +42,10 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public abstract string DeclationWord3 { get; }
 
-        public abstract DateTime GetComingSoonReminderTime(DateTime lastReminderTime);
-
         public bool IsTimeToRemind(DateTime lastReminderTime)
         {
-            throw new NotImplementedException(); // TODO
-            /*DateTime reminderTime = GetComingSoonReminderTime(lastReminderTime);
-            return reminderTime >= DateTime.Now;*/
+            DateTime reminderTime = GetComingSoonReminderTime(lastReminderTime);
+            return reminderTime >= DateTime.Now;
         }
 
         public string UserFormattedTime => Time.ToString(UserTimeFormat);
@@ -145,12 +141,22 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
             return $"{Declanations.DeclineByNumeral(count, "каждый", "каждые", "каждые")} {count} ";
         }
 
-        /// <summary>
-        /// Время, от которого считать, когда снова должен сработать будильник
-        /// </summary>
-        protected DateTime GetZeroTime(DateTime lastReminderTime)
+        protected abstract int CoefForCalcDiffBetweenDates { get; }
+
+        protected abstract DateTime AddValueToGetComingSoonReminderTime(DateTime time, int value);
+
+        public virtual DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
         {
-            return lastReminderTime > Time ? lastReminderTime : Time;
+            //DateTime now = new DateTime(2020, 3, 30); // For testing
+            DateTime now = DateTime.Now;
+            if (Time > now) return Time;
+
+            // Время, от которого считать, когда снова должен сработать будильник
+            DateTime zeroTime = lastReminderTime > Time ? lastReminderTime : Time;
+            int countTimes = (int)Math.Floor((DateTime.Now - zeroTime).TotalDays / CoefForCalcDiffBetweenDates / RepeaterValue);
+            DateTime estimatedTime = AddValueToGetComingSoonReminderTime(zeroTime, countTimes * RepeaterValue);
+            if (estimatedTime < now) estimatedTime = AddValueToGetComingSoonReminderTime(estimatedTime, RepeaterValue);
+            return estimatedTime;
         }
     }
 }
