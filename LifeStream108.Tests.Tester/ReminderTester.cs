@@ -15,7 +15,6 @@ namespace LifeStream108.Tests.Tester
             DateTime weeklyNextTime = weeklyReminder.Reminder.GetComingSoonReminderTime(new DateTime(2020, 3, 19));
 
             var monthlyReminder = Reminder.Create(ReminderRepeaterType.Month, new DateTime(2019, 11, 14), 3); // Result must be 2020-05-14
-            //var monthlyReminder = Reminder.Create(ReminderRepeaterType.Month, new DateTime(2020, 3, 31), 3); // Result must be 2020-06-30
             DateTime monthlyNextTime = monthlyReminder.Reminder.GetComingSoonReminderTime(DateTime.MinValue);
 
             var annuallyReminder = Reminder.Create(ReminderRepeaterType.Year, new DateTime(2020, 3, 31), 2); // Result must be 2022-03-31
