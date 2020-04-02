@@ -66,12 +66,12 @@ namespace LifeStream108.Services.TelegramBotService
                         if (!list.Active) continue;
 
                         var createReminderResult = Reminder.Create(task.ReminderSettings);
-                        Logger.Info($"Checking reminder for task '{task.Title}'");
+                        Logger.Info($"Checking reminder '{task.ReminderSettings}' for task '{task.Title}'");
                         if (createReminderResult.Reminder.IsTimeToRemind(task.ReminderLastTime))
                         {
                             string reminderTaskInfo =
                                 $"[{task.Id}] {task.Title}: {createReminderResult.Reminder.FormatReminderForUser(task.ReminderLastTime)}";
-                            Logger.Info($"We'll send reminder about task {reminderTaskInfo}");
+                            Logger.Info($"We'll send reminder ({task.ReminderSettings}) about task '{reminderTaskInfo}'");
                             SendMessage($"Напоминание о задаче: {reminderTaskInfo}", user.TelegramId);
                         }
                     }

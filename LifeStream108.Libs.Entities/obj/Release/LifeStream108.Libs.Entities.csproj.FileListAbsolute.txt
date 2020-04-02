@@ -1,0 +1,11 @@
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\LifeStream108.Libs.Entities.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\LifeStream108.Libs.Entities.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\NLog.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\LifeStream108.Libs.Common.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\bin\Release\NLog.xml
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Release\LifeStream108.Libs.Entities.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Release\LifeStream108.Libs.Entities.csproj.CoreCompileInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Release\LifeStream108.Libs.Entities.csproj.CopyComplete
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Release\LifeStream108.Libs.Entities.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.Entities\obj\Release\LifeStream108.Libs.Entities.pdb
