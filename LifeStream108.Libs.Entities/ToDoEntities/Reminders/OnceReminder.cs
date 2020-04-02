@@ -29,7 +29,7 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override string FormatReminderForUser(DateTime lastReminderTime)
         {
-            return Time.ToString("dd.MM.yyyy HH:mm");
+            return $"{Time:dd.MM.yyyy HH:mm}";
         }
 
         protected override int CoefForCalcDiffBetweenDates => throw new NotImplementedException("No need for this reminder");

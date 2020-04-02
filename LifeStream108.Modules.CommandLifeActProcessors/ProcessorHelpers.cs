@@ -112,7 +112,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors
         public static string PrintLog(LifeActivityLog log, LifeActivityLogValue[] logValues,
             LifeActivity act, LifeActivityParameter[] actParams, Measure[] measures)
         {
-            return $"{act.NameForUser}, {log.Period.ToString("dd.MM.yyyy")}: {PrintLogValues(logValues, actParams, measures)}" +
+            return $"{act.NameForUser}, {log.Period:dd.MM.yyyy}: {PrintLogValues(logValues, actParams, measures)}" +
                 $"{(!string.IsNullOrEmpty(log.Comment) ? ", " + log.Comment : "")}";
         }
 

@@ -64,7 +64,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 
                     LifeActivityLogValue[] logValues = allLogValues.Where(n => n.ActivityLogId == log.Id).ToArray();
 
-                    sbReport.Append($"[{logCode}] {log.Period.ToString("dd.MM.yyyy")}, {currentActivity.NameForUser}: " +
+                    sbReport.Append($"[{logCode}] {log.Period:dd.MM.yyyy}, {currentActivity.NameForUser}: " +
                         $"{ProcessorHelpers.PrintLogValues(logValues, currentActivityParams, allMeasures)}" +
                         $"{(!string.IsNullOrEmpty(log.Comment) ? ", " + log.Comment : "")}\r\n");
 

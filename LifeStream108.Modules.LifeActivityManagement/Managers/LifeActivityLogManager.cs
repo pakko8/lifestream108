@@ -18,7 +18,7 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
         public static LifeActivityLog[] GetLogsForPeriod(
             DateTime dateFrom, DateTime dateTo, int userId, int activityId = 0)
         {
-            Logger.Info($"Getting activity logs for user={userId}, period={dateFrom.ToString("yyyy-MM-dd")}-{dateTo.ToString("yyyy-MM-dd")}" +
+            Logger.Info($"Getting activity logs for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}" +
                 $"{(activityId > 0 ? ", activity=" + activityId : "")}");
             using (ISession session = HibernateLoader.CreateSession())
             {
@@ -41,7 +41,7 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
 
         public static LifeActivityLogValue[] GetLogValuesForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
-            Logger.Info($"Getting activity log values for user={userId}, period={dateFrom.ToString("yyyy-MM-dd")}-{dateTo.ToString("yyyy-MM-dd")}");
+            Logger.Info($"Getting activity log values for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}");
             List<LifeActivityLogValue> values = new List<LifeActivityLogValue>();
             using (ISession session = HibernateLoader.CreateSession())
             {
@@ -49,7 +49,7 @@ namespace LifeStream108.Modules.LifeActivityManagement.Managers
 $@"select val.* from life_activity_logs.life_activity_log_values val
 inner join life_activity_logs.life_activity_logs lg on lg.id=val.activity_log_id
 where lg.active='t' and val.user_id={userId} 
-and val.period>=timestamp'{dateFrom.ToString("yyyy-MM-dd")}' and val.period<=timestamp'{dateTo.ToString("yyyy-MM-dd")}'";
+and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{dateTo:yyyy-MM-dd}'";
                 DbCommand command = session.Connection.CreateCommand();
                 command.CommandText = commandText;
                 using (IDataReader reader = command.ExecuteReader())

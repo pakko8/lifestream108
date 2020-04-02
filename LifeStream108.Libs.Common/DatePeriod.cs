@@ -21,7 +21,7 @@ namespace LifeStream108.Libs.Common
             if (To.Hour == 0 && To.Minute == 0 && To.Second == 0) countDays += 1;
             if (countDays == 0) countDays = 1;
 
-            return $"{From.ToString("dd.MM.yyyy")} {(To != From ? " - " + To.ToString("dd.MM.yyyy") : "")} " +
+            return $"{From:dd.MM.yyyy} {(To != From ? $" - {To:dd.MM.yyyy}" : "")} " +
                 $"({countDays} {Declanations.DeclineByNumeral(countDays, "день", "дня", "дней")})";
         }
     }

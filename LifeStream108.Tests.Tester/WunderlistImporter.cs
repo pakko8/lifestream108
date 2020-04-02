@@ -51,8 +51,8 @@ namespace LifeStream108.Tests.Tester
             ToDoList[] lists = GetLists().Result;
             foreach (ToDoList list in lists)
             {
-                (string FileUrl, string FileName)[] files = GetListFiles(list.Id).Result;
-                DownloadFiles(files);
+                /*(string FileUrl, string FileName)[] files = GetListFiles(list.Id).Result;
+                DownloadFiles(files);*/
 
                 ToDoTask[] tasks = GetListItems(list.Id).Result;
                 if (tasks.Length == 0) continue;
@@ -109,7 +109,7 @@ namespace LifeStream108.Tests.Tester
                 (long TaskId, DateTime Reminder) reminder = reminders.FirstOrDefault(n => n.TaskId == taskId);
                 if (reminder.ToTuple() != null && reminder.Reminder.Year > 2019)
                 {
-                    taskInfo.ReminderSettings = $"{reminder.Reminder.ToString("yyyy-MM-dd HH:mm")}{{once}}";
+                    taskInfo.ReminderSettings = $"{reminder.Reminder:yyyy-MM-dd HH:mm}{{once}}";
                 }
 
                 taskArray.Add(taskInfo);

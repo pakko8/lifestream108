@@ -16,10 +16,10 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityLogProcesso
             CommandParameterAndValue dateParameter = commandParameters.FirstOrDefault(
                 n => n.Parameter.ParameterCode == CommandParameterCode.Date);
             if (dateParameter.DateValue.Date < Constants.MinAllowedLogDate)
-                return ExecuteCommandResult.CreateErrorObject($"Дата {dateParameter.DateValue.ToString("dd.MM.yyyy")} " +
-                    $"не может быть меньше {Constants.MinAllowedLogDate.ToString("dd.MM.yyyy")}");
+                return ExecuteCommandResult.CreateErrorObject($"Дата {dateParameter.DateValue:dd.MM.yyyy} " +
+                    $"не может быть меньше {Constants.MinAllowedLogDate:dd.MM.yyyy}");
             if (dateParameter.DateValue.Date > DateTime.Now.Date)
-                return ExecuteCommandResult.CreateErrorObject($"Дата {dateParameter.DateValue.ToString("dd.MM.yyyy")} " +
+                return ExecuteCommandResult.CreateErrorObject($"Дата {dateParameter.DateValue:dd.MM.yyyy} " +
                     $"не может быть больше сегодняшней даты");
 
             CommandParameterAndValue activityLogCodeParameter = commandParameters.FirstOrDefault(
@@ -63,7 +63,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityLogProcesso
             if (IsTheSameLogValues(newLogValues, newComment, new LifeActivityLogWithValues[] { logWithValues}) != null)
             {
                 return ExecuteCommandResult.CreateErrorObject(
-                    $"На дату {logWithValues.Log.Period.ToString("dd.MM.yyyy")} " +
+                    $"На дату {logWithValues.Log.Period:dd.MM.yyyy} " +
                     $"деятельность \"{actWithParams.Activity.NameForUser}\" с такими значениями уже зарегистрирована.");
             }
             // Copy new values
