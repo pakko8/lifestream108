@@ -22,6 +22,12 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override string DeclationWord3 => "";
 
+        public override bool IsTimeToRemind(DateTime lastReminderTime)
+        {
+            if (lastReminderTime > ZeroReminderTime) return false;
+            return base.IsTimeToRemind(lastReminderTime);
+        }
+
         public override DateTime GetComingSoonReminderTime(DateTime lastReminderTime)
         {
             return Time;

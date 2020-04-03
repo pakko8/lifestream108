@@ -42,10 +42,10 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public abstract string DeclationWord3 { get; }
 
-        public bool IsTimeToRemind(DateTime lastReminderTime)
+        public virtual bool IsTimeToRemind(DateTime lastReminderTime)
         {
             DateTime reminderTime = GetComingSoonReminderTime(lastReminderTime);
-            return reminderTime >= DateTime.Now;
+            return reminderTime <= DateTime.Now;
         }
 
         public string UserFormattedTime => Time.ToString(UserTimeFormat);

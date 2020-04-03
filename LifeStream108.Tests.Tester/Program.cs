@@ -2,6 +2,7 @@
 using LifeStream108.Libs.Entities;
 using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
+using LifeStream108.Modules.ToDoListManagement.Managers;
 using System;
 
 namespace LifeStream108.Tests.Tester
@@ -12,6 +13,7 @@ namespace LifeStream108.Tests.Tester
         {
             try
             {
+                
                 // ClientSecret = "2e780b443420a51b8e76d711eceaf1184a1294ce67b17827014705742eda";
                 WunderlistImporter importer = new WunderlistImporter(
                     "94dd7218629ece859bdf", "9229e8a756c4c068ce3bdc44fe68fdaef2849eb11f2d5f51cc6feddeb727",
@@ -26,6 +28,7 @@ namespace LifeStream108.Tests.Tester
                 Console.WriteLine("Finished");
                 Console.ReadKey();
                 return;
+                
 
                 /*ActivitiesImportTuner.Run();
                 return;*/

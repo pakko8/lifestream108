@@ -72,6 +72,8 @@ namespace LifeStream108.Services.TelegramBotService
                             string reminderTaskInfo =
                                 $"[{task.Id}] {task.Title}: {createReminderResult.Reminder.FormatReminderForUser(task.ReminderLastTime)}";
                             Logger.Info($"We'll send reminder ({task.ReminderSettings}) about task '{reminderTaskInfo}'");
+                            task.ReminderLastTime = DateTime.Now;
+                            ToDoTaskManager.UpdateTask(task);
                             SendMessage($"Напоминание о задаче: {reminderTaskInfo}", user.TelegramId);
                         }
                     }

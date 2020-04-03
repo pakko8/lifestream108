@@ -42,7 +42,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Managers
             using (ISession session = HibernateLoader.CreateSession())
             {
                 var query = from task in session.Query<ToDoTask>()
-                            where task.UserId == userId && !string.IsNullOrEmpty(task.ReminderSettings) && task.Status != ToDoTaskStatus.Deleted
+                            where task.UserId == userId && task.ReminderSettings != "" && task.Status != ToDoTaskStatus.Deleted
                             select task;
                 return query.ToArray();
             }
