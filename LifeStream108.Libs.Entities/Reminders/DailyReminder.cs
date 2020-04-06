@@ -14,6 +14,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override ReminderRepeaterType RepeaterType => ReminderRepeaterType.Day;
 
+        public override bool IsRepetitive => true;
+
         public override string DeclationPhraseWhenSingleCase => "каждый день";
 
         public override string DeclationWord1 => "день";

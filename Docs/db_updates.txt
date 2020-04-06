@@ -18,3 +18,7 @@ Update users table
 Update sessions table
 Update commands tables
 Create projects table
+
+-- 2020-04-04
+alter table todo_list.todo_tasks
+add repetitive bool not null default 't';

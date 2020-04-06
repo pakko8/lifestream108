@@ -14,7 +14,7 @@ namespace LifeStream108.Modules.CommandProcessors
         {
             Command[] commands = CommandManager.GetCommands(session.ProjectId).Where(n => n.Active).ToArray();
             commands = PickupAppropriateCommands(commands, session);
-            CommandName[] allCommandNames = CommandManager.GetCommandNames(session.ProjectId);
+            CommandName[] allCommandNames = CommandManager.GetCommandNamesForProject(session.ProjectId);
 
             StringBuilder sbCommandsInfo = new StringBuilder();
             for (int cmdIndex = 0; cmdIndex < commands.Length; cmdIndex++)

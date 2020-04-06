@@ -34,6 +34,11 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public abstract ReminderRepeaterType RepeaterType { get; }
 
+        /// <summary>
+        /// Повторяющееся ли напоминание
+        /// </summary>
+        public abstract bool IsRepetitive { get; }
+
         public abstract string DeclationPhraseWhenSingleCase { get; }
 
         public abstract string DeclationWord1 { get; }

@@ -51,6 +51,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 
             List<LifeActivityLogValue> allValues = new List<LifeActivityLogValue>();
             StringBuilder sbReport = new StringBuilder($"<b>Выписка за {period.ToString()}:</b>\r\n");
+            sbReport.Append($"<i>Кол-во активных дней</i>: <b>{CountActiveDays(logs)}</b>\r\n");
             foreach (var groupedItem in groupedLogs)
             {
                 LifeActivityLog[] currentLogs = groupedItem.Logs.OrderBy(n => n.RegTime).ToArray();

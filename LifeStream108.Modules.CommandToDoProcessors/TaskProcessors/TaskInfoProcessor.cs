@@ -1,4 +1,5 @@
-﻿using LifeStream108.Libs.Entities.CommandEntities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
@@ -25,7 +26,7 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
 
             ToDoList list = ToDoListManager.GetList(task.ListId);
             StringBuilder sbTaskInfo = new StringBuilder($"Находится в списке: <b>{list.Name}</b>\r\n");
-            sbTaskInfo.Append($"<b>{task.Title}</b>\r\n");
+            sbTaskInfo.Append($"<b>{TelegramUtils.RemoveUnsafeSigns(task.Title)}</b>\r\n");
             if (!string.IsNullOrEmpty(task.ReminderSettings))
             {
                 var createReminderResult = Reminder.Create(task.ReminderSettings);

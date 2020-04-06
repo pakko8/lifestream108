@@ -7,6 +7,7 @@ using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.DictionaryManagement.Managers;
 using LifeStream108.Modules.LifeActivityManagement.Managers;
 using System.Linq;
+using System.Text;
 
 namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 {
@@ -30,9 +31,12 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 
             Measure[] allMeasures = MeasureManager.GetMeasuresForUser(session.UserId);
 
-            string startString = $"Итог по '<b>{act.Activity.Name}</b>'\r\nза <b>{period.ToString()}:</b>\r\n";
-            string nextString = CalcTotalsForActivityLogs(allLogValues, act.Parameters, allMeasures);
-            return ExecuteCommandResult.CreateSuccessObject(startString + nextString);
+            StringBuilder sbReport = new StringBuilder();
+            sbReport.Append($"Итог по '<b>{act.Activity.Name}</b>'\r\nза <b>{period.ToString()}:</b>\r\n");
+            sbReport.Append($"<i>Кол-во активных дней</i>: <b>{CountActiveDays(logs)}</b>\r\n");
+            sbReport.Append(CalcTotalsForActivityLogs(allLogValues, act.Parameters, allMeasures));
+
+            return ExecuteCommandResult.CreateSuccessObject(sbReport.ToString());
         }
     }
 }

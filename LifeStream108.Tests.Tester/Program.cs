@@ -13,7 +13,9 @@ namespace LifeStream108.Tests.Tester
         {
             try
             {
-                
+                var s = TelegramUtils.RemoveUnsafeSigns("a<bc12>3");
+                int a = 10;
+                /*
                 // ClientSecret = "2e780b443420a51b8e76d711eceaf1184a1294ce67b17827014705742eda";
                 WunderlistImporter importer = new WunderlistImporter(
                     "94dd7218629ece859bdf", "9229e8a756c4c068ce3bdc44fe68fdaef2849eb11f2d5f51cc6feddeb727",
@@ -28,7 +30,7 @@ namespace LifeStream108.Tests.Tester
                 Console.WriteLine("Finished");
                 Console.ReadKey();
                 return;
-                
+                */
 
                 /*ActivitiesImportTuner.Run();
                 return;*/

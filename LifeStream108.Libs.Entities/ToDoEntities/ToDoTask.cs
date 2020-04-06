@@ -28,6 +28,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 
         public virtual string ReminderSettings { get; set; } = "";
 
+        public virtual bool IsRepetitive { get; set; } = false;
+
         public virtual DateTime ReminderLastTime { get; set; } = new DateTime(2000, 1, 1);
 
         public override bool Equals(object obj)

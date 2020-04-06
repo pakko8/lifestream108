@@ -1,4 +1,5 @@
-﻿using LifeStream108.Libs.Entities.CommandEntities;
+﻿using LifeStream108.Libs.Common;
+using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.CommandProcessors;
@@ -66,7 +67,8 @@ namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors
 
                     foreach (FoundItem item in groupedItemByList.Tasks)
                     {
-                        sbSearchResult.Append($"        *[{item.TaskCode}] <b>{item.TaskTitle}</b>\r\n");
+                        sbSearchResult.Append(
+                            $"        *[{item.TaskCode}] <b>{TelegramUtils.RemoveUnsafeSigns(item.TaskTitle)}</b>\r\n");
                     }
                 }
             }

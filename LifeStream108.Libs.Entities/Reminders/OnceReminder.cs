@@ -14,6 +14,8 @@ namespace LifeStream108.Libs.Entities.ToDoEntities.Reminders
 
         public override ReminderRepeaterType RepeaterType => ReminderRepeaterType.Once;
 
+        public override bool IsRepetitive => false;
+
         public override string DeclationPhraseWhenSingleCase => "";
 
         public override string DeclationWord1 => "";

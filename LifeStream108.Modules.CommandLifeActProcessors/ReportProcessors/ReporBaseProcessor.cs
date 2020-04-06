@@ -2,6 +2,7 @@
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Modules.CommandProcessors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,14 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
                 if (i < paramList.Length - 1) sbResult.Append(", ");
             }
             return sbResult.ToString();
+        }
+
+        protected static int CountActiveDays(LifeActivityLog[] logs)
+        {
+            DateTime[] activeDates = logs.Select(n => n.Period.Date).ToArray();
+            if (activeDates.Length == 0) return 0;
+
+            return activeDates.Distinct().Count();
         }
     }
 }

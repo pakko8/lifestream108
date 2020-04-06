@@ -24,6 +24,7 @@ namespace LifeStream108.Modules.ToDoListManagement.Mapping
             Map(x => x.ContentUpdateTime, "content_update_time").Not.Nullable();
             Map(x => x.StatusUpdateTime, "status_update_time").Not.Nullable();
             Map(x => x.ReminderSettings, "reminder_sett").Not.Nullable();
+            Map(x => x.IsRepetitive, "repetitive").Not.Nullable();
             Map(x => x.ReminderLastTime, "reminder_last_time").Not.Nullable();
         }
     }
