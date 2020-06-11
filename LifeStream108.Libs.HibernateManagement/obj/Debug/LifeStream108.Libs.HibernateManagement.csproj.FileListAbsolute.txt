@@ -79,8 +79,8 @@ D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\bin\Debug\Syste
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\bin\Debug\System.Text.Json.xml
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\bin\Debug\System.ValueTuple.xml
-D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.csprojAssemblyReference.cache
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.HibernateManagement\obj\Debug\LifeStream108.Libs.HibernateManagement.csprojAssemblyReference.cache

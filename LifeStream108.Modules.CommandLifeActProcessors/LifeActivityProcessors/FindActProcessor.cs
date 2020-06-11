@@ -23,7 +23,8 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityProcessors
             StringBuilder sbResult = new StringBuilder("Подходящие деятельности:\r\n:");
             foreach (LifeActivity activity in foundActivities)
             {
-                sbResult.Append($"[{activity.UserCode}] {FormatActivityName(activity.NameForUser, searchPhraseParameter.Value)}\r\n");
+                sbResult.Append($@"[{activity.UserCode}] {FormatActivityName(activity.NameForUser, searchPhraseParameter.Value)}
+                    {ProcessorHelpers.PrintPeriodicityType(activity.PeriodType, ", ")}\r\n");
             }
 
             return ExecuteCommandResult.CreateSuccessObject(sbResult.ToString());

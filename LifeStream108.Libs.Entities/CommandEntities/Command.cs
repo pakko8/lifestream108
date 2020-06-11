@@ -4,20 +4,20 @@ namespace LifeStream108.Libs.Entities.CommandEntities
 {
     public class Command
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int SortOrder { get; set; }
+        public int SortOrder { get; set; }
 
-        public virtual int ProjectId { get; set; }
+        public int ProjectId { get; set; }
 
-        public virtual EntityType EntityType { get; set; }
+        public EntityType EntityType { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Description { get; set; }
+        public string Description { get; set; }
 
-        public virtual string ProcessorClassName { get; set; }
+        public string ProcessorClassName { get; set; }
 
-        public virtual bool Active { get; set; }
+        public bool Active { get; set; }
     }
 }

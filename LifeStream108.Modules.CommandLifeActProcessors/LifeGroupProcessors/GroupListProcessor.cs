@@ -56,8 +56,8 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeGroupProcessors
                 LifeGroup currentGroup = _userGroups.FirstOrDefault(n => n.Id == groupAtGroup.LifeGroupId);
                 string groupOffset = new string(' ', 6 * (level - 1));
                 sbGroupsAsText.Append(
-                    $"{groupOffset}{(groupOffset.Length > 0 ? "* " : "")}" +
-                    $"[{currentGroup.UserCode}] <b>{currentGroup.Name}</b>\r\n");
+                    $@"{groupOffset}{(groupOffset.Length > 0 ? "* " : "")}[{currentGroup.UserCode}] <b>{currentGroup.Name}</b>
+                        {ProcessorHelpers.PrintFinancialType(currentGroup.FinanceType, ", ")}\r\n");
 
                 if (showActivities)
                 {

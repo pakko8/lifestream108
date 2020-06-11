@@ -11,12 +11,12 @@ namespace LifeStream108.Modules.NewsProcessors
     {
         private const string SubDirName = "mailings";
 
-        public override NewsItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime)
+        public override NewsHistoryItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime)
         {
             string pageContent = WebUtils.DownloadPage(url);
             bool allowParseData = false;
             string line;
-            List<NewsItem> newsList = new List<NewsItem>();
+            List<NewsHistoryItem> newsList = new List<NewsHistoryItem>();
             StringReader reader = new StringReader(pageContent);
             while ((line = reader.ReadLine()) != null)
             {
@@ -29,7 +29,7 @@ namespace LifeStream108.Modules.NewsProcessors
                 DateTime newsTime = RetrieveTime(timeLine);
                 if (newsTime < fromTime) continue;
 
-                NewsItem newsItem = new NewsItem();
+                NewsHistoryItem newsItem = new NewsHistoryItem();
                 newsItem.NewsGroupId = newsGroupId;
                 newsItem.Title = RetrieveTitle(line);
                 newsItem.Url = RetrieveUrl(line, url);

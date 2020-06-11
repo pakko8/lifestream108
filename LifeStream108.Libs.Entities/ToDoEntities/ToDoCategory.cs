@@ -4,20 +4,20 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 {
     public class ToDoCategory
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int SortOrder { get; set; } = 1;
+        public int SortOrder { get; set; } = 1;
 
-        public virtual int UserCode { get; set; }
+        public int UserCode { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
 
-        public virtual bool Active { get; set; } = true;
+        public bool Active { get; set; } = true;
 
-        public virtual DateTime RegTime { get; set; } = DateTime.Now;
+        public DateTime RegTime { get; set; } = DateTime.Now;
     }
 }

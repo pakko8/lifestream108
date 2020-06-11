@@ -21,4 +21,11 @@ Create projects table
 
 -- 2020-04-04
 alter table todo_list.todo_tasks
-add repetitive bool not null default 't';
+add repetitive bool not null default 'f';
+
+-- 2020-04-09
+alter table activities.life_activities
+add period_type int not null default 0;
+
+alter table activities.life_groups
+add finance_type int not null default 0;

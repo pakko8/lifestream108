@@ -1,0 +1,241 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "LiteDB/5.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/LiteDB.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/LiteDB.dll": {}
+        }
+      },
+      "Npgsql/4.1.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.6.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Npgsql.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Npgsql.dll": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.6.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
+      },
+      "LifeStream108.Libs.Common/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/LifeStream108.Libs.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LifeStream108.Libs.Common.dll": {}
+        }
+      },
+      "LifeStream108.Libs.Entities/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "LifeStream108.Libs.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LifeStream108.Libs.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LifeStream108.Libs.Entities.dll": {}
+        }
+      },
+      "LifeStream108.Modules.SettingsManagement/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/LifeStream108.Modules.SettingsManagement.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LifeStream108.Modules.SettingsManagement.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LiteDB/5.0.8": {
+      "sha512": "lqwQnweoa3Lko87uo9FzZYf6BFh3AULas5yosG95LPVHIoACtJJ2BjBPQ7d7vUYDQYSV3rUco2+vMilVoBQ3WA==",
+      "type": "package",
+      "path": "litedb/5.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "AppVeyorSettings.json",
+        "LICENSE",
+        "icon_64x64.png",
+        "lib/net45/LiteDB.dll",
+        "lib/net45/LiteDB.xml",
+        "lib/netstandard1.3/LiteDB.dll",
+        "lib/netstandard1.3/LiteDB.xml",
+        "lib/netstandard2.0/LiteDB.dll",
+        "lib/netstandard2.0/LiteDB.xml",
+        "litedb.5.0.8.nupkg.sha512",
+        "litedb.nuspec"
+      ]
+    },
+    "Npgsql/4.1.2": {
+      "sha512": "41Nht/GnC/cRCA/2T9vq5NAv8m24RDp3paRhJCMc8ipOURH6zDZAQFe8mcLq1hAgMkK1Wy8VoRYL/8Op+L6OCg==",
+      "type": "package",
+      "path": "npgsql/4.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Npgsql.dll",
+        "lib/net461/Npgsql.pdb",
+        "lib/net461/Npgsql.xml",
+        "lib/netcoreapp3.0/Npgsql.dll",
+        "lib/netcoreapp3.0/Npgsql.pdb",
+        "lib/netcoreapp3.0/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.pdb",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.pdb",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.4.1.2.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.6.0": {
+      "sha512": "HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/4.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "LifeStream108.Libs.Common/1.0.0": {
+      "type": "project",
+      "path": "../LifeStream108.Libs.Common/LifeStream108.Libs.Common.csproj",
+      "msbuildProject": "../LifeStream108.Libs.Common/LifeStream108.Libs.Common.csproj"
+    },
+    "LifeStream108.Libs.Entities/1.0.0": {
+      "type": "project",
+      "path": "../LifeStream108.Libs.Entities/LifeStream108.Libs.Entities.csproj",
+      "msbuildProject": "../LifeStream108.Libs.Entities/LifeStream108.Libs.Entities.csproj"
+    },
+    "LifeStream108.Modules.SettingsManagement/1.0.0": {
+      "type": "project",
+      "path": "../LifeStream108.Modules.SettingsManagement/LifeStream108.Modules.SettingsManagement.csproj",
+      "msbuildProject": "../LifeStream108.Modules.SettingsManagement/LifeStream108.Modules.SettingsManagement.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "LifeStream108.Libs.Common >= 1.0.0",
+      "LifeStream108.Libs.Entities >= 1.0.0",
+      "LifeStream108.Modules.SettingsManagement >= 1.0.0",
+      "LiteDB >= 5.0.8",
+      "Npgsql >= 4.1.2"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\alexx\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
+      "projectName": "LifeStream108.Modules.NewsManagement",
+      "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
+      "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\alexx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+            },
+            "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
+            },
+            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "dependencies": {
+          "LiteDB": {
+            "target": "Package",
+            "version": "[5.0.8, )"
+          },
+          "Npgsql": {
+            "target": "Package",
+            "version": "[4.1.2, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

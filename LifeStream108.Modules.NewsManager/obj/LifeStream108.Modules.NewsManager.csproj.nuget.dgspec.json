@@ -1,0 +1,102 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManager\\LifeStream108.Modules.NewsManager.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj",
+        "projectName": "LifeStream108.Libs.Common",
+        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
+        "projectName": "LifeStream108.Libs.Entities",
+        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManager\\LifeStream108.Modules.NewsManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManager\\LifeStream108.Modules.NewsManager.csproj",
+        "projectName": "LifeStream108.Modules.NewsManager",
+        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManager\\LifeStream108.Modules.NewsManager.csproj",
+        "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManager\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\alexx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

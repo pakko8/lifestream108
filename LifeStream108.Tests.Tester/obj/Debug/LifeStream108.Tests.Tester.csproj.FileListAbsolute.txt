@@ -8,7 +8,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Iesi.Collections.
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.Entities.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsProcessors.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.SettingsManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TelegramBotManager.dll
@@ -38,10 +37,8 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Lib
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll.config
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsProcessors.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.SettingsManagement.pdb
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.SettingsManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TelegramBotManager.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TelegramBotManager.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb
@@ -89,3 +86,5 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandLifeActProcessors.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll.config
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LiteDB.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LiteDB.xml

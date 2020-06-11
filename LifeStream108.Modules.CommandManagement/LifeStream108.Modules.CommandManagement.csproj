@@ -43,9 +43,6 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=5.2.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.5.2.6\lib\net461\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql, Version=4.1.2.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.4.1.2\lib\net461\Npgsql.dll</HintPath>
     </Reference>
@@ -93,11 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\CommandManager.cs" />
-    <Compile Include="Mapping\CommandMap.cs" />
-    <Compile Include="Mapping\CommandNameMap.cs" />
-    <Compile Include="Mapping\CommandParameterMap.cs" />
-    <Compile Include="Mapping\Constants.cs" />
+    <Compile Include="CommandManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +102,9 @@
       <Project>{613137C8-6839-4585-B355-8AE290326A61}</Project>
       <Name>LifeStream108.Libs.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LifeStream108.Libs.HibernateManagement\LifeStream108.Libs.HibernateManagement.csproj">
-      <Project>{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}</Project>
-      <Name>LifeStream108.Libs.HibernateManagement</Name>
+    <ProjectReference Include="..\LifeStream108.Modules.SettingsManagement\LifeStream108.Modules.SettingsManagement.csproj">
+      <Project>{1640FBFE-6309-45C9-BD39-04340F2435F4}</Project>
+      <Name>LifeStream108.Modules.SettingsManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

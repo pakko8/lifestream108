@@ -11,7 +11,7 @@ using System.Text;
 
 namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 {
-    public class SummaryReportForActProcessor : ReporBaseProcessor
+    public class SummaryReportForActProcessor : ReportBaseProcessor
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
@@ -25,7 +25,7 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 
             DatePeriod period = periodFromParameter.PeridValue;
             LifeActivityLog[] logs = LifeActivityLogManager.GetLogsForPeriod(
-                period.From, period.To, session.UserId, act.Activity.Id).Where(n => n.Active).ToArray();
+                period.From, period.To, session.UserId, new int[] { act.Activity.Id }).Where(n => n.Active).ToArray();
             LifeActivityLogValue[] allLogValues =
                 LifeActivityLogManager.GetLogValuesForPeriod(period.From, period.To, session.UserId);
 

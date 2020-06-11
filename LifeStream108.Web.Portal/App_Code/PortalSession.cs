@@ -1,8 +1,10 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.UserEntities;
-using LifeStream108.Modules.UserManagement.Managers;
+using LifeStream108.Modules.SettingsManagement;
+using LifeStream108.Modules.UserManagement;
 using System;
+using System.Configuration;
 using System.Web;
 using System.Web.SessionState;
 
@@ -15,7 +17,7 @@ namespace LifeStream108.Web.Portal.App_Code
         public static string AuthorizeUser(string email, string password)
         {
             string passwordHash = CryptoUtils.GenerateSha256Hash(password);
-            User user = UserManager.AuthorizeUser(email, passwordHash);
+            User user = UserManager.AuthorizeUser(email, passwordHash, SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value);
             if (user == null)
             {
                 return "По введенным логину и паролю пользователь не найден";

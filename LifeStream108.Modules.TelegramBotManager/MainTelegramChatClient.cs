@@ -5,10 +5,11 @@ using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.TicketEntities;
 using LifeStream108.Modules.CommandProcessors;
 using LifeStream108.Modules.TempDataManagement.Managers;
-using LifeStream108.Modules.UserManagement.Managers;
+using LifeStream108.Modules.UserManagement;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Threading.Tasks;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
@@ -214,7 +215,7 @@ namespace LifeStream108.Modules.TelegramBotManager
             OurUser currentDbUser = null;
             try
             {
-                var authResult = UserManager.AuthorizeUser(tlgrmUser.Id);
+                var authResult = UserManager.AuthorizeUser(tlgrmUser.Id, MainDbConnString);
                 if (string.IsNullOrEmpty(authResult.Error))
                 {
                     currentDbUser = authResult.User;

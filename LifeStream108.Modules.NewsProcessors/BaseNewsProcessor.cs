@@ -5,6 +5,6 @@ namespace LifeStream108.Modules.NewsProcessors
 {
     public abstract class BaseNewsProcessor
     {
-        public abstract NewsItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime);
+        public abstract NewsHistoryItem[] GetLastNews(string url, int newsGroupId, DateTime fromTime);
     }
 }

@@ -1,5 +1,4 @@
-﻿using LifeStream108.Libs.Entities.SettingsEntities;
-using LifeStream108.Modules.SettingsManagement.Managers;
+﻿using LifeStream108.Modules.SettingsManagement;
 using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -14,9 +13,7 @@ namespace LifeStream108.Tests.Tester
 
         public TelegramBotTester()
         {
-            SettingEntry sett = SettingsManager.GetSettingEntryByCode(SettingCode.TelegramBotToken);
-
-            _botClient = new TelegramBotClient(sett.Value);
+            _botClient = new TelegramBotClient(SettingsManager.GetSettingEntryByCode(SettingCode.TelegramBotToken).Value);
             var botUser = _botClient.GetMeAsync().Result;
             Console.WriteLine($"Hello, World! I am user {botUser.Id} and my name is {botUser.FirstName}.");
             _botClient.StartReceiving();

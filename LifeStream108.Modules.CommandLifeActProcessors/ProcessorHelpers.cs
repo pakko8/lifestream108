@@ -2,7 +2,6 @@
 using LifeStream108.Libs.Common.Exceptions;
 using LifeStream108.Libs.Common.Grammar;
 using LifeStream108.Libs.Entities;
-using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Modules.CommandProcessors;
@@ -15,6 +14,18 @@ namespace LifeStream108.Modules.CommandLifeActProcessors
 {
     internal static class ProcessorHelpers
     {
+        public static string PrintFinancialType(FinancialType type, string prefix)
+        {
+            if (type == FinancialType.None) return "";
+            return $"{prefix}Тип: <i>{type.GetDescriptiveName()}</i>";
+        }
+
+        public static string PrintPeriodicityType(PeriodicityType type, string prefix)
+        {
+            if (type == PeriodicityType.None) return "";
+            return $"{prefix}Тип: <i>{type.GetDescriptiveName()}</i>";
+        }
+
         public static string GetFullLifeGroupName(int groupId, int parentGroupId, int userId)
         {
             LifeGroup[] allGroups = LifeGroupManager.GetGroupsForUser(userId);

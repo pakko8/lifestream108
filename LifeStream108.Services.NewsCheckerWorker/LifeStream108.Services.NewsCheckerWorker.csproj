@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-LifeStream108.Services.NewsCheckerWorker-79AA17A4-486B-4ADB-B77D-9FA161A31E33</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0-preview.4.20251.6" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.0-preview.4.20251.2" />
+    <PackageReference Include="NLog" Version="4.6.8" />
+    <PackageReference Include="Telegram.Bot" Version="15.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LifeStream108.Libs.Entities\LifeStream108.Libs.Entities.csproj" />
+    <ProjectReference Include="..\LifeStream108.Modules.NewsManagement\LifeStream108.Modules.NewsManagement.csproj" />
+    <ProjectReference Include="..\LifeStream108.Modules.NewsProcessors\LifeStream108.Modules.NewsProcessors.csproj" />
+    <ProjectReference Include="..\LifeStream108.Modules.SettingsManagement\LifeStream108.Modules.SettingsManagement.csproj" />
+    <ProjectReference Include="..\LifeStream108.Modules.UserManagement\LifeStream108.Modules.UserManagement.csproj" />
+  </ItemGroup>
+</Project>

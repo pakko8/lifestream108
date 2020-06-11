@@ -84,7 +84,6 @@ D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\Iesi.Collections.dll
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Libs.Common.pdb
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Libs.Entities.pdb
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.SettingsManagement.pdb
-D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.SettingsManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.ToDoListManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.UserManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.UserManagement.dll.config
@@ -117,3 +116,5 @@ D:\Projects\LifeStream108\LifeStream108.Web.Portal\obj\Debug\LifeStream108.Web.P
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\obj\Debug\LifeStream108.Web.Portal.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\obj\Debug\LifeStream108.Web.Portal.dll
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\obj\Debug\LifeStream108.Web.Portal.pdb
+D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LiteDB.dll
+D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LiteDB.xml

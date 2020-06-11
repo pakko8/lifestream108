@@ -4,20 +4,22 @@ namespace LifeStream108.Libs.Entities.LifeActityEntities
 {
     public class LifeGroup
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int UserCode { get; set; }
+        public int UserCode { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string NameForUser => $"[{UserCode}] {Name}";
+        public string NameForUser => $"[{UserCode}] {Name}";
 
-        public virtual string ShortName { get; set; } = "";
+        public string ShortName { get; set; } = "";
 
-        public virtual bool Active { get; set; } = true;
+        public FinancialType FinanceType { get; set; } = FinancialType.None;
 
-        public virtual DateTime RegTime { get; set; } = DateTime.Now;
+        public bool Active { get; set; } = true;
+
+        public DateTime RegTime { get; set; } = DateTime.Now;
     }
 }

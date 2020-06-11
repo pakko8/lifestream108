@@ -21,7 +21,9 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityProcessors
             if (actWithParams.Activity == null)
                 return ExecuteCommandResult.CreateErrorObject($"Деятельность с кодом {activityCodeParameter.IntValue} не найдена");
 
-            StringBuilder sbResult = new StringBuilder($"[{actWithParams.Activity.UserCode}] <b>{actWithParams.Activity.Name}</b>\r\n");
+            StringBuilder sbResult = new StringBuilder(
+                $@"[{actWithParams.Activity.UserCode}] <b>{actWithParams.Activity.Name}</b>
+                    {ProcessorHelpers.PrintPeriodicityType(actWithParams.Activity.PeriodType, ", ")}\r\n");
             if (actWithParams.Parameters.Length > 0)
             {
                 Measure[] measures = MeasureManager.GetMeasuresForUser(session.UserId);

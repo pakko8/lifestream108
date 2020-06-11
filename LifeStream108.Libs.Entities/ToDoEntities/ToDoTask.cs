@@ -4,33 +4,33 @@ namespace LifeStream108.Libs.Entities.ToDoEntities
 {
     public class ToDoTask
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int SortOrder { get; set; } = 1;
+        public int SortOrder { get; set; } = 1;
 
-        public virtual int ListId { get; set; }
+        public int ListId { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual string Title { get; set; }
+        public string Title { get; set; }
 
-        public virtual string Note { get; set; } = "";
+        public string Note { get; set; } = "";
 
-        public virtual string Files { get; set; } = "";
+        public string Files { get; set; } = "";
 
-        public virtual ToDoTaskStatus Status { get; set; } = ToDoTaskStatus.New;
+        public ToDoTaskStatus Status { get; set; } = ToDoTaskStatus.New;
 
-        public virtual DateTime RegTime { get; set; } = DateTime.Now;
+        public DateTime RegTime { get; set; } = DateTime.Now;
 
-        public virtual DateTime ContentUpdateTime { get; set; } = DateTime.Now;
+        public DateTime ContentUpdateTime { get; set; } = DateTime.Now;
 
-        public virtual DateTime StatusUpdateTime { get; set; } = new DateTime(2000, 1, 1);
+        public DateTime StatusUpdateTime { get; set; } = new DateTime(2000, 1, 1);
 
-        public virtual string ReminderSettings { get; set; } = "";
+        public string ReminderSettings { get; set; } = "";
 
-        public virtual bool IsRepetitive { get; set; } = false;
+        public bool IsRepetitive { get; set; } = false;
 
-        public virtual DateTime ReminderLastTime { get; set; } = new DateTime(2000, 1, 1);
+        public DateTime ReminderLastTime { get; set; } = new DateTime(2000, 1, 1);
 
         public override bool Equals(object obj)
         {

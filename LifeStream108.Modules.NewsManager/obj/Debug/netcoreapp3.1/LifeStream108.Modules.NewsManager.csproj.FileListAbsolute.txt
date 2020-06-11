@@ -1,0 +1,16 @@
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.deps.json
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Libs.Entities.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\NLog.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Libs.Entities.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\LifeStream108.Libs.Common.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\bin\Debug\netcoreapp3.1\NLog.xml
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.AssemblyInfoInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.AssemblyInfo.cs
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.csproj.CoreCompileInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.csproj.CopyComplete
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManager\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManager.pdb

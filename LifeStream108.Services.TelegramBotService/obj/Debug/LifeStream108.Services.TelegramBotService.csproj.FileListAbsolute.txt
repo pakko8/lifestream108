@@ -90,7 +90,6 @@ d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\An
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\FluentNHibernate.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Iesi.Collections.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Libs.Entities.dll
-d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.NewsManagement.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.NewsProcessors.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.TelegramBotManager.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.TempDataManagement.dll
@@ -116,7 +115,6 @@ d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Li
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandProcessors.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.SettingsManagement.dll
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Libs.Entities.pdb
-d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.NewsManagement.pdb
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.NewsProcessors.pdb
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.TelegramBotManager.pdb
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.TelegramBotManager.dll.config
@@ -150,7 +148,6 @@ d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Li
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandProcessors.pdb
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandProcessors.dll.config
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.SettingsManagement.pdb
-d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.SettingsManagement.dll.config
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\obj\Debug\LifeStream108.Services.TelegramBotService.csprojAssemblyReference.cache
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\obj\Debug\LifeStream108.Services.TelegramBotService.csproj.CoreCompileInputs.cache
 d:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\obj\Debug\LifeStream108.Services.TelegramBotService.csproj.CopyComplete
@@ -173,3 +170,5 @@ D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\Li
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll.config
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.LifeActivityManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LiteDB.dll
+D:\Projects\LifeStream108\LifeStream108.Services.TelegramBotService\bin\Debug\LiteDB.xml

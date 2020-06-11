@@ -12,7 +12,7 @@ using LifeStream108.Modules.CommandProcessors;
 
 namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
 {
-    public class ReportForActivitiesProcessor : ReporBaseProcessor
+    public class ReportForActivitiesProcessor : ReportBaseProcessor
     {
         public override ExecuteCommandResult Execute(CommandParameterAndValue[] commandParameters, Session session)
         {
@@ -38,8 +38,10 @@ namespace LifeStream108.Modules.CommandLifeActProcessors.ReportProcessors
             Measure[] allMeasures = MeasureManager.GetMeasuresForUser(session.UserId);
 
             DatePeriod period = periodFromParameter.PeridValue;
-            LifeActivityLog[] logs = LifeActivityLogManager.GetLogsForPeriod(
-                period.From, period.To, session.UserId, onlyActivityId).Where(n => n.Active).ToArray();
+            LifeActivityLog[] logs = onlyActivityId > 0
+                ? LifeActivityLogManager.GetLogsForPeriod(period.From, period.To, session.UserId, new int[] { onlyActivityId })
+                : LifeActivityLogManager.GetLogsForPeriod(period.From, period.To, session.UserId);
+            logs = logs.Where(n => n.Active).ToArray();
             var groupedLogs = from log in logs
                               group log by log.LifeActivityId into grp
                               select new { ActivityId = grp.Key, Logs = grp.ToArray() };

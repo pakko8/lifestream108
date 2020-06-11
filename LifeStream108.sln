@@ -32,15 +32,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.Comma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.TelegramBotManager", "LifeStream108.Modules.TelegramBotManager\LifeStream108.Modules.TelegramBotManager.csproj", "{491FF39E-2D39-4082-AFEE-4647EA1962CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Libs.HibernateManagement", "LifeStream108.Libs.HibernateManagement\LifeStream108.Libs.HibernateManagement.csproj", "{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Services.TelegramBotService", "LifeStream108.Services.TelegramBotService\LifeStream108.Services.TelegramBotService.csproj", "{BAB772CE-C1F6-4F6A-8099-6C30E8129A5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Tests.Tester", "LifeStream108.Tests.Tester\LifeStream108.Tests.Tester.csproj", "{AB4886B1-3988-4CAF-BCF0-7E0FCC584E66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.LifeActivityManagement", "LifeStream108.Modules.LifeActivityManagement\LifeStream108.Modules.LifeActivityManagement.csproj", "{8F71B651-CECD-47FE-9009-65BEDD68EFD0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.NewsManagement", "LifeStream108.Modules.NewsManagement\LifeStream108.Modules.NewsManagement.csproj", "{F7EEAF23-F7F5-4DBA-A864-72A3D5F89222}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Modules.NewsProcessors", "LifeStream108.Modules.NewsProcessors\LifeStream108.Modules.NewsProcessors.csproj", "{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}"
 EndProject
@@ -58,6 +54,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpForProgrammer", "HelpFo
 	ProjectSection(SolutionItems) = preProject
 		Docs\HelpForProgrammer\How to add new project.txt = Docs\HelpForProgrammer\How to add new project.txt
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeStream108.Services.NewsCheckerWorker", "LifeStream108.Services.NewsCheckerWorker\LifeStream108.Services.NewsCheckerWorker.csproj", "{911658D9-05F6-461D-ACBF-2C8EFC1AEF0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeStream108.Modules.NewsManagement", "LifeStream108.Modules.NewsManagement\LifeStream108.Modules.NewsManagement.csproj", "{0FD62A42-8782-4E31-B621-C8B61F685D0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,10 +97,6 @@ Global
 		{491FF39E-2D39-4082-AFEE-4647EA1962CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{491FF39E-2D39-4082-AFEE-4647EA1962CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{491FF39E-2D39-4082-AFEE-4647EA1962CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAB772CE-C1F6-4F6A-8099-6C30E8129A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAB772CE-C1F6-4F6A-8099-6C30E8129A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAB772CE-C1F6-4F6A-8099-6C30E8129A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -113,10 +109,6 @@ Global
 		{8F71B651-CECD-47FE-9009-65BEDD68EFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F71B651-CECD-47FE-9009-65BEDD68EFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F71B651-CECD-47FE-9009-65BEDD68EFD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7EEAF23-F7F5-4DBA-A864-72A3D5F89222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7EEAF23-F7F5-4DBA-A864-72A3D5F89222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7EEAF23-F7F5-4DBA-A864-72A3D5F89222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7EEAF23-F7F5-4DBA-A864-72A3D5F89222}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB2C8B3-E228-4AB0-B014-1AC310C22B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +133,14 @@ Global
 		{F12910B6-7179-4C97-B3F1-4B67601B3647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12910B6-7179-4C97-B3F1-4B67601B3647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12910B6-7179-4C97-B3F1-4B67601B3647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{911658D9-05F6-461D-ACBF-2C8EFC1AEF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911658D9-05F6-461D-ACBF-2C8EFC1AEF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911658D9-05F6-461D-ACBF-2C8EFC1AEF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911658D9-05F6-461D-ACBF-2C8EFC1AEF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

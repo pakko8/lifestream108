@@ -5,19 +5,19 @@ namespace LifeStream108.Libs.Entities.CommandEntities
 {
     public class CommandName
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int SortOrder { get; set; }
+        public int SortOrder { get; set; }
 
-        public virtual int CommandId { get; set; }
+        public int CommandId { get; set; }
 
-        public virtual string Alias { get; set; }
+        public string Alias { get; set; }
 
-        public virtual string SpacePositions { get; set; }
+        public string SpacePositions { get; set; }
 
-        public virtual int LanguageId { get; set; }
+        public int LanguageId { get; set; }
 
-        public virtual string GetReadableAias()
+        public string GetReadableAias()
         {
             try
             {

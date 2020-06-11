@@ -4,22 +4,24 @@ namespace LifeStream108.Libs.Entities.LifeActityEntities
 {
     public class LifeActivity
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int UserCode { get; set; }
+        public int UserCode { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual int LifeGroupAtGroupId { get; set; } = 0;
+        public int LifeGroupAtGroupId { get; set; } = 0;
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string NameForUser => $"[{UserCode}] {Name}";
+        public string NameForUser => $"[{UserCode}] {Name}";
 
-        public virtual string ShortName { get; set; } = "";
+        public string ShortName { get; set; } = "";
 
-        public virtual bool Active { get; set; } = true;
+        public PeriodicityType PeriodType { get; set; } = PeriodicityType.None;
 
-        public virtual DateTime RegTime { get; set; } = DateTime.Now;
+        public bool Active { get; set; } = true;
+
+        public DateTime RegTime { get; set; } = DateTime.Now;
     }
 }

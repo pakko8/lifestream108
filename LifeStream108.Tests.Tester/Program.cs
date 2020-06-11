@@ -4,15 +4,23 @@ using LifeStream108.Modules.NewsProcessors;
 using LifeStream108.Modules.TelegramBotManager;
 using LifeStream108.Modules.ToDoListManagement.Managers;
 using System;
+using System.Net;
 
 namespace LifeStream108.Tests.Tester
 {
     internal static class Program
     {
+        private static void DownloadFiles(string url, string file)
+        {
+            WebClient client = new WebClient();
+            client.DownloadFile(url, file);
+        }
+
         public static void Main(string[] args)
         {
             try
             {
+                DownloadFiles("https://www.oum.ru/upload/audio/c80/c802ca4d39265749a566cb03addecc9e.mp3", @"d:\Alexandr.mp3");
                 var s = TelegramUtils.RemoveUnsafeSigns("a<bc12>3");
                 int a = 10;
                 /*

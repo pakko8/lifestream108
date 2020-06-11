@@ -11,8 +11,8 @@ D:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\LifeStream108.Libs
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\LifeStream108.Libs.Common.pdb
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\NLog.dll
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\bin\Debug\NLog.xml
-D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csprojAssemblyReference.cache
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csproj.CoreCompileInputs.cache
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csproj.CopyComplete
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.dll
 D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.Common\obj\Debug\LifeStream108.Libs.Common.csprojAssemblyReference.cache

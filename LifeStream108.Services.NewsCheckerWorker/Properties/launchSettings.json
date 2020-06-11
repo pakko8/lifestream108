@@ -1,0 +1,13 @@
+﻿{
+  "profiles": 
+  {
+    "LifeStream108.Services.NewsCheckerWorker": 
+    {
+      "commandName": "Project",
+      "environmentVariables": 
+      {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

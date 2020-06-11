@@ -1,14 +1,15 @@
-﻿using LifeStream108.Libs.Entities.NewsEntities;
+﻿using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Libs.Entities.UserEntities;
-using LifeStream108.Modules.NewsManagement.Managers;
-using LifeStream108.Modules.NewsProcessors;
+using LifeStream108.Modules.LifeActivityManagement.Managers;
+using LifeStream108.Modules.SettingsManagement;
 using LifeStream108.Modules.TelegramBotManager;
 using LifeStream108.Modules.ToDoListManagement.Managers;
-using LifeStream108.Modules.UserManagement.Managers;
+using LifeStream108.Modules.UserManagement;
 using NLog;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -20,10 +21,11 @@ namespace LifeStream108.Services.TelegramBotService
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly System.Timers.Timer _clearSessionsTimer;
-        private readonly System.Timers.Timer _checkNewsTimer;
         private readonly System.Timers.Timer _checkToDoTaskReminders;
+        private readonly System.Timers.Timer _checkActivityLogs;
 
         private MainTelegramChatClient _chatClient = null;
+        private readonly string _dbConnString = "";
 
         public MainService()
         {
@@ -31,22 +33,71 @@ namespace LifeStream108.Services.TelegramBotService
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+                _dbConnString = SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value;
+
                 _clearSessionsTimer = new System.Timers.Timer();
                 _clearSessionsTimer.Interval = 10 * 60 * 1000;
                 _clearSessionsTimer.Elapsed += ClearSessionsTimer_Elapsed;
 
-                _checkNewsTimer = new System.Timers.Timer();
-                _checkNewsTimer.Interval = 10 * 60 * 1000;
-                _checkNewsTimer.Elapsed += CheckNewsTimer_Elapsed;
-
                 _checkToDoTaskReminders = new System.Timers.Timer();
                 _checkToDoTaskReminders.Interval = 3 * 60 * 1000;
                 _checkToDoTaskReminders.Elapsed += CheckToDoTaskReminders_Elapsed;
+
+                _checkActivityLogs = new System.Timers.Timer();
+                _checkActivityLogs.Interval = 30 * 60 * 1000;
+                _checkActivityLogs.Elapsed += CheckActivityLogs_Elapsed;
             }
             catch (Exception ex)
             {
                 Logger.Error("Constructor Exception: {0}", ex.ToString());
             }
+        }
+
+        private void CheckActivityLogs_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Logger.Info("Check activity logs started");
+            try
+            {
+                _checkActivityLogs.Stop();
+
+                DateTime now = DateTime.Now;
+                foreach (User user in UserManager.GetAllUsers(_dbConnString).Where(n => n.Status == UserStatus.Active))
+                {
+                    // Делаем эту проверку для каждого пользователя на случай,
+                    // если по какой-либо ошибке проверка не сработала ля всех пользователей
+                    if (!(now.Hour >= 8 && now.Hour <= 12 && (now - user.CheckActLogsTime).TotalHours > 24)) continue;
+
+                    LifeActivity[] acts = LifeActivityManager.GetActivitiesForUser(user.Id)
+                        .Where(n => n.PeriodType != PeriodicityType.None).ToArray();
+                    if (acts.Length == 0)
+                    {
+                        Logger.Info($"{user} has only usual activities");
+                        continue;
+                    }
+
+                    if (now.Day == 1)
+                    {
+
+                    }
+                    if (now.Month == 1 && now.Day == 1)
+                    {
+
+                    }
+                    Logger.Info("We need check activity logs for " + user);
+                    foreach (LifeActivity act in acts)
+                    {
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error to check activity logs: " + ex);
+            }
+            finally
+            {
+                _checkActivityLogs.Start();
+            }
+            Logger.Info("Check activity logs finished");
         }
 
         private void CheckToDoTaskReminders_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -56,17 +107,19 @@ namespace LifeStream108.Services.TelegramBotService
             {
                 _checkToDoTaskReminders.Stop();
 
-                foreach (User user in UserManager.GetAllUsers().Where(n => n.Status == UserStatus.Active))
+                foreach (User user in UserManager.GetAllUsers(_dbConnString).Where(n => n.Status == UserStatus.Active))
                 {
                     Logger.Info("Check reminders for user " + user.Id);
                     ToDoList[] lists = ToDoListManager.GetUserLists(user.Id);
-                    foreach (ToDoTask task in ToDoTaskManager.GetTasksWithReminders(user.Id))
+                    foreach (ToDoTask task in ToDoTaskManager.GetTasksWithActiveReminders(user.Id))
                     {
                         ToDoList list = lists.FirstOrDefault(n => n.Id == task.ListId);
                         if (!list.Active) continue;
 
                         var createReminderResult = Reminder.Create(task.ReminderSettings);
-                        Logger.Info($"Checking reminder '{task.ReminderSettings}' for task '{task.Title}'");
+                        DateTime comingReminderTime = createReminderResult.Reminder.GetComingSoonReminderTime(task.ReminderLastTime);
+                        Logger.Info($"Checking reminder '{task.ReminderSettings}' for task '{task.Title}'." +
+                            $" Coming reminder time: {comingReminderTime:yyyy-MM-dd HH:mm}");
                         if (createReminderResult.Reminder.IsTimeToRemind(task.ReminderLastTime))
                         {
                             string reminderTaskInfo =
@@ -111,70 +164,6 @@ namespace LifeStream108.Services.TelegramBotService
             Logger.Info("Clear sessions task finished");
         }
 
-        private void CheckNewsTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            Logger.Info("Check news task started");
-            try
-            {
-                _checkNewsTimer.Stop();
-
-                NewsGroup[] newsGroups = NewsGroupManager.GetAllActiveGroups();
-                NewsProcessorLoader processorLoader = new NewsProcessorLoader();
-                StringBuilder sbMessage = new StringBuilder();
-                foreach (NewsGroup group in newsGroups.OrderBy(n => n.Priority))
-                {
-                    if ((DateTime.Now - group.LastRunTime).TotalMinutes < group.CheckIntervalInMinutes) continue;
-
-                    BaseNewsProcessor processor = processorLoader.LoadClass(group.ProcessorClassName);
-                    NewsItem lastNewsItem = NewsItemManager.GetLastNewsItem(group.Id);
-                    NewsItem[] newsList = processor.GetLastNews(group.Url, group.Id,
-                        lastNewsItem != null ? lastNewsItem.NewsTime.AddHours(-1) : DateTime.Now.AddDays(-7));
-                    int countNews = 0;
-                    foreach (NewsItem newsItem in newsList)
-                    {
-                        NewsItem existNewsItem = NewsItemManager.GetNewsItemByResourceId(newsItem.ResourceId);
-                        if (existNewsItem != null) continue;
-
-                        NewsItemManager.AddNewsItem(newsItem);
-                        countNews++;
-                        if (countNews == 1)
-                        {
-                            if (sbMessage.Length > 0) sbMessage.Append("\r\n");
-                            sbMessage.Append($"В группе <b>{group.Name}</b> {(newsList.Length > 1 ? "свежие новости" : "свежая новость")}:\r\n");
-                        }
-                        sbMessage.Append($@"<a href=""{newsItem.Url}"">{newsItem.Title}</a>");
-                        sbMessage.Append("\r\n");
-                    }
-
-                    group.LastRunTime = DateTime.Now;
-                    group.RunStatus = NewsGroupRunStatus.Success;
-                    NewsGroupManager.UpdateGroup(group);
-                }
-
-                if (sbMessage.Length > 0)
-                {
-                    User superuser = UserManager.GetSuperuser();
-                    try
-                    {
-                        SendMessage(sbMessage.ToString(), superuser.TelegramId);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error("Error to send message with news: " + ex);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error to check news: " + ex);
-            }
-            finally
-            {
-                _checkNewsTimer.Start();
-            }
-            Logger.Info("Check news task finished");
-        }
-
         private async void SendMessage(string message, int telegramUserId)
         {
             Logger.Info("Sending message: " + message);
@@ -189,8 +178,8 @@ namespace LifeStream108.Services.TelegramBotService
                 _chatClient = new MainTelegramChatClient();
                 _chatClient.Start();
                 _clearSessionsTimer.Start();
-                _checkNewsTimer.Start();
                 _checkToDoTaskReminders.Start();
+                _checkActivityLogs.Start();
             }
             catch (Exception ex)
             {
@@ -203,8 +192,8 @@ namespace LifeStream108.Services.TelegramBotService
             _clearSessionsTimer.Stop();
             _chatClient.Stop();
             _clearSessionsTimer.Stop();
-            _checkNewsTimer.Stop();
             _checkToDoTaskReminders.Stop();
+            _checkActivityLogs.Start();
 
             Logger.Info("Service stopped");
         }

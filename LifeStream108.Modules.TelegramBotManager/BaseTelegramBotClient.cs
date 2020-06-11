@@ -1,7 +1,7 @@
-﻿using LifeStream108.Libs.Entities.SettingsEntities;
-using LifeStream108.Modules.SettingsManagement.Managers;
+﻿using LifeStream108.Modules.SettingsManagement;
 using NLog;
 using System;
+using System.Configuration;
 using Telegram.Bot;
 using TelegramUser = Telegram.Bot.Types.User;
 
@@ -12,11 +12,13 @@ namespace LifeStream108.Modules.TelegramBotManager
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         protected TelegramBotClient _botClient = null;
+        protected string MainDbConnString;
 
         public TelegramBotClient BotClient => _botClient;
 
         public virtual void Start()
         {
+            MainDbConnString = SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value;
             SettingEntry botTokenSetting = SettingsManager.GetSettingEntryByCode(SettingCode.TelegramBotToken);
 
             /*WebProxy proxy = new WebProxy("159.89.23.103:8000", true);

@@ -4,25 +4,27 @@ namespace LifeStream108.Libs.Entities.UserEntities
 {
     public class User
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual bool Superuser { get; set; }
+        public bool Superuser { get; set; }
 
-        public virtual int TelegramId { get; set; }
+        public int TelegramId { get; set; }
 
-        public virtual int LanguageId { get; set; }
+        public int LanguageId { get; set; }
 
-        public virtual int CurrencyId { get; set; }
+        public int CurrencyId { get; set; }
 
-        public virtual int DefaultProjectId { get; set; }
+        public int DefaultProjectId { get; set; }
 
-        public virtual UserStatus Status { get; set; }
+        public DateTime CheckActLogsTime { get; set; }
 
-        public virtual DateTime RegTime { get; set; }
+        public UserStatus Status { get; set; }
+
+        public DateTime RegTime { get; set; }
 
         public override string ToString()
         {

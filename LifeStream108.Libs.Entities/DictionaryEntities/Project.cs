@@ -4,23 +4,23 @@ namespace LifeStream108.Libs.Entities.DictionaryEntities
 {
     public class Project
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string UserCode { get; set; }
+        public string UserCode { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Description { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Web page with help
         /// </summary>
-        public virtual string HelpUrl { get; set; }
+        public string HelpUrl { get; set; }
 
-        public virtual string AssemblyName { get; set; }
+        public string AssemblyName { get; set; }
 
-        public virtual string AssemblyRootNamespace { get; set; }
+        public string AssemblyRootNamespace { get; set; }
 
-        public virtual DateTime RegTime { get; set; }
+        public DateTime RegTime { get; set; }
     }
 }

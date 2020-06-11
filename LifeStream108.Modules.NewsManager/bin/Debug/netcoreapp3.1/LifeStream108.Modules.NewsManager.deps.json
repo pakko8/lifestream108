@@ -1,0 +1,62 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "LifeStream108.Modules.NewsManager/1.0.0": {
+        "dependencies": {
+          "LifeStream108.Libs.Entities": "1.0.0"
+        },
+        "runtime": {
+          "LifeStream108.Modules.NewsManager.dll": {}
+        }
+      },
+      "LifeStream108.Libs.Common/1.0.0": {
+        "runtime": {
+          "LifeStream108.Libs.Common.dll": {}
+        }
+      },
+      "LifeStream108.Libs.Entities/1.0.0": {
+        "dependencies": {
+          "LifeStream108.Libs.Common": "1.0.0"
+        },
+        "runtime": {
+          "LifeStream108.Libs.Entities.dll": {}
+        }
+      },
+      "NLog/4.0.0.0": {
+        "runtime": {
+          "NLog.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.8.10751"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LifeStream108.Modules.NewsManager/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LifeStream108.Libs.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LifeStream108.Libs.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NLog/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

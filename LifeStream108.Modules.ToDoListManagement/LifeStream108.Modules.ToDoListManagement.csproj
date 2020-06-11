@@ -34,14 +34,8 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=5.1.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.5.1.1\lib\net461\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.1.2\lib\net45\Remotion.Linq.dll</HintPath>
@@ -62,15 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\ToDoCategoryManager.cs" />
-    <Compile Include="Managers\ToDoTaskManager.cs" />
-    <Compile Include="Managers\ToDoListManager.cs" />
-    <Compile Include="Managers\ToDoReminderHistoryManager.cs" />
-    <Compile Include="Mapping\Constants.cs" />
-    <Compile Include="Mapping\ToDoCategoryMap.cs" />
-    <Compile Include="Mapping\ToDoTaskMap.cs" />
-    <Compile Include="Mapping\ToDoListMap.cs" />
-    <Compile Include="Mapping\ToDoReminderHistoryMap.cs" />
+    <Compile Include="ToDoCategoryManager.cs" />
+    <Compile Include="ToDoTaskManager.cs" />
+    <Compile Include="ToDoListManager.cs" />
+    <Compile Include="ToDoReminderHistoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -78,10 +67,6 @@
     <ProjectReference Include="..\LifeStream108.Libs.Entities\LifeStream108.Libs.Entities.csproj">
       <Project>{613137C8-6839-4585-B355-8AE290326A61}</Project>
       <Name>LifeStream108.Libs.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LifeStream108.Libs.HibernateManagement\LifeStream108.Libs.HibernateManagement.csproj">
-      <Project>{74DE9BA3-0A4A-48C6-826F-ADDF1FBD0ACC}</Project>
-      <Name>LifeStream108.Libs.HibernateManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

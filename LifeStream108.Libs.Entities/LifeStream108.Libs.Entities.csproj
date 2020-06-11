@@ -53,6 +53,8 @@
     <Compile Include="CommandEntities\InputDataType.cs" />
     <Compile Include="LifeActityEntities\LifeActivityLog.cs" />
     <Compile Include="DictionaryEntities\Project.cs" />
+    <Compile Include="LifeActityEntities\PeriodicityType.cs" />
+    <Compile Include="LifeActityEntities\FinancialType.cs" />
     <Compile Include="TicketEntities\BugTicket.cs" />
     <Compile Include="TicketEntities\BugTicketStatus.cs" />
     <Compile Include="CommandEntities\Command.cs" />
@@ -73,10 +75,9 @@
     <Compile Include="DictionaryEntities\Measure.cs" />
     <Compile Include="NewsEntities\NewsGroup.cs" />
     <Compile Include="NewsEntities\NewsGroupRunStatus.cs" />
-    <Compile Include="NewsEntities\NewsItem.cs" />
+    <Compile Include="NewsEntities\NewsHistoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionEntities\Session.cs" />
-    <Compile Include="SettingsEntities\SettingEntry.cs" />
     <Compile Include="MessageEntities\TelegramMessageEntry.cs" />
     <Compile Include="Reminders\AnnuallyReminder.cs" />
     <Compile Include="Reminders\DailyReminder.cs" />

@@ -68,7 +68,7 @@ namespace LifeStream108.Modules.CommandProcessors
 
         private (Command Command, CommandParameterAndValue[] Values, string Error) ParseRequest(string requestText)
         {
-            string[] requestParts = requestText.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] requestParts = requestText.Split(new char[] { ':' }, 2);
             // Find command and it's parameters in database
             string commandName = requestParts[0].Trim();
             var commandInfo = FindCommand(commandName);

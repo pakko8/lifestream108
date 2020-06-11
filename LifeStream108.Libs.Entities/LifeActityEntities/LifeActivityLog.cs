@@ -4,20 +4,20 @@ namespace LifeStream108.Libs.Entities.LifeActityEntities
 {
     public class LifeActivityLog
     {
-        public virtual long Id { get; set; }
+        public long Id { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual int LifeActivityId { get; set; }
+        public int LifeActivityId { get; set; }
 
-        public virtual DateTime Period { get; set; }
+        public DateTime Period { get; set; }
 
-        public virtual bool Active { get; set; } = true;
+        public bool Active { get; set; } = true;
 
-        public virtual string Comment { get; set; }
+        public string Comment { get; set; }
 
-        public virtual DateTime RegTime { get; set; } = DateTime.Now;
+        public DateTime RegTime { get; set; } = DateTime.Now;
 
-        public virtual DateTime UpdateTime { get; set; } = DateTime.Now;
+        public DateTime UpdateTime { get; set; } = DateTime.Now;
     }
 }

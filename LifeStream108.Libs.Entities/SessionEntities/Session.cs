@@ -5,28 +5,28 @@ namespace LifeStream108.Libs.Entities.SessionEntities
 {
     public class Session
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual int ProjectId { get; set; }
+        public int ProjectId { get; set; }
 
-        public virtual int LastCommandId { get; set; }
+        public int LastCommandId { get; set; }
 
-        public virtual int LastLifeGroupId { get; set; }
+        public int LastLifeGroupId { get; set; }
 
-        public virtual int LastLifeActivityId { get; set; }
+        public int LastLifeActivityId { get; set; }
 
-        public virtual string LastRequestText { get; set; }
+        public string LastRequestText { get; set; }
 
-        public virtual DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
-        public virtual DateTime LastActivityTime { get; set; }
+        public DateTime LastActivityTime { get; set; }
 
         private string _data;
         private readonly StringDictionary _dataDictionary = new StringDictionary();
 
-        public virtual string Data
+        public string Data
         {
             get { return _data ?? ""; }
             set
@@ -36,7 +36,7 @@ namespace LifeStream108.Libs.Entities.SessionEntities
             }
         }
 
-        public virtual void PrepareDataDictionary()
+        public void PrepareDataDictionary()
         {
             _dataDictionary.Clear();
             if (string.IsNullOrEmpty(_data)) return;
@@ -49,7 +49,7 @@ namespace LifeStream108.Libs.Entities.SessionEntities
             }
         }
 
-        public virtual (long Value, string Error) GetNumberDataValue(string key)
+        public (long Value, string Error) GetNumberDataValue(string key)
         {
             if (_dataDictionary.ContainsKey(key))
             {
