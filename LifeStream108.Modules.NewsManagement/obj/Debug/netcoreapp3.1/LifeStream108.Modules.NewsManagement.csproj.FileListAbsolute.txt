@@ -14,3 +14,7 @@ D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcore
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\obj\Debug\netcoreapp3.1\LifeStream108.Modules.NewsManagement.csproj.CoreCompileInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.LiteDbHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SettingsManagement.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.LiteDbHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SettingsManagement.pdb

@@ -33,6 +33,16 @@
         "net472": {}
       }
     },
+    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj",
+        "projectName": "LifeStream108.Libs.LiteDbHelper",
+        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -64,6 +74,9 @@
               },
               "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
                 "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
+              },
+              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
               },
               "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
                 "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"

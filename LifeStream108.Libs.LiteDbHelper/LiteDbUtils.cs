@@ -1,14 +1,11 @@
 ﻿using LiteDB;
-using System.IO;
 using System.Text;
 
-namespace LifeStream108.Modules.NewsManagement
+namespace LifeStream108.Libs.LiteDbHelper
 {
-    internal static class Helpers
+    public static class LiteDbUtils
     {
-        private const string LiteDbDirectory = @"C:\_Projects\LiteDb\NewsDbFiles";
-
-        public static ConnectionString CreateReadolyLiteDbConnObj(string connString)
+        public static ConnectionString CreateReadolyConnection(string connString)
         {
             return new ConnectionString
             {
@@ -17,13 +14,7 @@ namespace LifeStream108.Modules.NewsManagement
             };
         }
 
-        public static (string DbConnString, string TableName) GetLiteDbNewsHistoryConnString(int userId)
-        {
-            string fileName = $"NewsHistory{Number2LetterString(userId)}";
-            return (Path.Combine(LiteDbDirectory, fileName), fileName);
-        }
-
-        private static string Number2LetterString(int number)
+        public static string PrepateDbFileName(int number)
         {
             const char emptyChar = '_';
             string numberStr = number.ToString();

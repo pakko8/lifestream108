@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeStream108.Services.News
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeStream108.Modules.NewsManagement", "LifeStream108.Modules.NewsManagement\LifeStream108.Modules.NewsManagement.csproj", "{0FD62A42-8782-4E31-B621-C8B61F685D0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Libs.LiteDbHelper", "LifeStream108.Libs.LiteDbHelper\LifeStream108.Libs.LiteDbHelper.csproj", "{515E09C2-FBC1-47B4-8083-E1FD42A4549C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD62A42-8782-4E31-B621-C8B61F685D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515E09C2-FBC1-47B4-8083-E1FD42A4549C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515E09C2-FBC1-47B4-8083-E1FD42A4549C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515E09C2-FBC1-47B4-8083-E1FD42A4549C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515E09C2-FBC1-47B4-8083-E1FD42A4549C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
