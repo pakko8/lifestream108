@@ -1,7 +1,7 @@
 ﻿using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Libs.HibernateManagement;
-using NHibernate;
-using System.Linq;
+using LifeStream108.Modules.SettingsManagement;
+using Npgsql;
+using System;
 
 namespace LifeStream108.Modules.LifeActivityManagement
 {
@@ -9,30 +9,25 @@ namespace LifeStream108.Modules.LifeActivityManagement
     {
         public static LifeActivityPlan[] GetPlansForUser(int userId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var query = from plan in session.Query<LifeActivityPlan>()
-                            where plan.UserId == userId
-                            select plan;
-                return query.ToArray();
+                throw new NotImplementedException();
             }
         }
 
         public static void AddPlan(LifeActivityPlan plan)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                CommonManager<LifeActivityPlan>.Add(plan, session);
-                session.Flush();
+                throw new NotImplementedException();
             }
         }
 
         public static void UpdatePlan(LifeActivityPlan plan)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                CommonManager<LifeActivityPlan>.Update(plan, session);
-                session.Flush();
+                throw new NotImplementedException();
             }
         }
     }

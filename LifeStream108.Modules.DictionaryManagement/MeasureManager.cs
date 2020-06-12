@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
 
 namespace LifeStream108.Modules.DictionaryManagement
 {
@@ -57,8 +56,15 @@ namespace LifeStream108.Modules.DictionaryManagement
                 measure.UserCode = GetNextUserCode(measure.UserId, connection);
 
                 var command = connection.CreateCommand();
-                command.CommandText = $"insert into measures () values ()";
-                command.Parameters.Add();
+                command.CommandText =
+@"insert into measures
+(name, short_name, declanation1, declanation2, declanation3, reg_time)
+values
+(@name, @short_name, @declanation1, @declanation2, @declanation3, current_timestamp)";
+                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = measure.Name;
+                command.Parameters.Add(new NpgsqlParameter("@declanation1", DbType.String)).Value = measure.Declanation1;
+                command.Parameters.Add(new NpgsqlParameter("@declanation2", DbType.String)).Value = measure.Declanation2;
+                command.Parameters.Add(new NpgsqlParameter("@declanation3", DbType.String)).Value = measure.Declanation3;
                 connection.Open();
                 command.ExecuteNonQuery();
             }

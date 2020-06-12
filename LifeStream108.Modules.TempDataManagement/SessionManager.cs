@@ -1,6 +1,4 @@
 ﻿using LifeStream108.Libs.Entities.SessionEntities;
-using LifeStream108.Libs.HibernateManagement;
-using NHibernate;
 using System.Linq;
 
 namespace LifeStream108.Modules.TempDataManagement

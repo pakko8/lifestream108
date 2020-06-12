@@ -1,6 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.ToDoEntities;
-using LifeStream108.Libs.HibernateManagement;
-using NHibernate;
+using System;
 
 namespace LifeStream108.Modules.ToDoListManagement
 {
@@ -8,11 +7,7 @@ namespace LifeStream108.Modules.ToDoListManagement
     {
         public static void AddCategory(ToDoReminderHistory item)
         {
-            using (ISession session = HibernateLoader.CreateSession())
-            {
-                CommonManager<ToDoReminderHistory>.Add(item, session);
-                session.Flush();
-            }
+            throw new NotImplementedException();
         }
     }
 }

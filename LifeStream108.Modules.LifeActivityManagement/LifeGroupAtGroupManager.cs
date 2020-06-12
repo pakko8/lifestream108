@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Libs.HibernateManagement;
-using NHibernate;
+using LifeStream108.Modules.SettingsManagement;
+using Npgsql;
+using System.Data.Common;
 using System.Linq;
 
 namespace LifeStream108.Modules.LifeActivityManagement
@@ -9,7 +10,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
     {
         public static LifeGroupAtGroup GetGroupAtGroup(int groupAtGroupId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 return CommonManager<LifeGroupAtGroup>.GetById(groupAtGroupId, session);
             }
@@ -17,7 +18,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeGroupAtGroup[] GetGroupsAtGroupsForUser(int userId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from grp in session.Query<LifeGroupAtGroup>()
                             where grp.UserId == userId
@@ -26,7 +27,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             }
         }
 
-        internal static LifeGroupAtGroup GetGroupAtGroup(int groupAtGroupId, int userId, ISession session)
+        internal static LifeGroupAtGroup GetGroupAtGroup(int groupAtGroupId, int userId, DbConnection connection)
         {
             var query = from assign in session.Query<LifeGroupAtGroup>()
                         where assign.UserId == userId && assign.Id == groupAtGroupId
@@ -36,7 +37,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeGroupAtGroup GetGroupAtGroupByGroups(int groupId, int parentGroupId, int userId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from assign in session.Query<LifeGroupAtGroup>()
                             where assign.UserId == userId && assign.LifeGroupId == groupId && assign.ParentLifeGroupId == parentGroupId
@@ -47,7 +48,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeGroupAtGroup[] GetGroupAtGroupsByGroup(int groupId, int userId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from assign in session.Query<LifeGroupAtGroup>()
                             where assign.UserId == userId && assign.LifeGroupId == groupId
@@ -55,9 +56,10 @@ namespace LifeStream108.Modules.LifeActivityManagement
                 return query.ToArray();
             }
         }
+
         public static void AddGroupAtGroup(LifeGroupAtGroup item)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 CommonManager<LifeGroupAtGroup>.Add(item, session);
                 session.Flush();
@@ -66,7 +68,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static void UpdateGroupAtGroup(LifeGroupAtGroup item)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 CommonManager<LifeGroupAtGroup>.Update(item, session);
                 session.Flush();

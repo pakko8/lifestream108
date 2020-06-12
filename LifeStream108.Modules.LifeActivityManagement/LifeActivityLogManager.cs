@@ -1,8 +1,8 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Libs.HibernateManagement;
-using NHibernate;
+using LifeStream108.Modules.SettingsManagement;
 using NLog;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,7 +18,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
             Logger.Info($"Getting activity logs for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}");
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query  = from log in session.Query<LifeActivityLog>()
                     where log.UserId == userId && log.Period >= dateFrom && log.Period <= dateTo
@@ -31,7 +31,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             Logger.Info($"Getting activity logs for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}" +
                 $"activityIds={CollectionUtils.Array2String<int>(activityIds)}");
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from log in session.Query<LifeActivityLog>()
                     where log.UserId == userId && activityIds.Contains(log.LifeActivityId) && log.Period >= dateFrom && log.Period <= dateTo
@@ -44,7 +44,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             Logger.Info($"Getting activity log values for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}");
             List<LifeActivityLogValue> values = new List<LifeActivityLogValue>();
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 string commandText =
 $@"select val.* from life_activity_logs.life_activity_log_values val
@@ -68,7 +68,7 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
             int activityId, DateTime date, int userId, bool onlyActive = true)
         {
             List<LifeActivityLogWithValues> logList = new List<LifeActivityLogWithValues>();
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from log in session.Query<LifeActivityLog>()
                             where log.UserId == userId && log.LifeActivityId == activityId && log.Period == date
@@ -89,7 +89,7 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
 
         public static LifeActivityLogWithValues GetLogWithValues(long logId, int userId)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 var query = from logItem in session.Query<LifeActivityLog>()
                             where logItem.UserId == userId && logItem.Id == logId
@@ -112,7 +112,7 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
 
         public static void AddLog(LifeActivityLog log, LifeActivityLogValue[] logValues)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -137,7 +137,7 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
 
         public static void UpdateLog(LifeActivityLog log)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 log.UpdateTime = DateTime.Now;
                 CommonManager<LifeActivityLog>.Update(log, session);
@@ -147,7 +147,7 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
 
         public static void UpdateLog(LifeActivityLog log, LifeActivityLogValue[] logValues)
         {
-            using (ISession session = HibernateLoader.CreateSession())
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
