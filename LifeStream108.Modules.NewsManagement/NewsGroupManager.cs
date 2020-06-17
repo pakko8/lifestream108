@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.NewsEntities;
-using LifeStream108.Modules.SettingsManagement;
+using LifeStream108.Libs.PostgreSqlHelper;
 using Npgsql;
 using NpgsqlTypes;
 
@@ -15,54 +14,41 @@ namespace LifeStream108.Modules.NewsManagement
 
         public static NewsGroup[] GetAllActiveGroups()
         {
-            List<NewsGroup> groups = new List<NewsGroup>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        groups.Add(ReadGroup(reader));
-                    }
-                }
-            }
-            return groups.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableName}", ReadGroup);
         }
 
         public static void UpdateGroup(NewsGroup group)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
+            string query =
+                $@"update {TableName}
+                set
+                priority=@priority,
+                name=@name,
+                description=@description,
+                url=@url,
+                processor_class_name=@processor_class_name,
+                active=@active,
+                reg_time=@reg_time,
+                check_interval_in_minutes=@check_interval_in_minutes,
+                last_run_time=@last_run_time,
+                run_status=@run_status
+                where id={group.Id}";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                var command = connection.CreateCommand();
-                command.CommandText =
-$@"update {TableName}
-set
-priority=@priority,
-name=@name,
-description=@description,
-url=@url,
-processor_class_name=@processor_class_name,
-active=@active,
-reg_time=@reg_time,
-check_interval_in_minutes=@check_interval_in_minutes,
-last_run_time=@last_run_time,
-run_status=@run_status
-where id={group.Id}";
-                command.Parameters.Add("priority", NpgsqlDbType.Integer).Value = group.Priority;
-                command.Parameters.Add("name", NpgsqlDbType.Varchar).Value = group.Name;
-                command.Parameters.Add("description", NpgsqlDbType.Varchar).Value = group.Description;
-                command.Parameters.Add("url", NpgsqlDbType.Varchar).Value = group.Url;
-                command.Parameters.Add("processor_class_name", NpgsqlDbType.Varchar).Value = group.ProcessorClassName;
-                command.Parameters.Add("active", NpgsqlDbType.Boolean).Value = group.Active;
-                command.Parameters.Add("reg_time", NpgsqlDbType.Timestamp).Value = group.RegTime;
-                command.Parameters.Add("check_interval_in_minutes", NpgsqlDbType.Integer).Value = group.CheckIntervalInMinutes;
-                command.Parameters.Add("last_run_time", NpgsqlDbType.Timestamp).Value = group.LastRunTime;
-                command.Parameters.Add("run_status", NpgsqlDbType.Varchar).Value = group.RunStatus.ToString();
-                connection.Open();
-            }
+                PostgreSqlCommandUtils.CreateParam("priority", NpgsqlDbType.Integer, group.Priority),
+                PostgreSqlCommandUtils.CreateParam("name", NpgsqlDbType.Varchar, group.Name),
+                PostgreSqlCommandUtils.CreateParam("description", NpgsqlDbType.Varchar, group.Description),
+                PostgreSqlCommandUtils.CreateParam("url", NpgsqlDbType.Varchar, group.Url),
+                PostgreSqlCommandUtils.CreateParam("processor_class_name", NpgsqlDbType.Varchar, group.ProcessorClassName),
+                PostgreSqlCommandUtils.CreateParam("active", NpgsqlDbType.Boolean, group.Active),
+                PostgreSqlCommandUtils.CreateParam("reg_time", NpgsqlDbType.Timestamp, group.RegTime),
+                PostgreSqlCommandUtils.CreateParam("check_interval_in_minutes", NpgsqlDbType.Integer, group.CheckIntervalInMinutes),
+                PostgreSqlCommandUtils.CreateParam("last_run_time", NpgsqlDbType.Timestamp, group.LastRunTime),
+                PostgreSqlCommandUtils.CreateParam("run_status", NpgsqlDbType.Varchar, group.RunStatus.ToString())
+            };
+
+            PostgreSqlCommandUtils.UpdateEntity(query, parameters);
         }
 
         private static NewsGroup ReadGroup(IDataReader reader)

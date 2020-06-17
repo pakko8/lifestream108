@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
+using NpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
 {
     public static class PostgreSqlCommandUtils
     {
-        public static NpgsqlParameter CreateParam(string paramName, DbType type, object value, int size = 0)
+        public static NpgsqlParameter CreateParam(string paramName, NpgsqlDbType type, object value, int size = 0)
         {
             NpgsqlParameter param = new NpgsqlParameter(paramName, type, size);
             param.Value = value;

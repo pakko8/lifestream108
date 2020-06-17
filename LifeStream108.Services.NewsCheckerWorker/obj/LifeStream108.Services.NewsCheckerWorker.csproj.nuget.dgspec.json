@@ -43,6 +43,28 @@
         "net472": {}
       }
     },
+    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
+        "projectName": "LifeStream108.Libs.PostgreSqlHelper",
+        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+              },
+              "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -77,6 +99,9 @@
               },
               "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
                 "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
+              },
+              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
+                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj"
               },
               "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
                 "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"

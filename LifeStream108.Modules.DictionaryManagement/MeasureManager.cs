@@ -2,6 +2,7 @@
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.PostgreSqlHelper;
 using Npgsql;
+using NpgsqlTypes;
 using System;
 using System.Data;
 
@@ -34,10 +35,10 @@ namespace LifeStream108.Modules.DictionaryManagement
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                    PostgreSqlCommandUtils.CreateParam("@name", DbType.String, measure.Name),
-                    PostgreSqlCommandUtils.CreateParam("@declanation1", DbType.String, measure.Declanation1),
-                    PostgreSqlCommandUtils.CreateParam("@declanation2", DbType.String, measure.Declanation2),
-                    PostgreSqlCommandUtils.CreateParam("@declanation3", DbType.String, measure.Declanation3)
+                    PostgreSqlCommandUtils.CreateParam("@name", NpgsqlDbType.Varchar, measure.Name),
+                    PostgreSqlCommandUtils.CreateParam("@declanation1", NpgsqlDbType.Varchar, measure.Declanation1),
+                    PostgreSqlCommandUtils.CreateParam("@declanation2", NpgsqlDbType.Varchar, measure.Declanation2),
+                    PostgreSqlCommandUtils.CreateParam("@declanation3", NpgsqlDbType.Varchar, measure.Declanation3)
             };
 
             measure.Id = PostgreSqlCommandUtils.AddEntity<int>(query, parameters);
