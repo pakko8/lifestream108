@@ -10,12 +10,25 @@ namespace LifeStream108.Modules.ToDoListManagement
 {
     public static class ToDoTaskManager
     {
+        private const string TableName = "todo_list.todo_tasks";
+
         public static ToDoTask GetTask(int taskId)
         {
+            ToDoTask task = null;
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                return CommonManager<ToDoTask>.GetById(taskId, session);
+                var command = connection.CreateCommand();
+                command.CommandText = $"select * from {TableName} where id={taskId}";
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        task = ReadTask(reader);
+                    }
+                }
             }
+            return task;
         }
 
         public static ToDoTask GetTaskByTitle(string title, int listId)

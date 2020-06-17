@@ -1,6 +1,7 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities;
 using LifeStream108.Libs.Entities.CommandEntities;
+using LifeStream108.Libs.PostgreSqlHelper;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
 using System.Collections.Generic;
@@ -11,64 +12,27 @@ namespace LifeStream108.Modules.CommandManagement
 {
     public static class CommandManager
     {
+        private const string TableNameCommands = "commands";
+        private const string TableNameCommandNames = "command_names";
+        private const string TableNameCommandParams = "command_params";
+
         public static Command[] GetCommands(int projectId)
         {
-            List<Command> commands = new List<Command>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from commands where project_id in (0, {projectId})";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        commands.Add(ReadCommand(reader));
-                    }
-                }
-            }
-            return commands.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableNameCommands} where project_id in (0, {projectId})", ReadCommand);
         }
 
         public static CommandName[] GetCommandNamesForProject(int projectId)
         {
-            List<CommandName> commandNames = new List<CommandName>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText =
-                    "select nm.* from command_names as nm " +
-                    "inner join commands cmd on nm.command_id=cmd.id " +
-                    $"where cmd.project_id in (0, {projectId})";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        commandNames.Add(ReadCommandName(reader));
-                    }
-                }
-            }
-            return commandNames.ToArray();
+            string query =
+                $@"select nm.* from {TableNameCommandNames} as nm
+                inner join commands cmd on nm.command_id=cmd.id
+                where cmd.project_id in (0, {projectId})";
+            return PostgreSqlCommandUtils.GetEntities(query, ReadCommandName);
         }
 
         public static CommandName[] GetCommandNames(int commandId)
         {
-            List<CommandName> commandNames = new List<CommandName>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from command_names where command_id={commandId}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        commandNames.Add(ReadCommandName(reader));
-                    }
-                }
-            }
-            return commandNames.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableNameCommandNames} where command_id={commandId}", ReadCommandName);
         }
 
         public static (Command Command, CommandParameter[] Parameters) GetCommand(int commandId)
@@ -83,32 +47,13 @@ namespace LifeStream108.Modules.CommandManagement
 
         private static Command GetCommand(int id, DbConnection connection)
         {
-            Command commandObject = null;
-            var command = connection.CreateCommand();
-            command.CommandText = $"select * from commands where id={id}";
-            using (var reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    commandObject = ReadCommand(reader);
-                }
-            }
-            return commandObject;
+            return PostgreSqlCommandUtils.GetEntity($"select * from {TableNameCommands} where id={id}", ReadCommand);
         }
 
         private static CommandParameter[] GetParametersForCommand(int commandId, DbConnection connection)
         {
-            List<CommandParameter> parameters = new List<CommandParameter>();
-            var command = connection.CreateCommand();
-            command.CommandText = $"select * from command_params where command_id={commandId}";
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    parameters.Add(ReadCommandParameter(reader));
-                }
-            }
-            return parameters.ToArray();
+            return PostgreSqlCommandUtils.GetEntities(
+                $"select * from {TableNameCommandParams} where command_id={commandId}", ReadCommandParameter);
         }
 
         private static Command ReadCommand(IDataReader reader)

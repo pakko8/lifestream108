@@ -40,7 +40,7 @@ namespace LifeStream108.Modules.TelegramBotManager
         private async Task<string> DeleteMessages(int userId)
         {
             // Step 1. Get messages for this user from database
-            TelegramMessageEntry[] telegramMessages;
+            TelegramMessageHistory[] telegramMessages;
             try
             {
                 telegramMessages = TelegramMessageEntryManager.GetEntriesForUser(userId);
@@ -54,7 +54,7 @@ namespace LifeStream108.Modules.TelegramBotManager
             if (telegramMessages.Length == 0) return "Не найдены сообщения для удаления";
             // Step 2. Delete messages in Telegram
             int countErrors = 0;
-            foreach (TelegramMessageEntry message in telegramMessages)
+            foreach (TelegramMessageHistory message in telegramMessages)
             {
                 try
                 {
@@ -97,7 +97,7 @@ namespace LifeStream108.Modules.TelegramBotManager
 
             try
             {
-                TelegramMessageEntry entry = new TelegramMessageEntry
+                TelegramMessageHistory entry = new TelegramMessageHistory
                 {
                     TelegramUserId = telegramUserId,
                     ChatId = chatId,

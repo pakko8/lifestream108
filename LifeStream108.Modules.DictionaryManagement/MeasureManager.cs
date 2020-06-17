@@ -1,88 +1,57 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.DictionaryEntities;
-using LifeStream108.Modules.SettingsManagement;
+using LifeStream108.Libs.PostgreSqlHelper;
 using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 
 namespace LifeStream108.Modules.DictionaryManagement
 {
     public static class MeasureManager
     {
+        private const string TableName = "measures";
+
         public static Measure GetMeasureByName(string measureName, int userId)
         {
-            Measure measure = null;
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from measures where user_id={userId} and upper(name)='{measureName}'";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        measure = ReadMeasure(reader);
-                    }
-                }
-            }
-            return measure;
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select * from {TableName} where user_id={userId} and upper(name)='{measureName}'", ReadMeasure);
         }
 
         public static Measure[] GetMeasuresForUser(int userId)
         {
-            List<Measure> measures = new List<Measure>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from measures where user_id={userId}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        measures.Add(ReadMeasure(reader));
-                    }
-                }
-            }
-            return measures.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableName} where user_id={userId}", ReadMeasure);
         }
 
         public static void AddMeasure(Measure measure)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                measure.UserCode = GetNextUserCode(measure.UserId, connection);
+            measure.UserCode = GetNextUserCode(measure.UserId);
 
-                var command = connection.CreateCommand();
-                command.CommandText =
-@"insert into measures
-(name, short_name, declanation1, declanation2, declanation3, reg_time)
-values
-(@name, @short_name, @declanation1, @declanation2, @declanation3, current_timestamp)";
-                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = measure.Name;
-                command.Parameters.Add(new NpgsqlParameter("@declanation1", DbType.String)).Value = measure.Declanation1;
-                command.Parameters.Add(new NpgsqlParameter("@declanation2", DbType.String)).Value = measure.Declanation2;
-                command.Parameters.Add(new NpgsqlParameter("@declanation3", DbType.String)).Value = measure.Declanation3;
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+            string query =
+                $@"insert into {TableName}
+                (name, short_name, declanation1, declanation2, declanation3, reg_time)
+                values
+                (@name, @short_name, @declanation1, @declanation2, @declanation3, current_timestamp) returning id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                    PostgreSqlCommandUtils.CreateParam("@name", DbType.String, measure.Name),
+                    PostgreSqlCommandUtils.CreateParam("@declanation1", DbType.String, measure.Declanation1),
+                    PostgreSqlCommandUtils.CreateParam("@declanation2", DbType.String, measure.Declanation2),
+                    PostgreSqlCommandUtils.CreateParam("@declanation3", DbType.String, measure.Declanation3)
+            };
+
+            measure.Id = PostgreSqlCommandUtils.AddEntity<int>(query, parameters);
         }
 
-        private static int GetNextUserCode(int userId, DbConnection connection)
+        private static int GetNextUserCode(int userId)
         {
-            var command = connection.CreateCommand();
-            command.CommandText = $"select user_code from measures where user_id={userId} order by user_code desc limit 1";
-            int nextCode = 0;
-            using (var reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    nextCode = PgsqlUtils.GetInt("user_code", reader, 0);
-                }
-            }
-            return nextCode + 1;
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1", ReadUserCode);
+        }
+
+        private static int ReadUserCode(IDataReader reader)
+        {
+            return PgsqlUtils.GetInt("user_code", reader, 0) + 1;
         }
 
         private static Measure ReadMeasure(IDataReader reader)

@@ -13,7 +13,7 @@ namespace LifeStream108.Modules.NewsManagement
         public static NewsHistoryItem GetHistoryItemByResourceId(string resourceId, int userId)
         {
             NewsHistoryItem foundItem = null;
-            var connInfo = GetHistoryConnString(userId);
+            var connInfo = GetConnString(userId);
             using (var connection = new LiteDatabase(LiteDbUtils.CreateReadolyConnection(connInfo.DbConnString)))
             {
                 var table = connection.GetCollection<NewsHistoryItem>(connInfo.TableName);
@@ -25,7 +25,7 @@ namespace LifeStream108.Modules.NewsManagement
         public static NewsHistoryItem GetLastHistoryItem(int groupId, int userId)
         {
             NewsHistoryItem foundItem = null;
-            var connInfo = GetHistoryConnString(userId);
+            var connInfo = GetConnString(userId);
             using (var connection = new LiteDatabase(LiteDbUtils.CreateReadolyConnection(connInfo.DbConnString)))
             {
                 var table = connection.GetCollection<NewsHistoryItem>(connInfo.TableName);
@@ -36,7 +36,7 @@ namespace LifeStream108.Modules.NewsManagement
 
         public static void AddHistoryItem(NewsHistoryItem item, int userId)
         {
-            var connInfo = GetHistoryConnString(userId);
+            var connInfo = GetConnString(userId);
             using (var connection = new LiteDatabase(connInfo.DbConnString))
             {
                 var table = connection.GetCollection<NewsHistoryItem>(connInfo.TableName);
@@ -44,7 +44,7 @@ namespace LifeStream108.Modules.NewsManagement
             }
         }
 
-        private static (string DbConnString, string TableName) GetHistoryConnString(int userId)
+        private static (string DbConnString, string TableName) GetConnString(int userId)
         {
             string fileName = $"NewsHistory{LiteDbUtils.PrepateDbFileName(userId)}";
             return (Path.Combine(LiteDbDirectory, fileName), fileName);

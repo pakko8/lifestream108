@@ -56,10 +56,29 @@ namespace LifeStream108.Modules.TempDataManagement
             {
                 var command = connection.CreateCommand();
                 command.CommandText =
-$@"insert into {TableName}
-(user_id, project_id, last_command_id, last_life_group_id, last_life_activity_id, last_request_text, data, start_time, last_activity_time)
-values
-(@user_id, @project_id, @last_command_id, @last_life_group_id, @last_life_activity_id, @last_request_text, @data, current_timestamp, current_timestamp)";
+                    $@"insert into {TableName}
+                    (
+                        user_id,
+                        project_id,
+                        last_command_id,
+                        last_life_group_id,
+                        last_life_activity_id,
+                        last_request_text,
+                        data, start_time,
+                        last_activity_time
+                    )
+                    values
+                    (
+                        @user_id,
+                        @project_id,
+                        @last_command_id,
+                        @last_life_group_id,
+                        @last_life_activity_id,
+                        @last_request_text,
+                        @data,
+                        current_timestamp,
+                        current_timestamp
+                    )";
                 command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
                 command.Parameters.Add(new NpgsqlParameter("@project_id", DbType.Int32)).Value = item.ProjectId;
                 command.Parameters.Add(new NpgsqlParameter("@last_command_id", DbType.Int32)).Value = item.LastCommandId;
@@ -78,18 +97,18 @@ values
             {
                 var command = connection.CreateCommand();
                 command.CommandText =
-$@"update {TableName}
-set
-    user_id=@user_id,
-    project_id=@project_id,
-    last_command_id=@last_command_id,
-    last_life_group_id=@last_life_group_id,
-    last_life_activity_id=@last_life_activity_id,
-    last_request_text=@last_request_text,
-    data=@data,
-    last_activity_time=current_timestamp
-where
-    id=@id";
+                    $@"update {TableName}
+                    set
+                        user_id=@user_id,
+                        project_id=@project_id,
+                        last_command_id=@last_command_id,
+                        last_life_group_id=@last_life_group_id,
+                        last_life_activity_id=@last_life_activity_id,
+                        last_request_text=@last_request_text,
+                        data=@data,
+                        last_activity_time=current_timestamp
+                    where
+                        id=@id";
                 command.Parameters.Add(new NpgsqlParameter("@id", DbType.Int32)).Value = item.Id;
                 command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
                 command.Parameters.Add(new NpgsqlParameter("@project_id", DbType.Int32)).Value = item.ProjectId;

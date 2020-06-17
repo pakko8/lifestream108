@@ -1,5 +1,6 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.PostgreSqlHelper;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
 using System;
@@ -10,12 +11,11 @@ namespace LifeStream108.Modules.ToDoListManagement
 {
     public static class ToDoListManager
     {
+        private const string TableName = "todo_list.todo_lists";
+
         public static ToDoList GetList(int listId)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                return CommonManager<ToDoList>.GetById(listId, session);
-            }
+            return PostgreSqlCommandUtils.GetEntity($"select * from {TableName} where id={listId}", ReadList);
         }
 
         public static ToDoList[] GetUserLists(int userId)

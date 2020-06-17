@@ -14,10 +14,30 @@ namespace LifeStream108.Modules.TempDataManagement
             {
                 var command = connection.CreateCommand();
                 command.CommandText =
-@"insert into temp_data.bug_tickets
-(error_type, user_id, request_details, error_message, reg_time, fix_time, notification_sent_time, message_for_user, status)
-values
-(@error_type, @user_id, @request_details, @error_message, current_timestamp, @fix_time, @notification_sent_time, @message_for_user, @status)";
+                    @"insert into temp_data.bug_tickets
+                    (
+                        error_type,
+                        user_id,
+                        request_details,
+                        error_message,
+                        reg_time,
+                        fix_time,
+                        notification_sent_time,
+                        message_for_user,
+                        status
+                    )
+                    values
+                    (
+                        @error_type,
+                        @user_id,
+                        @request_details,
+                        @error_message,
+                        current_timestamp,
+                        @fix_time,
+                        @notification_sent_time,
+                        @message_for_user,
+                        @status
+                    )";
                 command.Parameters.Add(new NpgsqlParameter("@error_type", DbType.String)).Value = ticket.ErrorType.ToString();
                 command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = ticket.UserId;
                 command.Parameters.Add(new NpgsqlParameter("@request_details", DbType.String)).Value = ticket.RequestDetails;

@@ -3,6 +3,7 @@ using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -11,35 +12,79 @@ namespace LifeStream108.Modules.ToDoListManagement
 {
     public static class ToDoCategoryManager
     {
+        private const string TableName = "todo_list.todo_categories";
+
         public static ToDoCategory[] GetUserCategories(int userId)
         {
+            List<ToDoCategory> cats = new List<ToDoCategory>();
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var query = from cat in session.Query<ToDoCategory>()
-                            where cat.UserId == userId
-                            select cat;
-                return query.ToArray();
+                var command = connection.CreateCommand();
+                command.CommandText = $"select * from {TableName} where user_id={userId}";
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cats.Add(ReadCategory(reader));
+                    }
+                }
             }
+            return cats.ToArray();
         }
 
         public static ToDoCategory GetCategoryByCode(int categoryCode, int userId)
         {
+            ToDoCategory cat = null;
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var query = from cat in session.Query<ToDoCategory>()
-                            where cat.UserCode == categoryCode && cat.UserId == userId
-                            select cat;
-                return query.FirstOrDefault();
+                var command = connection.CreateCommand();
+                command.CommandText = $"select * from {TableName} where user_id={userId} and user_code={categoryCode}";
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        cat = ReadCategory(reader);
+                    }
+                }
             }
+            return cat;
         }
 
         public static void AddCategory(ToDoCategory item)
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                item.UserCode = GetNextUserCode(item.UserId, session);
-                CommonManager<ToDoCategory>.Add(item, session);
-                session.Flush();
+                connection.Open();
+
+                item.UserCode = GetNextUserCode(item.UserId, connection);
+                var command = connection.CreateCommand();
+                command.CommandText =
+                    $@"insert into {TableName}
+                    (
+                        user_id,
+                        user_code,
+                        name,
+                        email,
+                        active,
+                        reg_time
+                    )
+                    values
+                    (
+                        @user_id,
+                        @user_code,
+                        @name,
+                        @email,
+                        @active,
+                        @reg_time
+                    )";
+                command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
+                command.Parameters.Add(new NpgsqlParameter("@user_code", DbType.Int32)).Value = item.UserCode;
+                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = item.Name;
+                command.Parameters.Add(new NpgsqlParameter("@active", DbType.Boolean)).Value = item.Active;
+                command.Parameters.Add(new NpgsqlParameter("@reg_time", DbType.DateTime)).Value = item.RegTime;
+                command.ExecuteNonQuery();
             }
         }
 
@@ -47,18 +92,40 @@ namespace LifeStream108.Modules.ToDoListManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                CommonManager<ToDoCategory>.Update(item, session);
-                session.Flush();
+                var command = connection.CreateCommand();
+                command.CommandText =
+                    $@"update {TableName}
+                    set
+                        user_id=@user_id,
+                        user_code=@user_code,
+                        name=@name,
+                        email=@email,
+                        active=@active,
+                        reg_time=@reg_time
+                    where id=@id";
+                command.Parameters.Add(new NpgsqlParameter("@id", DbType.Int32)).Value = item.Id;
+                command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
+                command.Parameters.Add(new NpgsqlParameter("@user_code", DbType.Int32)).Value = item.UserCode;
+                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = item.Name;
+                command.Parameters.Add(new NpgsqlParameter("@active", DbType.Boolean)).Value = item.Active;
+                command.Parameters.Add(new NpgsqlParameter("@reg_time", DbType.DateTime)).Value = item.RegTime;
+                command.ExecuteNonQuery();
             }
         }
 
         private static int GetNextUserCode(int userId, DbConnection connection)
         {
-            var query = from item in session.Query<ToDoCategory>()
-                        where item.UserId == userId
-                        orderby item.UserCode descending
-                        select item.UserCode;
-            return query.FirstOrDefault() + 1;
+            var command = connection.CreateCommand();
+            command.CommandText = $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1";
+            int nextCode = 0;
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    nextCode = PgsqlUtils.GetInt("user_code", reader, 0);
+                }
+            }
+            return nextCode + 1;
         }
 
         private static ToDoCategory ReadCategory(IDataReader reader)
