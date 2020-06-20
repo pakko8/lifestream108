@@ -1,8 +1,10 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.LifeActityEntities;
+using LifeStream108.Libs.PostgreSqlHelper;
 using LifeStream108.Modules.SettingsManagement;
 using NLog;
 using Npgsql;
+using NpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,18 +15,21 @@ namespace LifeStream108.Modules.LifeActivityManagement
 {
     public static class LifeActivityLogManager
     {
+        private const string TableNameLogs = "life_activity_logs.life_activity_logs";
+        private const string TableNameLogValues = "life_activity_logs.life_activity_log_values";
+
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
             Logger.Info($"Getting activity logs for user={userId}, period={dateFrom:yyyy-MM-dd}-{dateTo:yyyy-MM-dd}");
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
+            string query = $"select * {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<=@periodTo";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                var query  = from log in session.Query<LifeActivityLog>()
-                    where log.UserId == userId && log.Period >= dateFrom && log.Period <= dateTo
-                    select log;
-                return query.ToArray();
-            }
+                PostgreSqlCommandUtils.CreateParam("@periodFrom", dateFrom, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@periodTo", dateTo, NpgsqlDbType.Timestamp)
+            };
+            return PostgreSqlCommandUtils.GetEntities(query, ReadLog);
         }
 
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId, int[] activityIds)
@@ -135,14 +140,36 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
             }
         }
 
-        public static void UpdateLog(LifeActivityLog log)
+        private static void UpdateLog(LifeActivityLog log)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
+            UpdateLog(log, null as NpgsqlConnection);
+        }
+
+        private static void UpdateLog(LifeActivityLog log, NpgsqlConnection connection)
+        {
+            string query =
+                $@"update {TableNameLogs}
+                set
+                    life_activity_id=@life_activity_id,
+                    period=@period,
+                    comment=@comment,
+                    active=@active,
+                    update_time=current_timestamp
+                where id=@id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                log.UpdateTime = DateTime.Now;
-                CommonManager<LifeActivityLog>.Update(log, session);
-                session.Flush();
-            }
+                PostgreSqlCommandUtils.CreateParam("@id", log.Id, NpgsqlDbType.Integer),
+                PostgreSqlCommandUtils.CreateParam("@life_activity_id", log.LifeActivityId, NpgsqlDbType.Integer),
+                PostgreSqlCommandUtils.CreateParam("@period", log.Period, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@comment", log.Comment, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@active", log.Active, NpgsqlDbType.Boolean)
+            };
+
+            if (connection == null)
+                PostgreSqlCommandUtils.UpdateEntity(query, parameters);
+            else
+                PostgreSqlCommandUtils.UpdateEntity(query, parameters, connection);
         }
 
         public static void UpdateLog(LifeActivityLog log, LifeActivityLogValue[] logValues)
@@ -170,16 +197,30 @@ and val.period>=timestamp'{dateFrom:yyyy-MM-dd}' and val.period<=timestamp'{date
             }
         }
 
+        private static LifeActivityLog ReadLog(IDataReader reader)
+        {
+            LifeActivityLog log = new LifeActivityLog();
+            log.Id = PgsqlUtils.GetInt("id", reader);
+            log.UserId = PgsqlUtils.GetInt("user_id", reader);
+            log.LifeActivityId = PgsqlUtils.GetInt("life_activity_id", reader);
+            log.Period = PgsqlUtils.GetDateTime("period", reader, DateTime.MinValue);
+            log.Comment = PgsqlUtils.GetString("comment", reader);
+            log.Active = PgsqlUtils.GetBoolean("active", reader);
+            log.RegTime = PgsqlUtils.GetDateTime("reg_time", reader, DateTime.MinValue);
+            log.UpdateTime = PgsqlUtils.GetDateTime("update_time", reader, DateTime.MinValue);
+            return log;
+        }
+
         private static LifeActivityLogValue ReadLogValue(IDataReader reader)
         {
             LifeActivityLogValue value = new LifeActivityLogValue();
-            value.Id = PgsqlUtils.GetInt("id", reader, 0);
-            value.UserId = PgsqlUtils.GetInt("user_id", reader, 0);
-            value.ActivityLogId = PgsqlUtils.GetLong("activity_log_id", reader, 0);
+            value.Id = PgsqlUtils.GetInt("id", reader);
+            value.UserId = PgsqlUtils.GetInt("user_id", reader);
+            value.ActivityLogId = PgsqlUtils.GetLong("activity_log_id", reader);
             value.Period = PgsqlUtils.GetDateTime("period", reader, DateTime.MinValue);
-            value.ActivityParamId = PgsqlUtils.GetInt("activity_param_id", reader, 0);
-            value.NumericValue = PgsqlUtils.GetDouble("numeric_value", reader, 0);
-            value.TextValue = PgsqlUtils.GetString("text_value", reader, "");
+            value.ActivityParamId = PgsqlUtils.GetInt("activity_param_id", reader);
+            value.NumericValue = PgsqlUtils.GetDouble("numeric_value", reader);
+            value.TextValue = PgsqlUtils.GetString("text_value", reader);
             return value;
         }
     }

@@ -1,12 +1,11 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.ToDoEntities;
+using LifeStream108.Libs.PostgreSqlHelper;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
+using NpgsqlTypes;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 
 namespace LifeStream108.Modules.ToDoListManagement
 {
@@ -16,51 +15,22 @@ namespace LifeStream108.Modules.ToDoListManagement
 
         public static ToDoCategory[] GetUserCategories(int userId)
         {
-            List<ToDoCategory> cats = new List<ToDoCategory>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where user_id={userId}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        cats.Add(ReadCategory(reader));
-                    }
-                }
-            }
-            return cats.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableName} where user_id={userId}", ReadCategory);
         }
 
         public static ToDoCategory GetCategoryByCode(int categoryCode, int userId)
         {
-            ToDoCategory cat = null;
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where user_id={userId} and user_code={categoryCode}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        cat = ReadCategory(reader);
-                    }
-                }
-            }
-            return cat;
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select * from {TableName} where user_id={userId} and user_code={categoryCode}", ReadCategory);
         }
 
-        public static void AddCategory(ToDoCategory item)
+        public static void AddCategory(ToDoCategory category)
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                connection.Open();
+                category.UserCode = GetNextUserCode(category.UserId, connection);
 
-                item.UserCode = GetNextUserCode(item.UserId, connection);
-                var command = connection.CreateCommand();
-                command.CommandText =
+                string query =
                     $@"insert into {TableName}
                     (
                         user_id,
@@ -77,66 +47,67 @@ namespace LifeStream108.Modules.ToDoListManagement
                         @name,
                         @email,
                         @active,
-                        @reg_time
-                    )";
-                command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
-                command.Parameters.Add(new NpgsqlParameter("@user_code", DbType.Int32)).Value = item.UserCode;
-                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = item.Name;
-                command.Parameters.Add(new NpgsqlParameter("@active", DbType.Boolean)).Value = item.Active;
-                command.Parameters.Add(new NpgsqlParameter("@reg_time", DbType.DateTime)).Value = item.RegTime;
-                command.ExecuteNonQuery();
-            }
-        }
+                        current_timestamp
+                    )
+                    returning id";
 
-        public static void UpdateCategory(ToDoCategory item)
-        {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText =
-                    $@"update {TableName}
-                    set
-                        user_id=@user_id,
-                        user_code=@user_code,
-                        name=@name,
-                        email=@email,
-                        active=@active,
-                        reg_time=@reg_time
-                    where id=@id";
-                command.Parameters.Add(new NpgsqlParameter("@id", DbType.Int32)).Value = item.Id;
-                command.Parameters.Add(new NpgsqlParameter("@user_id", DbType.Int32)).Value = item.UserId;
-                command.Parameters.Add(new NpgsqlParameter("@user_code", DbType.Int32)).Value = item.UserCode;
-                command.Parameters.Add(new NpgsqlParameter("@name", DbType.String)).Value = item.Name;
-                command.Parameters.Add(new NpgsqlParameter("@active", DbType.Boolean)).Value = item.Active;
-                command.Parameters.Add(new NpgsqlParameter("@reg_time", DbType.DateTime)).Value = item.RegTime;
-                command.ExecuteNonQuery();
-            }
-        }
-
-        private static int GetNextUserCode(int userId, DbConnection connection)
-        {
-            var command = connection.CreateCommand();
-            command.CommandText = $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1";
-            int nextCode = 0;
-            using (var reader = command.ExecuteReader())
-            {
-                if (reader.Read())
+                NpgsqlParameter[] parameters = new NpgsqlParameter[]
                 {
-                    nextCode = PgsqlUtils.GetInt("user_code", reader, 0);
-                }
+                    PostgreSqlCommandUtils.CreateParam("@user_id", category.UserId, NpgsqlDbType.Integer),
+                    PostgreSqlCommandUtils.CreateParam("@user_code", category.UserCode, NpgsqlDbType.Integer),
+                    PostgreSqlCommandUtils.CreateParam("@name", category.Name, NpgsqlDbType.Varchar),
+                    PostgreSqlCommandUtils.CreateParam("@email", category.Email, NpgsqlDbType.Varchar),
+                    PostgreSqlCommandUtils.CreateParam("@active", category.Active, NpgsqlDbType.Boolean),
+                };
+
+                category.Id = PostgreSqlCommandUtils.AddEntity<int>(query, parameters);
             }
-            return nextCode + 1;
+        }
+
+        public static void UpdateCategory(ToDoCategory category)
+        {
+            string query =
+                $@"update {TableName}
+                set
+                    user_code=@user_code,
+                    name=@name,
+                    email=@email,
+                    active=@active
+                where id=@id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                PostgreSqlCommandUtils.CreateParam("@id", category.Id, NpgsqlDbType.Integer),
+                PostgreSqlCommandUtils.CreateParam("@user_code", category.UserCode, NpgsqlDbType.Integer),
+                PostgreSqlCommandUtils.CreateParam("@name", category.Name, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@email", category.Name, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@active", category.Active, NpgsqlDbType.Boolean),
+            };
+
+            PostgreSqlCommandUtils.UpdateEntity(query, parameters);
+        }
+
+        private static int GetNextUserCode(int userId, NpgsqlConnection connection)
+        {
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1",
+                connection, ReadUserCode);
+        }
+
+        private static int ReadUserCode(IDataReader reader)
+        {
+            return PgsqlUtils.GetInt("user_code", reader, 0) + 1;
         }
 
         private static ToDoCategory ReadCategory(IDataReader reader)
         {
             ToDoCategory cat = new ToDoCategory();
-            cat.Id = PgsqlUtils.GetInt("Id", reader, 0);
-            cat.UserId = PgsqlUtils.GetInt("user_id", reader, 0);
-            cat.UserCode = PgsqlUtils.GetInt("user_code", reader, 0);
-            cat.Name = PgsqlUtils.GetString("name", reader, "");
-            cat.Email = PgsqlUtils.GetString("email", reader, "");
-            cat.Active = PgsqlUtils.GetBoolean("active", reader, false);
+            cat.Id = PgsqlUtils.GetInt("Id", reader);
+            cat.UserId = PgsqlUtils.GetInt("user_id", reader);
+            cat.UserCode = PgsqlUtils.GetInt("user_code", reader);
+            cat.Name = PgsqlUtils.GetString("name", reader);
+            cat.Email = PgsqlUtils.GetString("email", reader);
+            cat.Active = PgsqlUtils.GetBoolean("active", reader);
             cat.RegTime = PgsqlUtils.GetDateTime("reg_time", reader, DateTime.MinValue);
             return cat;
         }

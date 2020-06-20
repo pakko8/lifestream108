@@ -28,13 +28,13 @@ namespace LifeStream108.Modules.DictionaryManagement
         private static Project ReadProject(IDataReader reader)
         {
             Project project = new Project();
-            project.Id = PgsqlUtils.GetInt("id", reader, 0);
-            project.UserCode = PgsqlUtils.GetString("user_code", reader, "");
-            project.Name = PgsqlUtils.GetString("name", reader, "");
-            project.Description = PgsqlUtils.GetString("description", reader, "");
-            project.HelpUrl = PgsqlUtils.GetString("help_url", reader, "");
-            project.AssemblyName = PgsqlUtils.GetString("assembly_name", reader, "");
-            project.AssemblyRootNamespace = PgsqlUtils.GetString("assembly_root_namespace", reader, "");
+            project.Id = PgsqlUtils.GetInt("id", reader);
+            project.UserCode = PgsqlUtils.GetString("user_code", reader);
+            project.Name = PgsqlUtils.GetString("name", reader);
+            project.Description = PgsqlUtils.GetString("description", reader);
+            project.HelpUrl = PgsqlUtils.GetString("help_url", reader);
+            project.AssemblyName = PgsqlUtils.GetString("assembly_name", reader);
+            project.AssemblyRootNamespace = PgsqlUtils.GetString("assembly_root_namespace", reader);
             project.RegTime = PgsqlUtils.GetDateTime("reg_time", reader, DateTime.MinValue);
             return project;
         }

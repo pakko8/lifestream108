@@ -58,49 +58,49 @@ namespace LifeStream108.Modules.CommandManagement
         private static Command ReadCommand(IDataReader reader)
         {
             Command command = new Command();
-            command.Id = PgsqlUtils.GetInt("id", reader, 0);
-            command.SortOrder = PgsqlUtils.GetInt("sort_order", reader, 0);
-            command.ProjectId = PgsqlUtils.GetInt("project_id", reader, 0);
+            command.Id = PgsqlUtils.GetInt("id", reader);
+            command.SortOrder = PgsqlUtils.GetInt("sort_order", reader);
+            command.ProjectId = PgsqlUtils.GetInt("project_id", reader);
             command.EntityType = (EntityType)PgsqlUtils.GetEnum("entity_type", reader, typeof(EntityType), EntityType.NoEntity);
-            command.Name = PgsqlUtils.GetString("name", reader, "");
-            command.Description = PgsqlUtils.GetString("description", reader, "");
-            command.ProcessorClassName = PgsqlUtils.GetString("processor_class_name", reader, "");
-            command.Active = PgsqlUtils.GetBoolean("active", reader, false);
+            command.Name = PgsqlUtils.GetString("name", reader);
+            command.Description = PgsqlUtils.GetString("description", reader);
+            command.ProcessorClassName = PgsqlUtils.GetString("processor_class_name", reader);
+            command.Active = PgsqlUtils.GetBoolean("active", reader);
             return command;
         }
 
         private static CommandName ReadCommandName(IDataReader reader)
         {
             CommandName commandName = new CommandName();
-            commandName.Id = PgsqlUtils.GetInt("id", reader, 0);
-            commandName.SortOrder = PgsqlUtils.GetInt("sort_order", reader, 0);
-            commandName.CommandId = PgsqlUtils.GetInt("command_id", reader, 0);
-            commandName.Alias = PgsqlUtils.GetString("alias", reader, "");
-            commandName.SpacePositions = PgsqlUtils.GetString("space_positions", reader, "");
-            commandName.LanguageId = PgsqlUtils.GetInt("language_id", reader, 0);
+            commandName.Id = PgsqlUtils.GetInt("id", reader);
+            commandName.SortOrder = PgsqlUtils.GetInt("sort_order", reader);
+            commandName.CommandId = PgsqlUtils.GetInt("command_id", reader);
+            commandName.Alias = PgsqlUtils.GetString("alias", reader);
+            commandName.SpacePositions = PgsqlUtils.GetString("space_positions", reader);
+            commandName.LanguageId = PgsqlUtils.GetInt("language_id", reader);
             return commandName;
         }
 
         private static CommandParameter ReadCommandParameter(IDataReader reader)
         {
             CommandParameter param = new CommandParameter();
-            param.Id = PgsqlUtils.GetInt("id", reader, 0);
-            param.CommandId = PgsqlUtils.GetInt("command_id", reader, 0);
-            param.SortOrder = PgsqlUtils.GetInt("sort_order", reader, 0);
+            param.Id = PgsqlUtils.GetInt("id", reader,);
+            param.CommandId = PgsqlUtils.GetInt("command_id", reader);
+            param.SortOrder = PgsqlUtils.GetInt("sort_order", reader);
             param.ParameterCode = (CommandParameterCode)PgsqlUtils.GetEnum("command_param_code", reader, typeof(CommandParameterCode), CommandParameterCode.None);
-            param.Name = PgsqlUtils.GetString("name", reader, "");
-            param.Description = PgsqlUtils.GetString("description", reader, "");
+            param.Name = PgsqlUtils.GetString("name", reader);
+            param.Description = PgsqlUtils.GetString("description", reader);
             param.DataType = (DataType)PgsqlUtils.GetEnum("data_type", reader, typeof(DataType), DataType.Text);
             param.InputDataType = (InputDataType)PgsqlUtils.GetEnum("input_data_type", reader, typeof(InputDataType), InputDataType.Simple);
-            param.DataFormat = PgsqlUtils.GetString("data_format", reader, "");
-            param.DataFormatDescription = PgsqlUtils.GetString("data_format_desc", reader,"");
-            param.Required = PgsqlUtils.GetBoolean("required", reader, false);
-            param.MinLength = PgsqlUtils.GetInt("min_length", reader, 0);
-            param.MaxLength = PgsqlUtils.GetInt("max_length", reader, 0);
-            param.Regex = PgsqlUtils.GetString("regex", reader, "");
-            param.PredefinedValues = PgsqlUtils.GetString("predefined_values", reader, "");
-            param.DefaultValue = PgsqlUtils.GetString("default_value", reader, "");
-            param.Example = PgsqlUtils.GetString("example", reader, "");
+            param.DataFormat = PgsqlUtils.GetString("data_format", reader);
+            param.DataFormatDescription = PgsqlUtils.GetString("data_format_desc", reader);
+            param.Required = PgsqlUtils.GetBoolean("required", reader);
+            param.MinLength = PgsqlUtils.GetInt("min_length", reader);
+            param.MaxLength = PgsqlUtils.GetInt("max_length", reader);
+            param.Regex = PgsqlUtils.GetString("regex", reader);
+            param.PredefinedValues = PgsqlUtils.GetString("predefined_values", reader);
+            param.DefaultValue = PgsqlUtils.GetString("default_value", reader);
+            param.Example = PgsqlUtils.GetString("example", reader);
             return param;
         }
     }

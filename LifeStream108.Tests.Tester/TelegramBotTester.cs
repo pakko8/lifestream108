@@ -23,8 +23,8 @@ namespace LifeStream108.Tests.Tester
 
         private async void _botClient_OnUpdate(object sender, UpdateEventArgs e)
         {
-            var rkm = CreateTelegramKeyboard();
-            await _botClient.SendTextMessageAsync("302115880", "Text", ParseMode.Default, false, false, 0, rkm);
+            var keyboard = CreateTelegramKeyboard();
+            await _botClient.SendTextMessageAsync("302115880", "Text", ParseMode.Default, false, false, 0, keyboard);
         }
 
         private static InlineKeyboardMarkup CreateTelegramKeyboard()

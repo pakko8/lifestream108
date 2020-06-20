@@ -10,7 +10,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
 {
     public static class PostgreSqlCommandUtils
     {
-        public static NpgsqlParameter CreateParam(string paramName, NpgsqlDbType type, object value, int size = 0)
+        public static NpgsqlParameter CreateParam(string paramName, object value, NpgsqlDbType type, int size = 0)
         {
             NpgsqlParameter param = new NpgsqlParameter(paramName, type, size);
             param.Value = value;
@@ -22,50 +22,74 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             T resultObject = default;
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var command = connection.CreateCommand();
-                command.CommandText = query;
                 connection.Open();
-                using (var reader = command.ExecuteReader())
+                resultObject = GetEntity(query, connection, objectReader);
+            }
+            return resultObject;
+        }
+
+        public static T GetEntity<T>(string query, NpgsqlConnection connection, Func<IDataReader, T> objectReader)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = query;
+            T resultObject = default;
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.Read())
                 {
-                    if (reader.Read())
-                    {
-                        resultObject = objectReader(reader);
-                    }
+                    resultObject = objectReader(reader);
                 }
             }
             return resultObject;
         }
 
-        public static T[] GetEntities<T>(string query, Func<IDataReader, T> objectReader)
+        public static T[] GetEntities<T>(string query, NpgsqlConnection connection, Func<IDataReader, T> objectReader,
+            NpgsqlParameter[] parameters = null)
         {
             List<T> resultList = new List<T>();
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
+            var command = connection.CreateCommand();
+            command.CommandText = query;
+            if (parameters != null) command.Parameters.AddRange(parameters);
+            using (var reader = command.ExecuteReader())
             {
-                var command = connection.CreateCommand();
-                command.CommandText = query;
-                connection.Open();
-                using (var reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        resultList.Add(objectReader(reader));
-                    }
+                    resultList.Add(objectReader(reader));
                 }
             }
             return resultList.ToArray();
         }
 
-        public static T AddEntity<T>(string query, NpgsqlParameter[] parameters)
+        public static T[] GetEntities<T>(string query, Func<IDataReader, T> objectReader, NpgsqlParameter[] parameters = null)
         {
-            object newIdObj;
+            T[] resultList;
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var command = connection.CreateCommand();
-                command.CommandText = query;
-                command.Parameters.AddRange(parameters);
                 connection.Open();
-                newIdObj = command.ExecuteScalar();
+                resultList = GetEntities(query, connection, objectReader, parameters);
             }
+            return resultList;
+        }
+
+        public static T AddEntity<T>(string query, NpgsqlParameter[] parameters)
+        {
+            T newIdObj;
+            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
+            {
+                connection.Open();
+                newIdObj = AddEntity<T>(query, parameters, connection);
+            }
+            return newIdObj;
+        }
+
+        public static T AddEntity<T>(string query, NpgsqlParameter[] parameters, NpgsqlConnection connection)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddRange(parameters);
+
+            object newIdObj = command.ExecuteScalar();
+
             return DataConverter.Parse<T>(newIdObj.ToString());
         }
 
@@ -73,12 +97,17 @@ namespace LifeStream108.Libs.PostgreSqlHelper
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var command = connection.CreateCommand();
-                command.CommandText = query;
-                command.Parameters.AddRange(parameters);
                 connection.Open();
-                command.ExecuteNonQuery();
+                UpdateEntity(query, parameters, connection);
             }
+        }
+
+        public static void UpdateEntity(string query, NpgsqlParameter[] parameters, NpgsqlConnection connection)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = query;
+            if (parameters != null && parameters.Length > 0) command.Parameters.AddRange(parameters);
+            command.ExecuteNonQuery();
         }
     }
 }

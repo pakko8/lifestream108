@@ -1,8 +1,7 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.UserEntities;
-using Npgsql;
+using LifeStream108.Libs.PostgreSqlHelper;
 using System;
-using System.Collections.Generic;
 using System.Data;
 
 namespace LifeStream108.Modules.UserManagement
@@ -11,132 +10,55 @@ namespace LifeStream108.Modules.UserManagement
     {
         private const string TableName = "users.users";
 
-        public static User AuthorizeUser(string email, string passwordHash, string dbConnString)
+        public static User AuthorizeUser(string email, string passwordHash)
         {
-            User user = null;
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where email='{email.ToUpper()}' and password_hash='{passwordHash}'";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        user = ReadUser(reader);
-                    }
-                }
-            }
-            return user;
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select * from {TableName} where email='{email.ToUpper()}' and password_hash='{passwordHash}'", ReadUser);
         }
 
-        public static (User User, string Error) AuthorizeUser(int telegramId, string dbConnString)
+        public static (User User, string Error) AuthorizeUser(int telegramId)
         {
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                connection.Open();
-                User user = GetUserByTelegramId(telegramId, connection);
-                if (user == null)
-                    return (null, "Пользователь не зарегистрирован");
-                if (user.Status != UserStatus.Active)
-                    return (null, "Пользователь " + user.Status.GetDescriptiveString());
+            User user = GetUserByTelegramId(telegramId);
+            if (user == null)
+                return (null, "Пользователь не зарегистрирован");
+            if (user.Status != UserStatus.Active)
+                return (null, "Пользователь " + user.Status.GetDescriptiveString());
 
-                return (user, "");
-            }
+            return (user, "");
+
         }
 
-        public static User GetUser(int userId, string dbConnString)
+        public static User GetUser(int userId)
         {
-            User user = null;
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where id={userId}";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        user = ReadUser(reader);
-                    }
-                }
-            }
-            return user;
+            return PostgreSqlCommandUtils.GetEntity($"select * from {TableName} where id={userId}", ReadUser);
         }
 
-        public static User[] GetAllUsers(string dbConnString)
+        public static User[] GetAllUsers()
         {
-            List<User> users = new List<User>();
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where superuser='t'";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        users.Add(ReadUser(reader));
-                    }
-                }
-            }
-            return users.ToArray();
+            return PostgreSqlCommandUtils.GetEntities($"select * from {TableName} where superuser='t'", ReadUser);
         }
 
-        public static User GetUserByTelegramId(int telegramId, string dbConnString)
+        public static User GetUserByTelegramId(int telegramId)
         {
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                connection.Open();
-                return GetUserByTelegramId(telegramId, connection);
-            }
+            return PostgreSqlCommandUtils.GetEntity($"select * from {TableName} where telegram_id={telegramId}", ReadUser);
         }
 
-        public static User GetSuperuser(string dbConnString)
+        public static User GetSuperuser()
         {
-            User user = null;
-            using (var connection = new NpgsqlConnection(dbConnString))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select * from {TableName} where superuser='t'";
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        user = ReadUser(reader);
-                    }
-                }
-            }
-            return user;
-        }
-
-        private static User GetUserByTelegramId(int telegramId, IDbConnection connection)
-        {
-            User user = null;
-            var command = connection.CreateCommand();
-            command.CommandText = $"select * from {TableName} where telegram_id={telegramId}";
-            using (var reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    user = ReadUser(reader);
-                }
-            }
-            return user;
+            return PostgreSqlCommandUtils.GetEntity($"select * from {TableName} where superuser='t'", ReadUser);
         }
 
         private static User ReadUser(IDataReader reader)
         {
             User user = new User();
-            user.Id = PgsqlUtils.GetInt("id", reader, 0);
-            user.Email = PgsqlUtils.GetString("email", reader, "");
-            user.Name = PgsqlUtils.GetString("name", reader, "");
-            user.Superuser = PgsqlUtils.GetBoolean("superuser", reader, false);
-            user.TelegramId = PgsqlUtils.GetInt("telegram_id", reader, 0);
-            user.LanguageId = PgsqlUtils.GetInt("language_id", reader, 0);
-            user.CurrencyId = PgsqlUtils.GetInt("currency_id", reader, 0);
-            user.DefaultProjectId = PgsqlUtils.GetInt("default_project_id", reader, 0);
+            user.Id = PgsqlUtils.GetInt("id", reader);
+            user.Email = PgsqlUtils.GetString("email", reader);
+            user.Name = PgsqlUtils.GetString("name", reader);
+            user.Superuser = PgsqlUtils.GetBoolean("superuser", reader);
+            user.TelegramId = PgsqlUtils.GetInt("telegram_id", reader);
+            user.LanguageId = PgsqlUtils.GetInt("language_id", reader);
+            user.CurrencyId = PgsqlUtils.GetInt("currency_id", reader);
+            user.DefaultProjectId = PgsqlUtils.GetInt("default_project_id", reader);
             user.CheckActLogsTime = PgsqlUtils.GetDateTime("check_act_logs_last_time", reader, DateTime.MinValue);
             user.Status = (UserStatus)PgsqlUtils.GetEnum("status", reader, typeof(UserStatus), UserStatus.Bloked);
             return user;

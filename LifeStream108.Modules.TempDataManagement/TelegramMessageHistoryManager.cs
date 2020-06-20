@@ -1,5 +1,4 @@
-﻿using LifeStream108.Libs.Common;
-using LifeStream108.Libs.Entities.MessageEntities;
+﻿using LifeStream108.Libs.Entities.MessageEntities;
 using LifeStream108.Libs.LiteDbHelper;
 using LiteDB;
 using System.IO;
@@ -9,7 +8,7 @@ namespace LifeStream108.Modules.TempDataManagement
 {
     public static class TelegramMessageHistoryManager
     {
-        private const string LiteDbDirectory = @"C:\_Projects\LiteDb\Telegr";
+        private const string LiteDbDirectory = @"C:\_Projects\LiteDb\";
 
         public static TelegramMessageHistory[] GetHistoryForUser(int userId)
         {
@@ -48,7 +47,7 @@ namespace LifeStream108.Modules.TempDataManagement
 
         private static (string DbConnString, string TableName) GetConnString(int userId)
         {
-            string fileName = $"NewsHistory{LiteDbUtils.PrepateDbFileName(userId)}";
+            string fileName = $"TelegramMsgHistory{LiteDbUtils.PrepateDbFileName(userId)}";
             return (Path.Combine(LiteDbDirectory, fileName), fileName);
         }
     }

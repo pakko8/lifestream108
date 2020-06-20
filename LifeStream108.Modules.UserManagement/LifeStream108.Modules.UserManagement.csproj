@@ -82,6 +82,10 @@
       <Project>{613137C8-6839-4585-B355-8AE290326A61}</Project>
       <Name>LifeStream108.Libs.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeStream108.Libs.PostgreSqlHelper\LifeStream108.Libs.PostgreSqlHelper.csproj">
+      <Project>{951CB7AC-7564-4F33-B7ED-63DCCA973D1A}</Project>
+      <Name>LifeStream108.Libs.PostgreSqlHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

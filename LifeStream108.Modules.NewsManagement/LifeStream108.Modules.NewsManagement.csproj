@@ -13,6 +13,7 @@
     <ProjectReference Include="..\LifeStream108.Libs.Common\LifeStream108.Libs.Common.csproj" />
     <ProjectReference Include="..\LifeStream108.Libs.Entities\LifeStream108.Libs.Entities.csproj" />
     <ProjectReference Include="..\LifeStream108.Libs.LiteDbHelper\LifeStream108.Libs.LiteDbHelper.csproj" />
+    <ProjectReference Include="..\LifeStream108.Libs.PostgreSqlHelper\LifeStream108.Libs.PostgreSqlHelper.csproj" />
     <ProjectReference Include="..\LifeStream108.Modules.SettingsManagement\LifeStream108.Modules.SettingsManagement.csproj" />
   </ItemGroup>
 
