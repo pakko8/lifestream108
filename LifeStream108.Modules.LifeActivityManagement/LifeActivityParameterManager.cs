@@ -7,8 +7,6 @@ using Npgsql;
 using NpgsqlTypes;
 using System;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 
 namespace LifeStream108.Modules.LifeActivityManagement
 {
@@ -38,7 +36,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             int activityId, NpgsqlConnection connection, bool onlyActive = true)
         {
             return PostgreSqlCommandUtils.GetEntities($"select * from {TableName} where activity_id={activityId}",
-                connection, ReadParameter);
+                ReadParameter, connection);
         }
 
         public static void AddParameters(LifeActivityParameter[] parameters)
@@ -122,7 +120,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     data_type=@data_type,
                     function=@function,
                     active=@active
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
@@ -144,7 +143,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             return PostgreSqlCommandUtils.GetEntity(
                 $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1",
-                connection, ReadUserCode);
+                ReadUserCode, connection);
         }
 
         private static int ReadUserCode(IDataReader reader)

@@ -52,7 +52,7 @@ namespace LifeStream108.Modules.DictionaryManagement
         {
             return PostgreSqlCommandUtils.GetEntity(
                 $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1",
-                connection, ReadUserCode);
+                ReadUserCode, connection);
         }
 
         private static int ReadUserCode(IDataReader reader)

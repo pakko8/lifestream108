@@ -85,7 +85,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     life_group_id=@life_group_id,
                     parent_life_group_id=@parent_life_group_id,
                     sort_order=@sort_order,
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {

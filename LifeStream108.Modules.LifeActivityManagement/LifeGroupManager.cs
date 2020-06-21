@@ -1,6 +1,5 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Libs.Entities.UserEntities;
 using LifeStream108.Libs.PostgreSqlHelper;
 using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
@@ -120,7 +119,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     short_name=@short_name,
                     active=@active,
                     type=@type
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
@@ -139,7 +139,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             return PostgreSqlCommandUtils.GetEntity(
                 $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1",
-                connection, ReadUserCode);
+                ReadUserCode, connection);
         }
 
         private static int ReadUserCode(IDataReader reader)

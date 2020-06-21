@@ -1,15 +1,19 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Modules.SettingsManagement;
+using NLog;
 using Npgsql;
 using NpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
 namespace LifeStream108.Libs.PostgreSqlHelper
 {
     public static class PostgreSqlCommandUtils
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public static NpgsqlParameter CreateParam(string paramName, object value, NpgsqlDbType type, int size = 0)
         {
             NpgsqlParameter param = new NpgsqlParameter(paramName, type, size);
@@ -23,15 +27,16 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 connection.Open();
-                resultObject = GetEntity(query, connection, objectReader);
+                resultObject = GetEntity(query, objectReader, connection);
             }
             return resultObject;
         }
 
-        public static T GetEntity<T>(string query, NpgsqlConnection connection, Func<IDataReader, T> objectReader)
+        public static T GetEntity<T>(string query, Func<IDataReader, T> objectReader, NpgsqlConnection connection)
         {
             var command = connection.CreateCommand();
             command.CommandText = query;
+            LogCommand(command);
             T resultObject = default;
             using (var reader = command.ExecuteReader())
             {
@@ -43,12 +48,13 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             return resultObject;
         }
 
-        public static T[] GetEntities<T>(string query, NpgsqlConnection connection, Func<IDataReader, T> objectReader,
+        public static T[] GetEntities<T>(string query, Func<IDataReader, T> objectReader, NpgsqlConnection connection,
             NpgsqlParameter[] parameters = null)
         {
             List<T> resultList = new List<T>();
             var command = connection.CreateCommand();
             command.CommandText = query;
+            LogCommand(command);
             if (parameters != null) command.Parameters.AddRange(parameters);
             using (var reader = command.ExecuteReader())
             {
@@ -66,7 +72,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 connection.Open();
-                resultList = GetEntities(query, connection, objectReader, parameters);
+                resultList = GetEntities(query, objectReader, connection, parameters);
             }
             return resultList;
         }
@@ -87,7 +93,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             var command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.AddRange(parameters);
-
+            LogCommand(command);
             object newIdObj = command.ExecuteScalar();
 
             return DataConverter.Parse<T>(newIdObj.ToString());
@@ -107,7 +113,23 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             var command = connection.CreateCommand();
             command.CommandText = query;
             if (parameters != null && parameters.Length > 0) command.Parameters.AddRange(parameters);
+            LogCommand(command);
             command.ExecuteNonQuery();
+        }
+
+        private static void LogCommand(NpgsqlCommand command)
+        {
+            StringBuilder sbTrace = new StringBuilder($"Exec cmd {command.CommandText}");
+            if (command.Parameters.Count > 0)
+            {
+                sbTrace.AppendLine(":\r\n");
+                foreach (IDbDataParameter parameter in command.Parameters)
+                {
+                    sbTrace.AppendLine(
+                        $"param '{parameter.ParameterName}' ({parameter.DbType}{(parameter.Size > 0 ? ", " + parameter.Size : "")}), Value: {parameter.Value}");
+                }
+            }
+            Logger.Info(sbTrace.ToString());
         }
     }
 }

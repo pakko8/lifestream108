@@ -6,8 +6,6 @@ using Npgsql;
 using NpgsqlTypes;
 using System;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 
 namespace LifeStream108.Modules.LifeActivityManagement
 {
@@ -19,14 +17,13 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                var query = from act in session.Query<LifeActivity>()
-                            where act.UserId == userId && act.Id == activityId
-                            select act;
-                LifeActivity activity = query.FirstOrDefault();
+                LifeActivity activity = PostgreSqlCommandUtils.GetEntity(
+                    $"select * from {TableName} where user_id={userId} and id={activityId}", ReadActivity, connection);
+
                 LifeActivityParameter[] parameters = null;
                 if (activity != null)
                 {
-                    parameters = LifeActivityParameterManager.GetParametersByActivity(activity.Id, session, true);
+                    parameters = LifeActivityParameterManager.GetParametersByActivity(activity.Id, connection, true);
                 }
                 return (activity, parameters);
             }
@@ -39,21 +36,19 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeActivity GetActivityByUserCode(int userCode, int userId)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                return GetActivityByUserCode(userCode, userId, session);
-            }
+            return PostgreSqlCommandUtils.GetEntity(
+                $"select * from {TableName} where user_id={userId} and user_code={userCode}", ReadActivity);
         }
 
         public static (LifeActivity Activity, LifeActivityParameter[] Parameters) GetActivityAndParamsByUserCode(int userCode, int userId)
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                LifeActivity activity = GetActivityByUserCode(userCode, userId, session);
+                LifeActivity activity = GetActivityByUserCode(userCode, userId, connection);
                 LifeActivityParameter[] parameters = null;
                 if (activity != null)
                 {
-                    parameters = LifeActivityParameterManager.GetParametersByActivity(activity.Id, session, true);
+                    parameters = LifeActivityParameterManager.GetParametersByActivity(activity.Id, connection, true);
                 }
                 return (activity, parameters);
             }
@@ -73,20 +68,15 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeActivity[] FindActivitiesByName(string word, int userId)
         {
-            using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
-            {
-                var query = from act in session.Query<LifeActivity>()
-                            where act.UserId == userId && act.Name.ToUpper().Contains(word.ToUpper())
-                            select act;
-                return query.ToArray();
-            }
+            return PostgreSqlCommandUtils.GetEntities(
+                $"select * from {TableName} where user_id={userId} and upper(name) like %{word.ToUpper()}%", ReadActivity);
         }
 
         public static void AddActivity(LifeActivity activity)
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
-                activity.UserCode = GetNextUserCode(activity.UserId);
+                activity.UserCode = GetNextUserCode(activity.UserId, connection);
 
                 string query =
                     $@"insert into {TableName}
@@ -139,7 +129,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     type=@type,
                     life_group_at_group_id=@life_group_at_group_id
                     active=@active
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
@@ -159,7 +150,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             return PostgreSqlCommandUtils.GetEntity(
                 $"select user_code from {TableName} where user_id={userId} order by user_code desc limit 1",
-                connection, ReadUserCode);
+                ReadUserCode, connection);
         }
 
         private static int ReadUserCode(IDataReader reader)
