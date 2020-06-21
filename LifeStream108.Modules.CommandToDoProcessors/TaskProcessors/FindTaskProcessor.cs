@@ -3,7 +3,7 @@ using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Modules.CommandProcessors;
-using LifeStream108.Modules.ToDoListManagement.Managers;
+using LifeStream108.Modules.ToDoListManagement;
 using System.Linq;
 using System.Text;
 

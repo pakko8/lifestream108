@@ -114,7 +114,8 @@ namespace LifeStream108.Modules.ToDoListManagement
                     reminder_sett@reminder_sett,
                     reminder_last_time=@reminder_last_time,
                     repetitive=@repetitive
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {

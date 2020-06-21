@@ -1,5 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Modules.LifeActivityManagement.Managers;
+using LifeStream108.Modules.LifeActivityManagement;
 using System;
 using System.Globalization;
 using System.IO;

@@ -4,8 +4,8 @@ using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.LifeActityEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Modules.CommandProcessors;
-using LifeStream108.Modules.DictionaryManagement.Managers;
-using LifeStream108.Modules.LifeActivityManagement.Managers;
+using LifeStream108.Modules.DictionaryManagement;
+using LifeStream108.Modules.LifeActivityManagement;
 using System.Linq;
 using System.Text;
 

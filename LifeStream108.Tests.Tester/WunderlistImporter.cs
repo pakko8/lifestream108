@@ -1,5 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.ToDoEntities;
-using LifeStream108.Modules.ToDoListManagement.Managers;
+using LifeStream108.Modules.ToDoListManagement;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

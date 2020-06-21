@@ -84,7 +84,7 @@ namespace LifeStream108.Modules.CommandManagement
         private static CommandParameter ReadCommandParameter(IDataReader reader)
         {
             CommandParameter param = new CommandParameter();
-            param.Id = PgsqlUtils.GetInt("id", reader,);
+            param.Id = PgsqlUtils.GetInt("id", reader);
             param.CommandId = PgsqlUtils.GetInt("command_id", reader);
             param.SortOrder = PgsqlUtils.GetInt("sort_order", reader);
             param.ParameterCode = (CommandParameterCode)PgsqlUtils.GetEnum("command_param_code", reader, typeof(CommandParameterCode), CommandParameterCode.None);

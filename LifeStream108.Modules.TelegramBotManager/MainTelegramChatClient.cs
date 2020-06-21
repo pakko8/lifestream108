@@ -4,7 +4,7 @@ using LifeStream108.Libs.Entities.MessageEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.TicketEntities;
 using LifeStream108.Modules.CommandProcessors;
-using LifeStream108.Modules.TempDataManagement.Managers;
+using LifeStream108.Modules.TempDataManagement;
 using LifeStream108.Modules.UserManagement;
 using NLog;
 using System;
@@ -43,7 +43,7 @@ namespace LifeStream108.Modules.TelegramBotManager
             TelegramMessageHistory[] telegramMessages;
             try
             {
-                telegramMessages = TelegramMessageEntryManager.GetEntriesForUser(userId);
+                telegramMessages = TelegramMessageHistoryManager.GetHistoryForUser(userId);
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace LifeStream108.Modules.TelegramBotManager
             // Step 3. Delete messages from database
             try
             {
-                TelegramMessageEntryManager.DeleteEntries(telegramMessages);
+                TelegramMessageHistoryManager.DeleteHistory(telegramMessages, userId);
             }
             catch (Exception ex)
             {
@@ -97,13 +97,13 @@ namespace LifeStream108.Modules.TelegramBotManager
 
             try
             {
+                OurUser user = UserManager.GetUserByTelegramId(telegramUserId);
                 TelegramMessageHistory entry = new TelegramMessageHistory
                 {
-                    TelegramUserId = telegramUserId,
                     ChatId = chatId,
                     MessageId = messageId
                 };
-                TelegramMessageEntryManager.AddEntry(entry);
+                TelegramMessageHistoryManager.AddHistory(entry, user.Id);
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace LifeStream108.Modules.TelegramBotManager
             OurUser currentDbUser = null;
             try
             {
-                var authResult = UserManager.AuthorizeUser(tlgrmUser.Id, MainDbConnString);
+                var authResult = UserManager.AuthorizeUser(tlgrmUser.Id);
                 if (string.IsNullOrEmpty(authResult.Error))
                 {
                     currentDbUser = authResult.User;

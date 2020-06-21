@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Libs.Entities.SessionEntities;
-using LifeStream108.Modules.DictionaryManagement.Managers;
+using LifeStream108.Modules.DictionaryManagement;
 
 namespace LifeStream108.Modules.CommandProcessors
 {

@@ -61,13 +61,6 @@ d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Lif
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Newtonsoft.Json.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\NLog.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Telegram.Bot.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\FluentNHibernate.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\NHibernate.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.HibernateManagement.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Remotion.Linq.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Remotion.Linq.EagerFetching.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Antlr3.Runtime.dll
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Iesi.Collections.dll
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.Common.pdb
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.Entities.pdb
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Modules.CommandProcessors.pdb
@@ -80,14 +73,6 @@ d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Lif
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Newtonsoft.Json.xml
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\NLog.xml
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Telegram.Bot.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\FluentNHibernate.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\NHibernate.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.HibernateManagement.pdb
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.HibernateManagement.dll.config
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Remotion.Linq.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Remotion.Linq.EagerFetching.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Antlr3.Runtime.xml
-d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Iesi.Collections.xml
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.csprojAssemblyReference.cache
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.csproj.CoreCompileInputs.cache
 d:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\obj\Debug\LifeStream108.Modules.TelegramBotManager.csproj.CopyComplete
@@ -122,3 +107,8 @@ D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\Sys
 D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\System.Text.Encodings.Web.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LiteDB.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LiteDB.xml
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.LiteDbHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll.config
+D:\Projects\LifeStream108\LifeStream108.Modules.TelegramBotManager\bin\Debug\LifeStream108.Libs.LiteDbHelper.pdb

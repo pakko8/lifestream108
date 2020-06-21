@@ -32,7 +32,8 @@ namespace LifeStream108.Modules.NewsManagement
                     check_interval_in_minutes=@check_interval_in_minutes,
                     last_run_time=@last_run_time,
                     run_status=@run_status
-                where id={group.Id}";
+                where
+                    id={group.Id}";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {

@@ -76,3 +76,6 @@ D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\Sys
 D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\System.Text.Json.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\System.ValueTuple.xml
+D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.TempDataManagement\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll.config

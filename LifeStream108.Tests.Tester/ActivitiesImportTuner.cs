@@ -1,7 +1,5 @@
 ﻿using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Libs.HibernateManagement;
-using LifeStream108.Modules.LifeActivityManagement.Managers;
-using NHibernate;
+using LifeStream108.Modules.LifeActivityManagement;
 using Npgsql;
 using System;
 using System.Linq;
@@ -31,7 +29,9 @@ namespace LifeStream108.Tests.Tester
 
         private static int GetParentLifeGroup(int activityId)
         {
-            int groupId = -1;
+            throw new NotImplementedException();
+
+            /*int groupId = -1;
             using (ISession session = HibernateLoader.CreateSession())
             {
                 string commandText = "select parent_life_group_id from activities.life_activities where id=" + activityId;
@@ -44,7 +44,7 @@ namespace LifeStream108.Tests.Tester
                     }
                 }
             }
-            return groupId;
+            return groupId;*/
         }
     }
 }

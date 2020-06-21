@@ -2,17 +2,15 @@
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Libs.Entities.UserEntities;
-using LifeStream108.Modules.LifeActivityManagement.Managers;
+using LifeStream108.Modules.LifeActivityManagement;
 using LifeStream108.Modules.SettingsManagement;
 using LifeStream108.Modules.TelegramBotManager;
-using LifeStream108.Modules.ToDoListManagement.Managers;
+using LifeStream108.Modules.ToDoListManagement;
 using LifeStream108.Modules.UserManagement;
 using NLog;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.ServiceProcess;
-using System.Text;
 
 namespace LifeStream108.Services.TelegramBotService
 {
@@ -25,15 +23,12 @@ namespace LifeStream108.Services.TelegramBotService
         private readonly System.Timers.Timer _checkActivityLogs;
 
         private MainTelegramChatClient _chatClient = null;
-        private readonly string _dbConnString = "";
 
         public MainService()
         {
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
-                _dbConnString = SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value;
 
                 _clearSessionsTimer = new System.Timers.Timer();
                 _clearSessionsTimer.Interval = 10 * 60 * 1000;
@@ -61,7 +56,7 @@ namespace LifeStream108.Services.TelegramBotService
                 _checkActivityLogs.Stop();
 
                 DateTime now = DateTime.Now;
-                foreach (User user in UserManager.GetAllUsers(_dbConnString).Where(n => n.Status == UserStatus.Active))
+                foreach (User user in UserManager.GetAllUsers().Where(n => n.Status == UserStatus.Active))
                 {
                     // Делаем эту проверку для каждого пользователя на случай,
                     // если по какой-либо ошибке проверка не сработала ля всех пользователей
@@ -107,7 +102,7 @@ namespace LifeStream108.Services.TelegramBotService
             {
                 _checkToDoTaskReminders.Stop();
 
-                foreach (User user in UserManager.GetAllUsers(_dbConnString).Where(n => n.Status == UserStatus.Active))
+                foreach (User user in UserManager.GetAllUsers().Where(n => n.Status == UserStatus.Active))
                 {
                     Logger.Info("Check reminders for user " + user.Id);
                     ToDoList[] lists = ToDoListManager.GetUserLists(user.Id);

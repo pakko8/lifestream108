@@ -17,13 +17,11 @@ namespace LifeStream108.Services.NewsCheckerWorker
 {
     public class Worker : BackgroundService
     {
-        private readonly string _mainDbConnString;
         private readonly AppSettings _appSettings;
         private HttpClient _httpClient;
 
         public Worker(AppSettings appSettings)
         {
-            _mainDbConnString = SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value;
             _appSettings = appSettings;
         }
 
@@ -34,9 +32,9 @@ namespace LifeStream108.Services.NewsCheckerWorker
                 InnerHelpers.Logger.Info("Timer started.");
                 try
                 {
-                    User superuser = UserManager.GetSuperuser(_mainDbConnString);
+                    User superuser = UserManager.GetSuperuser();
 
-                    NewsGroup[] newsGroups = NewsGroupManager.GetAllActiveGroups(_mainDbConnString);
+                    NewsGroup[] newsGroups = NewsGroupManager.GetAllActiveGroups();
                     NewsProcessorLoader processorLoader = new NewsProcessorLoader();
                     StringBuilder sbMessage = new StringBuilder();
                     foreach (NewsGroup group in newsGroups.OrderBy(n => n.Priority))
@@ -66,7 +64,7 @@ namespace LifeStream108.Services.NewsCheckerWorker
 
                         group.LastRunTime = DateTime.Now;
                         group.RunStatus = NewsGroupRunStatus.Success;
-                        NewsGroupManager.UpdateGroup(group, _mainDbConnString);
+                        NewsGroupManager.UpdateGroup(group);
                     }
 
                     if (sbMessage.Length > 0)

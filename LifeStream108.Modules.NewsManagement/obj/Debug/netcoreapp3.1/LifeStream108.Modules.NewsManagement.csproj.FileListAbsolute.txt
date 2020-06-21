@@ -18,3 +18,6 @@ D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcore
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SettingsManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.LiteDbHelper.pdb
 D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SettingsManagement.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.PostgreSqlHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.PostgreSqlHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsManagement\bin\Debug\netcoreapp3.1\LifeStream108.Libs.PostgreSqlHelper.dll.config

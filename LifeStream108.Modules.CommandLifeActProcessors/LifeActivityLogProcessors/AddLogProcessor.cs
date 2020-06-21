@@ -2,11 +2,11 @@
 using System.Linq;
 using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.LifeActityEntities;
-using LifeStream108.Modules.DictionaryManagement.Managers;
-using LifeStream108.Modules.LifeActivityManagement.Managers;
 using LifeStream108.Libs.Entities.CommandEntities;
 using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Modules.CommandProcessors;
+using LifeStream108.Modules.LifeActivityManagement;
+using LifeStream108.Modules.DictionaryManagement;
 
 namespace LifeStream108.Modules.CommandLifeActProcessors.LifeActivityLogProcessors
 {

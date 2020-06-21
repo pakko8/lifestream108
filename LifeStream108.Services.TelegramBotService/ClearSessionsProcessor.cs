@@ -1,7 +1,6 @@
 ﻿using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.UserEntities;
-using LifeStream108.Modules.SettingsManagement;
-using LifeStream108.Modules.TempDataManagement.Managers;
+using LifeStream108.Modules.TempDataManagement;
 using LifeStream108.Modules.UserManagement;
 using NLog;
 using System;
@@ -22,7 +21,7 @@ namespace LifeStream108.Services.TelegramBotService
             {
                 if ((DateTime.Now - session.LastActivityTime).TotalMinutes >= expireInMinutes)
                 {
-                    if (allSessions.Length > 0) _allUsers = UserManager.GetAllUsers(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value);
+                    if (allSessions.Length > 0) _allUsers = UserManager.GetAllUsers();
 
                     SessionManager.Delete(session);
                     User user = _allUsers.FirstOrDefault(n => n.Id == session.UserId);

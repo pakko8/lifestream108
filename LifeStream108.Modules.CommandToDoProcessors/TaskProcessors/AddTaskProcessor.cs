@@ -3,7 +3,7 @@ using LifeStream108.Libs.Entities.SessionEntities;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
 using LifeStream108.Modules.CommandProcessors;
-using LifeStream108.Modules.ToDoListManagement.Managers;
+using LifeStream108.Modules.ToDoListManagement;
 using System.Linq;
 
 namespace LifeStream108.Modules.CommandToDoProcessors.TaskProcessors

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LifeStream108.Libs.Entities;
-using LifeStream108.Modules.CommandManagement.Managers;
+using LifeStream108.Modules.CommandManagement;
 
 namespace LifeStream108.Modules.CommandProcessors
 {

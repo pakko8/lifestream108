@@ -11,6 +11,7 @@
           "LifeStream108.Libs.Common": "1.0.0",
           "LifeStream108.Libs.Entities": "1.0.0",
           "LifeStream108.Libs.LiteDbHelper": "1.0.0",
+          "LifeStream108.Libs.PostgreSqlHelper": "1.0.0",
           "LifeStream108.Modules.SettingsManagement": "1.0.0",
           "LiteDB": "5.0.8",
           "Npgsql": "4.1.2"
@@ -55,6 +56,15 @@
       "LifeStream108.Libs.LiteDbHelper/1.0.0": {
         "runtime": {
           "LifeStream108.Libs.LiteDbHelper.dll": {}
+        }
+      },
+      "LifeStream108.Libs.PostgreSqlHelper/1.0.0": {
+        "dependencies": {
+          "LifeStream108.Libs.Common": "1.0.0",
+          "LifeStream108.Modules.SettingsManagement": "1.0.0"
+        },
+        "runtime": {
+          "LifeStream108.Libs.PostgreSqlHelper.dll": {}
         }
       },
       "LifeStream108.Modules.SettingsManagement/1.0.0": {
@@ -110,6 +120,11 @@
       "sha512": ""
     },
     "LifeStream108.Libs.LiteDbHelper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LifeStream108.Libs.PostgreSqlHelper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -73,7 +73,8 @@ namespace LifeStream108.Modules.ToDoListManagement
                     name=@name,
                     email=@email,
                     active=@active
-                where id=@id";
+                where
+                    id=@id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {

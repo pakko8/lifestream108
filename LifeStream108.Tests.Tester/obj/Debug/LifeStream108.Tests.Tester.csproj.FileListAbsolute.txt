@@ -3,10 +3,8 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Tes
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Tests.Tester.exe
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Tests.Tester.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Antlr3.Runtime.dll
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\FluentNHibernate.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Iesi.Collections.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.Entities.dll
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsProcessors.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.SettingsManagement.dll
@@ -14,7 +12,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Newtonsoft.Json.dll
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\NHibernate.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\NLog.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Npgsql.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Remotion.Linq.dll
@@ -33,8 +30,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TempDataManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.UserManagement.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.Entities.pdb
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.pdb
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.HibernateManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.LifeActivityManagement.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.NewsProcessors.pdb
@@ -43,11 +38,9 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.TelegramBotManager.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.ToDoListManagement.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Antlr3.Runtime.xml
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\FluentNHibernate.xml
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Iesi.Collections.xml
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Newtonsoft.Json.xml
-D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\NHibernate.xml
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\NLog.xml
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Npgsql.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\Npgsql.xml
@@ -88,3 +81,9 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.CommandToDoProcessors.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LiteDB.dll
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LiteDB.xml
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.LiteDbHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Modules.ToDoListManagement.dll.config
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll.config
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.LiteDbHelper.pdb

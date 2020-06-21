@@ -1,6 +1,6 @@
 ﻿using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.Entities.ToDoEntities.Reminders;
-using LifeStream108.Modules.ToDoListManagement.Managers;
+using LifeStream108.Modules.ToDoListManagement;
 using LifeStream108.Web.Portal.App_Code;
 using NLog;
 using System;

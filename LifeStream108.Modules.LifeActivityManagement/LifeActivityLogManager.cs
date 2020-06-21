@@ -125,7 +125,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             }
         }
 
-        private static void UpdateLog(LifeActivityLog log)
+        public static void UpdateLog(LifeActivityLog log)
         {
             UpdateLog(log, null as NpgsqlConnection);
         }
