@@ -87,3 +87,6 @@ D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Mod
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.pdb
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.PostgreSqlHelper.dll.config
 D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\LifeStream108.Libs.LiteDbHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\nunit.framework.dll
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\nunit.framework.pdb
+D:\Projects\LifeStream108\LifeStream108.Tests.Tester\bin\Debug\nunit.framework.xml

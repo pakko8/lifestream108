@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Libs.LiteDbHe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Libs.PostgreSqlHelper", "LifeStream108.Libs.PostgreSqlHelper\LifeStream108.Libs.PostgreSqlHelper.csproj", "{951CB7AC-7564-4F33-B7ED-63DCCA973D1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStream108.Tests.AutoTester", "LifeStream108.Tests.AutoTester\LifeStream108.Tests.AutoTester.csproj", "{3184AED3-7151-4FCF-AC52-0F6C33320622}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{951CB7AC-7564-4F33-B7ED-63DCCA973D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951CB7AC-7564-4F33-B7ED-63DCCA973D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951CB7AC-7564-4F33-B7ED-63DCCA973D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3184AED3-7151-4FCF-AC52-0F6C33320622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3184AED3-7151-4FCF-AC52-0F6C33320622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3184AED3-7151-4FCF-AC52-0F6C33320622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3184AED3-7151-4FCF-AC52-0F6C33320622}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

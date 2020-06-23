@@ -1,7 +1,9 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities;
 using LifeStream108.Modules.NewsProcessors;
+using LifeStream108.Modules.SettingsManagement;
 using LifeStream108.Modules.TelegramBotManager;
+using LifeStream108.Tests.Tester.EntityTests;
 using System;
 using System.Net;
 
@@ -9,19 +11,16 @@ namespace LifeStream108.Tests.Tester
 {
     internal static class Program
     {
-        private static void DownloadFiles(string url, string file)
-        {
-            WebClient client = new WebClient();
-            client.DownloadFile(url, file);
-        }
-
         public static void Main(string[] args)
         {
             try
             {
-                DownloadFiles("https://www.oum.ru/upload/audio/c80/c802ca4d39265749a566cb03addecc9e.mp3", @"d:\Alexandr.mp3");
-                var s = TelegramUtils.RemoveUnsafeSigns("a<bc12>3");
+                AllEntitiesRunner.Run();
                 int a = 10;
+
+                /*DownloadFiles("https://www.oum.ru/upload/audio/c80/c802ca4d39265749a566cb03addecc9e.mp3", @"d:\Alexandr.mp3");
+                var s = TelegramUtils.RemoveUnsafeSigns("a<bc12>3");
+                int a = 10;*/
                 /*
                 // ClientSecret = "2e780b443420a51b8e76d711eceaf1184a1294ce67b17827014705742eda";
                 WunderlistImporter importer = new WunderlistImporter(
@@ -64,6 +63,12 @@ namespace LifeStream108.Tests.Tester
                 Console.ReadKey();
                 return;
             }
+        }
+
+        private static void DownloadFiles(string url, string file)
+        {
+            WebClient client = new WebClient();
+            client.DownloadFile(url, file);
         }
     }
 }

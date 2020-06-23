@@ -11,7 +11,7 @@ namespace LifeStream108.Modules.DictionaryManagement
 {
     public static class MeasureManager
     {
-        private const string TableName = "measures";
+        private const string TableName = "public.measures";
 
         public static Measure GetMeasureByName(string measureName, int userId)
         {
@@ -28,17 +28,22 @@ namespace LifeStream108.Modules.DictionaryManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
+
                 measure.UserCode = GetNextUserCode(measure.UserId, connection);
 
                 string query =
                     $@"insert into {TableName}
-                    (name, short_name, declanation1, declanation2, declanation3, reg_time)
+                    (user_code, user_id, name, short_name, declanation1, declanation2, declanation3, reg_time)
                     values
-                    (@name, @short_name, @declanation1, @declanation2, @declanation3, current_timestamp) returning id";
+                    (@user_code, @user_id, @name, @short_name, @declanation1, @declanation2, @declanation3, current_timestamp) returning id";
 
                 NpgsqlParameter[] parameters = new NpgsqlParameter[]
                 {
+                    PostgreSqlCommandUtils.CreateParam("@user_code", measure.UserCode, NpgsqlDbType.Integer),
+                    PostgreSqlCommandUtils.CreateParam("@user_id", measure.UserId, NpgsqlDbType.Integer),
                     PostgreSqlCommandUtils.CreateParam("@name", measure.Name, NpgsqlDbType.Varchar),
+                    PostgreSqlCommandUtils.CreateParam("@short_name", measure.ShortName, NpgsqlDbType.Varchar),
                     PostgreSqlCommandUtils.CreateParam("@declanation1", measure.Declanation1, NpgsqlDbType.Varchar),
                     PostgreSqlCommandUtils.CreateParam("@declanation2", measure.Declanation2, NpgsqlDbType.Varchar),
                     PostgreSqlCommandUtils.CreateParam("@declanation3", measure.Declanation3, NpgsqlDbType.Varchar)
