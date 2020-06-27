@@ -14,7 +14,7 @@ namespace LifeStream108.Libs.Common
         public static bool GetBoolean(string columnName, IDataReader reader, bool defaultValue = false)
         {
             object objectValue = reader[columnName];
-            return objectValue != null ? (bool)objectValue : defaultValue;
+            return objectValue != DBNull.Value ? (bool)objectValue : defaultValue;
         }
 
         public static int GetInt(string columnName, IDataReader reader, int defaultValue = 0)

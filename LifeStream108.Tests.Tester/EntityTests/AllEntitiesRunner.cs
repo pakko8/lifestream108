@@ -11,6 +11,8 @@
             MeasureTester.Run();
             ProjectTester.Run();
             CommandTester.Run();
+
+            ToDoEntitiesTester.Run();
         }
     }
 }

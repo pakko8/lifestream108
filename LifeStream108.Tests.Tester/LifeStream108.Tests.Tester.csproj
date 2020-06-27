@@ -116,6 +116,7 @@
     <Compile Include="EntityTests\SessionTester.cs" />
     <Compile Include="EntityTests\SettingsTester.cs" />
     <Compile Include="EntityTests\TestHelper.cs" />
+    <Compile Include="EntityTests\ToDoEntitiesTester.cs" />
     <Compile Include="EntityTests\UserTester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

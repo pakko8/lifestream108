@@ -1,12 +1,10 @@
 ﻿using LifeStream108.Libs.Common;
 using LifeStream108.Libs.Entities.ToDoEntities;
 using LifeStream108.Libs.PostgreSqlHelper;
-using LifeStream108.Modules.SettingsManagement;
 using Npgsql;
 using NpgsqlTypes;
 using System;
 using System.Data;
-using System.Linq;
 
 namespace LifeStream108.Modules.ToDoListManagement
 {
@@ -22,7 +20,7 @@ namespace LifeStream108.Modules.ToDoListManagement
         public static ToDoTask GetTaskByTitle(string title, int listId)
         {
             return PostgreSqlCommandUtils.GetEntity(
-                $"select * from {TableName} where list_id={listId} and status<>{(int)ToDoTaskStatus.Deleted} and upper(title)={title.Trim().ToUpper()}", ReadTask);
+                $"select * from {TableName} where list_id={listId} and status<>{(int)ToDoTaskStatus.Deleted} and upper(title)='{title.Trim().ToUpper()}'", ReadTask);
         }
 
         public static ToDoTask[] GetListActiveTasks(int listId)
@@ -40,7 +38,7 @@ namespace LifeStream108.Modules.ToDoListManagement
         public static ToDoTask[] FindTasks(string word, int limit, int userId)
         {
             return PostgreSqlCommandUtils.GetEntities(
-                $"select * from {TableName} where user_id={userId} and status<>{(int)ToDoTaskStatus.Deleted} and upper(title) like %{word.ToUpper()}% limit {limit}", ReadTask);
+                $"select * from {TableName} where user_id={userId} and status<>{(int)ToDoTaskStatus.Deleted} and upper(title) like '%{word.ToUpper()}%' limit {limit}", ReadTask);
         }
 
         public static void AddTask(ToDoTask task)
@@ -53,7 +51,7 @@ namespace LifeStream108.Modules.ToDoListManagement
                     user_id,
                     title,
                     note,
-                    file,
+                    files,
                     status,
                     reg_time,
                     content_update_time,
@@ -69,7 +67,7 @@ namespace LifeStream108.Modules.ToDoListManagement
                     @user_id,
                     @title,
                     @note,
-                    @file,
+                    @files,
                     @status,
                     current_timestamp,
                     current_timestamp,
@@ -87,12 +85,12 @@ namespace LifeStream108.Modules.ToDoListManagement
                 PostgreSqlCommandUtils.CreateParam("@user_id", task.UserId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@title", task.Title, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@note", task.Note, NpgsqlDbType.Varchar),
-                PostgreSqlCommandUtils.CreateParam("@file", task.Files, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@files", task.Files, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@status", (int)task.Status, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@status_update_time", DateTime.MinValue, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@reminder_sett", task.ReminderSettings, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@reminder_last_time", DateTime.MinValue, NpgsqlDbType.Timestamp),
-                PostgreSqlCommandUtils.CreateParam("@repetitive", task.IsRepetitive, NpgsqlDbType.Bit),
+                PostgreSqlCommandUtils.CreateParam("@repetitive", task.IsRepetitive, NpgsqlDbType.Boolean),
             };
 
             task.Id = PostgreSqlCommandUtils.AddEntity<int>(query, parameters);
@@ -107,11 +105,11 @@ namespace LifeStream108.Modules.ToDoListManagement
                     list_id=@list_id,
                     title=@title,
                     note=@note,
-                    file=@file,
+                    files=@files,
                     status=@status,
                     content_update_time=current_timestamp,
                     status_update_time=current_timestamp,
-                    reminder_sett@reminder_sett,
+                    reminder_sett=@reminder_sett,
                     reminder_last_time=@reminder_last_time,
                     repetitive=@repetitive
                 where
@@ -124,19 +122,19 @@ namespace LifeStream108.Modules.ToDoListManagement
                 PostgreSqlCommandUtils.CreateParam("@list_id", task.ListId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@title", task.Title, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@note", task.Note, NpgsqlDbType.Varchar),
-                PostgreSqlCommandUtils.CreateParam("@file", task.Files, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@files", task.Files, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@status", (int)task.Status, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@content_update_time", DateTime.Now, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@status_update_time", DateTime.Now, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@reminder_sett", task.ReminderSettings, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@reminder_last_time", DateTime.MinValue, NpgsqlDbType.Timestamp),
-                PostgreSqlCommandUtils.CreateParam("@repetitive", task.IsRepetitive, NpgsqlDbType.Bit),
+                PostgreSqlCommandUtils.CreateParam("@repetitive", task.IsRepetitive, NpgsqlDbType.Boolean)
             };
 
             PostgreSqlCommandUtils.UpdateEntity(query, parameters);
         }
 
-        public static ToDoTask ReadTask(IDataReader reader)
+        private static ToDoTask ReadTask(IDataReader reader)
         {
             ToDoTask task = new ToDoTask();
             task.Id = PgsqlUtils.GetInt("id", reader);
