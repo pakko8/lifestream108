@@ -23,7 +23,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         public static LifeActivityParameter GetParameterByName(string paramName, int activityId, int userId)
         {
             return PostgreSqlCommandUtils.GetEntity(
-                $"select * from {TableName} where user_id={userId} and activity_id={activityId} and upper(name)={paramName.ToUpper()}",
+                $"select * from {TableName} where user_id={userId} and activity_id={activityId} and upper(name)='{paramName.ToUpper()}'",
                 ReadParameter);
         }
 
@@ -35,14 +35,17 @@ namespace LifeStream108.Modules.LifeActivityManagement
         internal static LifeActivityParameter[] GetParametersByActivity(
             int activityId, NpgsqlConnection connection, bool onlyActive = true)
         {
-            return PostgreSqlCommandUtils.GetEntities($"select * from {TableName} where activity_id={activityId}",
-                ReadParameter, connection);
+            string query = $"select * from {TableName} where activity_id={activityId}";
+            if (onlyActive) query += " and active='t'";
+            return PostgreSqlCommandUtils.GetEntities(query, ReadParameter, connection);
         }
 
         public static void AddParameters(LifeActivityParameter[] parameters)
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
+
                 int userCode = GetNextUserCode(parameters[0].UserId, connection);
                 using (var transaction = connection.BeginTransaction())
                 {
@@ -61,7 +64,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                                     name,
                                     measure_id,
                                     data_type,
-                                    function,
+                                    func,
                                     active,
                                     reg_time
                                 )
@@ -74,7 +77,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                                     @name,
                                     @measure_id,
                                     @data_type,
-                                    @function,
+                                    @func,
                                     @active,
                                     current_timestamp
                                 )
@@ -82,14 +85,14 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
                                 NpgsqlParameter[] dbParams = new NpgsqlParameter[]
                                 {
-                                    PostgreSqlCommandUtils.CreateParam("@id", param.Id, NpgsqlDbType.Integer),
+                                    PostgreSqlCommandUtils.CreateParam("@sort_order", param.SortOrder, NpgsqlDbType.Integer),
                                     PostgreSqlCommandUtils.CreateParam("@user_code", param.UserCode, NpgsqlDbType.Integer),
                                     PostgreSqlCommandUtils.CreateParam("@user_id", param.UserId, NpgsqlDbType.Integer),
                                     PostgreSqlCommandUtils.CreateParam("@activity_id", param.ActivityId, NpgsqlDbType.Integer),
                                     PostgreSqlCommandUtils.CreateParam("@name", param.Name, NpgsqlDbType.Varchar),
                                     PostgreSqlCommandUtils.CreateParam("@measure_id", param.MeasureId, NpgsqlDbType.Integer),
-                                    PostgreSqlCommandUtils.CreateParam("@data_type", param.DataType, NpgsqlDbType.Varchar),
-                                    PostgreSqlCommandUtils.CreateParam("@function", param.Fuction, NpgsqlDbType.Varchar),
+                                    PostgreSqlCommandUtils.CreateParam("@data_type", param.DataType.ToString(), NpgsqlDbType.Varchar),
+                                    PostgreSqlCommandUtils.CreateParam("@func", param.Fuction, NpgsqlDbType.Varchar),
                                     PostgreSqlCommandUtils.CreateParam("@active", param.Active, NpgsqlDbType.Boolean),
                                 };
 
@@ -118,7 +121,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     name=@name,
                     measure_id=@measure_id,
                     data_type=@data_type,
-                    function=@function,
+                    func=@func,
                     active=@active
                 where
                     id=@id";
@@ -126,13 +129,13 @@ namespace LifeStream108.Modules.LifeActivityManagement
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
                 PostgreSqlCommandUtils.CreateParam("@id", param.Id, NpgsqlDbType.Integer),
+                PostgreSqlCommandUtils.CreateParam("@sort_order", param.SortOrder, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@user_code", param.UserCode, NpgsqlDbType.Integer),
-                PostgreSqlCommandUtils.CreateParam("@user_id", param.UserId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@activity_id", param.ActivityId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@name", param.Name, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@measure_id", param.MeasureId, NpgsqlDbType.Integer),
-                PostgreSqlCommandUtils.CreateParam("@data_type", param.DataType, NpgsqlDbType.Varchar),
-                PostgreSqlCommandUtils.CreateParam("@function", param.Fuction, NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@data_type", param.DataType.ToString(), NpgsqlDbType.Varchar),
+                PostgreSqlCommandUtils.CreateParam("@func", param.Fuction, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@active", param.Active, NpgsqlDbType.Boolean),
             };
 
@@ -162,7 +165,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             param.Name = PgsqlUtils.GetString("name", reader);
             param.MeasureId = PgsqlUtils.GetInt("measure_id", reader);
             param.DataType = (DataType)PgsqlUtils.GetEnum("data_type", reader, typeof(DataType), DataType.Text);
-            param.Fuction = PgsqlUtils.GetString("function", reader);
+            param.Fuction = PgsqlUtils.GetString("func", reader);
             param.Active = PgsqlUtils.GetBoolean("active", reader);
             param.RegTime = PgsqlUtils.GetDateTime("reg_time", reader, DateTime.Now);
             return param;

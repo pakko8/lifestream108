@@ -16,8 +16,6 @@ namespace LifeStream108.Modules.LifeActivityManagement
         private const string TableNameLogs = "life_activity_logs.life_activity_logs";
         private const string TableNameLogValues = "life_activity_logs.life_activity_log_values";
 
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
             string query = $"select * {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<=@periodTo";
@@ -63,6 +61,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 connection.Open();
+
                 string query = $"select * from {TableNameLogs} where userId={userId} and life_activity_id={activityId} and period=@period";
                 if (onlyActive) query += " and cative='t'";
                 NpgsqlParameter[] parameters = new NpgsqlParameter[]
@@ -87,6 +86,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
                 connection.Open();
+
                 logWithValues.Log = PostgreSqlCommandUtils.GetEntity(
                     $"select * from {TableNameLogs} where user_id={userId} and id={logId}", ReadLog, connection);
                 logWithValues.Values = logWithValues.Log != null ? GetActivityLogValues(logWithValues.Log.Id, connection) : null;
@@ -104,6 +104,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
@@ -221,7 +222,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         private static void AddLogValue(LifeActivityLogValue logValue, NpgsqlConnection connection)
         {
             string query =
-                $@"insert into {TableNameLogs}
+                $@"insert into {TableNameLogValues}
                 (
                     user_id,
                     activity_log_id,
@@ -255,7 +256,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         private static void UpdateLogValue(LifeActivityLogValue logValue, NpgsqlConnection connection)
         {
             string query =
-                $@"update {TableNameLogs}
+                $@"update {TableNameLogValues}
                 set
                     activity_log_id=@activity_log_id,
                     period=@period,

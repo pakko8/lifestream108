@@ -16,6 +16,8 @@
 
             LifeActivityTester lifeActivityTester = new LifeActivityTester();
             lifeActivityTester.Run();
+
+            //ProcessCommandTester.Run();
         }
     }
 }

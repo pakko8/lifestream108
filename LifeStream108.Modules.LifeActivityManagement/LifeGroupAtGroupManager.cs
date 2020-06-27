@@ -26,7 +26,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
         public static LifeGroupAtGroup GetGroupAtGroupByGroups(int groupId, int parentGroupId, int userId)
         {
             return PostgreSqlCommandUtils.GetEntity(
-                $"select * from {TableName} where use_id={userId} and life_group_id={groupId} and parent_life_group_id={parentGroupId}",
+                $"select * from {TableName} where user_id={userId} and life_group_id={groupId} and parent_life_group_id={parentGroupId}",
                 ReadGroupAtGroup);
         }
 

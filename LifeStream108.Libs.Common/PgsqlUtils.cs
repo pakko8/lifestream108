@@ -20,7 +20,7 @@ namespace LifeStream108.Libs.Common
         public static int GetInt(string columnName, IDataReader reader, int defaultValue = 0)
         {
             object objectValue = reader[columnName];
-            return objectValue != null ? Convert.ToInt32(objectValue) : defaultValue;
+            return objectValue != DBNull.Value ? Convert.ToInt32(objectValue) : defaultValue;
         }
 
         public static long GetLong(string columnName, IDataReader reader, long defaultValue = 0)

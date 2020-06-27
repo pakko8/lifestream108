@@ -17,6 +17,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
+
                 LifeActivity activity = PostgreSqlCommandUtils.GetEntity(
                     $"select * from {TableName} where user_id={userId} and id={activityId}", ReadActivity, connection);
 
@@ -44,6 +46,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
+
                 LifeActivity activity = GetActivityByUserCode(userCode, userId, connection);
                 LifeActivityParameter[] parameters = null;
                 if (activity != null)
@@ -76,6 +80,8 @@ namespace LifeStream108.Modules.LifeActivityManagement
         {
             using (var connection = new NpgsqlConnection(SettingsManager.GetSettingEntryByCode(SettingCode.MainDbConnString).Value))
             {
+                connection.Open();
+
                 activity.UserCode = GetNextUserCode(activity.UserId, connection);
 
                 string query =
@@ -86,7 +92,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                         name,
                         short_name,
                         type,
-                        life_group_at_group_id
+                        life_group_at_group_id,
                         active,
                         reg_time
                     )
@@ -97,7 +103,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                         @name,
                         @short_name,
                         @type,
-                        @life_group_at_group_id
+                        @life_group_at_group_id,
                         @active,
                         current_timestamp
                     )
@@ -127,7 +133,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
                     name=@name,
                     short_name=@short_name,
                     type=@type,
-                    life_group_at_group_id=@life_group_at_group_id
+                    life_group_at_group_id=@life_group_at_group_id,
                     active=@active
                 where
                     id=@id";

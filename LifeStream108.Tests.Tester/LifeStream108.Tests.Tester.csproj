@@ -113,6 +113,7 @@
     <Compile Include="EntityTests\Constants.cs" />
     <Compile Include="EntityTests\LifeActivityTester.cs" />
     <Compile Include="EntityTests\MeasureTester.cs" />
+    <Compile Include="EntityTests\ProcessCommandTester.cs" />
     <Compile Include="EntityTests\ProjectTester.cs" />
     <Compile Include="EntityTests\SessionTester.cs" />
     <Compile Include="EntityTests\SettingsTester.cs" />
