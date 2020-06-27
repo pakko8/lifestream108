@@ -4,8 +4,13 @@
     {
         public static void Run()
         {
-            ProjectTester.Run();
+            SettingsTester.Run();
+
+            UserTester.Run();
+            SessionTester.Run();
             MeasureTester.Run();
+            ProjectTester.Run();
+            CommandTester.Run();
         }
     }
 }

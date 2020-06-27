@@ -1,11 +1,6 @@
 ﻿using LifeStream108.Libs.Entities.DictionaryEntities;
 using LifeStream108.Modules.DictionaryManagement;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LifeStream108.Tests.Tester.EntityTests
 {
@@ -14,7 +9,7 @@ namespace LifeStream108.Tests.Tester.EntityTests
         public static void Run()
         {
             Project[] projects = ProjectManager.GetProjects();
-            Assert.IsTrue(projects.Length > 0);
+            Assert.IsTrue(projects.Length > 0, "Project list has too few items");
         }
     }
 }

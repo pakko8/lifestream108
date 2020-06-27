@@ -13,7 +13,7 @@ namespace LifeStream108.Modules.UserManagement
         public static User AuthorizeUser(string email, string passwordHash)
         {
             return PostgreSqlCommandUtils.GetEntity(
-                $"select * from {TableName} where email='{email.ToUpper()}' and password_hash='{passwordHash}'", ReadUser);
+                $"select * from {TableName} where upper(email)='{email.ToUpper()}' and password_hash='{passwordHash}'", ReadUser);
         }
 
         public static (User User, string Error) AuthorizeUser(int telegramId)

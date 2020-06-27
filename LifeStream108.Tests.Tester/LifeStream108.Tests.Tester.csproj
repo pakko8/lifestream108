@@ -108,8 +108,15 @@
   <ItemGroup>
     <Compile Include="ActionLogsImporter.cs" />
     <Compile Include="ActivitiesImportTuner.cs" />
+    <Compile Include="EntityTests\AllEntitiesRunner.cs" />
+    <Compile Include="EntityTests\CommandTester.cs" />
     <Compile Include="EntityTests\Constants.cs" />
     <Compile Include="EntityTests\MeasureTester.cs" />
+    <Compile Include="EntityTests\ProjectTester.cs" />
+    <Compile Include="EntityTests\SessionTester.cs" />
+    <Compile Include="EntityTests\SettingsTester.cs" />
+    <Compile Include="EntityTests\TestHelper.cs" />
+    <Compile Include="EntityTests\UserTester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelegramBotTester.cs" />

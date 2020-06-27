@@ -9,19 +9,19 @@ namespace LifeStream108.Libs.Entities.SessionEntities
 
         public int UserId { get; set; }
 
-        public int ProjectId { get; set; }
+        public int ProjectId { get; set; } = 0;
 
-        public int LastCommandId { get; set; }
+        public int LastCommandId { get; set; } = 0;
 
-        public int LastLifeGroupId { get; set; }
+        public int LastLifeGroupId { get; set; } = 0;
 
-        public int LastLifeActivityId { get; set; }
+        public int LastLifeActivityId { get; set; } = 0;
 
-        public string LastRequestText { get; set; }
+        public string LastRequestText { get; set; } = "";
 
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; } = DateTime.Now;
 
-        public DateTime LastActivityTime { get; set; }
+        public DateTime LastActivityTime { get; set; } = DateTime.Now;
 
         private string _data;
         private readonly StringDictionary _dataDictionary = new StringDictionary();

@@ -8,7 +8,7 @@ namespace LifeStream108.Modules.DictionaryManagement
 {
     public static class ProjectManager
     {
-        private const string TableName = "todo_list.todo_categories";
+        private const string TableName = "public.projects";
 
         public static Project[] GetProjects()
         {
