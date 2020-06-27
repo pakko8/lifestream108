@@ -13,6 +13,9 @@
             CommandTester.Run();
 
             ToDoEntitiesTester.Run();
+
+            LifeActivityTester lifeActivityTester = new LifeActivityTester();
+            lifeActivityTester.Run();
         }
     }
 }
