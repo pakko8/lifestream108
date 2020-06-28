@@ -59,7 +59,7 @@ namespace LifeStream108.Modules.UserManagement
             user.LanguageId = PgsqlUtils.GetInt("language_id", reader);
             user.CurrencyId = PgsqlUtils.GetInt("currency_id", reader);
             user.DefaultProjectId = PgsqlUtils.GetInt("default_project_id", reader);
-            user.CheckActLogsTime = PgsqlUtils.GetDateTime("check_act_logs_last_time", reader, DateTime.MinValue);
+            //user.CheckActLogsTime = PgsqlUtils.GetDateTime("check_act_logs_last_time", reader, DateTime.MinValue);
             user.Status = (UserStatus)PgsqlUtils.GetEnum("status", reader, typeof(UserStatus), UserStatus.Bloked);
             return user;
         }

@@ -1,0 +1,13 @@
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Modules.NewsProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Modules.NewsProcessors.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Libs.Common.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Libs.Entities.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\NLog.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Libs.Common.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\LifeStream108.Libs.Entities.pdb
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\bin\Release\NLog.xml
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Release\LifeStream108.Modules.NewsProcessors.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Release\LifeStream108.Modules.NewsProcessors.csproj.CoreCompileInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Release\LifeStream108.Modules.NewsProcessors.csproj.CopyComplete
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Release\LifeStream108.Modules.NewsProcessors.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.NewsProcessors\obj\Release\LifeStream108.Modules.NewsProcessors.pdb

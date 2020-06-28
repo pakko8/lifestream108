@@ -15,6 +15,9 @@ namespace LifeStream108.Tests.Tester
         {
             try
             {
+                SettingsManager.CreateDb();
+                return;
+
                 //AllEntitiesRunner.Run();
                 ProcessCommandTester.Run();
                 int a = 10;

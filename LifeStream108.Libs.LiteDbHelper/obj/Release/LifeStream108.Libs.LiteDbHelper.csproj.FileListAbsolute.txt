@@ -1,0 +1,9 @@
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\bin\Release\LifeStream108.Libs.LiteDbHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\bin\Release\LifeStream108.Libs.LiteDbHelper.pdb
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\bin\Release\LiteDB.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\bin\Release\LiteDB.xml
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\obj\Release\LifeStream108.Libs.LiteDbHelper.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\obj\Release\LifeStream108.Libs.LiteDbHelper.csproj.CoreCompileInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\obj\Release\LifeStream108.Libs.LiteDbHelper.csproj.CopyComplete
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\obj\Release\LifeStream108.Libs.LiteDbHelper.dll
+D:\Projects\LifeStream108\LifeStream108.Libs.LiteDbHelper\obj\Release\LifeStream108.Libs.LiteDbHelper.pdb
