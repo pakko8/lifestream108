@@ -223,6 +223,46 @@ namespace LifeStream108.Tests.Tester.EntityTests
             Assert.IsTrue(log.Id > 0, "Add log not works");
             Assert.IsTrue(logValue1.Id > 0 && logValue1.ActivityLogId > 0, "Add log value not works");
 
+            log.Comment = "Updated comment";
+            logValue1.NumericValue = 20;
+            logValue2.TextValue = "Updated value";
+            LifeActivityLogManager.UpdateLog(log, new[] { logValue1, logValue2 });
+            var logWithValues = LifeActivityLogManager.GetLogWithValues(log.Id, UserTester.UserId_1);
+            Assert.IsNotNull(logWithValues.Log, "Get log with values not works");
+
+            Assert.IsTrue(logWithValues.Log.Comment == log.Comment, "Update log not works");
+            Assert.IsTrue(
+                logWithValues.Values[0].NumericValue == logValue1.NumericValue
+                && logWithValues.Values[1].TextValue == logValue2.TextValue,
+                "Update log values not works");
+
+            LifeActivityLogWithValues[] logsList =
+                LifeActivityLogManager.GetLogsForDate(_newActivity.Id, DateTime.Now, UserTester.UserId_1, true);
+            Assert.IsTrue(logsList.Length > 0, "No logs for date");
+
+            LifeActivityLog[] logsForPeriod =
+                LifeActivityLogManager.GetLogsForPeriod(DateTime.Now.AddDays(-3), DateTime.Now, UserTester.UserId_1);
+            Assert.IsTrue(logsForPeriod.Length > 0, "No logs for period");
+
+            LifeActivityLogValue[] valuesForPeriod =
+                LifeActivityLogManager.GetLogValuesForPeriod(DateTime.Now.AddDays(-3), DateTime.Now, UserTester.UserId_1);
+            Assert.IsTrue(valuesForPeriod.Length > 0, "No log values for period");
+
+            var logWithValues2 = LifeActivityLogManager.GetLogWithValues(log.Id, UserTester.UserId_2);
+            Assert.IsNull(logWithValues2.Log, "Why get log with values works for another user?");
+
+            LifeActivityLogWithValues[] logsList2 =
+                LifeActivityLogManager.GetLogsForDate(_newActivity.Id, DateTime.Now, UserTester.UserId_2, true);
+            Assert.IsTrue(logsList2.Length == 0, "Why get logs for date works for another user?");
+
+            LifeActivityLog[] logsForPeriod2 =
+                LifeActivityLogManager.GetLogsForPeriod(DateTime.Now.AddDays(-3), DateTime.Now, UserTester.UserId_2);
+            Assert.IsTrue(logsForPeriod2.Length == 0, "Why get logs for period works for another user?");
+
+            LifeActivityLogValue[] valuesForPeriod2 =
+                LifeActivityLogManager.GetLogValuesForPeriod(DateTime.Now.AddDays(-3), DateTime.Now, UserTester.UserId_2);
+            Assert.IsTrue(valuesForPeriod2.Length == 0, "Why get log values for period works for another user?");
+
             DeleteGroups();
             DeleteGroupAtGroup();
             DeleteActivities();

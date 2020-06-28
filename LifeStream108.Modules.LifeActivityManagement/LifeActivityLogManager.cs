@@ -18,11 +18,11 @@ namespace LifeStream108.Modules.LifeActivityManagement
 
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId)
         {
-            string query = $"select * {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<=@periodTo";
+            string query = $"select * from {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<@periodTo";
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                PostgreSqlCommandUtils.CreateParam("@periodFrom", dateFrom, NpgsqlDbType.Timestamp),
-                PostgreSqlCommandUtils.CreateParam("@periodTo", dateTo, NpgsqlDbType.Timestamp)
+                PostgreSqlCommandUtils.CreateParam("@periodFrom", DateUtils.GetBeginOfDay(dateFrom), NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@periodTo", DateUtils.GetBeginOfNextDay(dateTo), NpgsqlDbType.Timestamp)
             };
             return PostgreSqlCommandUtils.GetEntities(query, ReadLog, parameters);
         }
@@ -30,11 +30,11 @@ namespace LifeStream108.Modules.LifeActivityManagement
         public static LifeActivityLog[] GetLogsForPeriod(DateTime dateFrom, DateTime dateTo, int userId, int[] activityIds)
         {
             string query =
-                $"select * {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<=@periodTo and life_activity_id in ({CollectionUtils.Array2String<int>(activityIds)})";
+                $"select * from {TableNameLogs} where user_id={userId} and period>=@periodFrom and period<@periodTo and life_activity_id in ({CollectionUtils.Array2String<int>(activityIds)})";
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                PostgreSqlCommandUtils.CreateParam("@periodFrom", dateFrom, NpgsqlDbType.Timestamp),
-                PostgreSqlCommandUtils.CreateParam("@periodTo", dateTo, NpgsqlDbType.Timestamp)
+                PostgreSqlCommandUtils.CreateParam("@periodFrom", DateUtils.GetBeginOfDay(dateFrom), NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@periodTo", DateUtils.GetBeginOfNextDay(dateTo), NpgsqlDbType.Timestamp)
             };
             return PostgreSqlCommandUtils.GetEntities(query, ReadLog, parameters);
         }
@@ -62,11 +62,12 @@ namespace LifeStream108.Modules.LifeActivityManagement
             {
                 connection.Open();
 
-                string query = $"select * from {TableNameLogs} where userId={userId} and life_activity_id={activityId} and period=@period";
-                if (onlyActive) query += " and cative='t'";
+                string query = $"select * from {TableNameLogs} where user_id={userId} and life_activity_id={activityId} and period>=@dtFrom and period<@dtTo";
+                if (onlyActive) query += " and active='t'";
                 NpgsqlParameter[] parameters = new NpgsqlParameter[]
                 {
-                    PostgreSqlCommandUtils.CreateParam("@period", date.Date, NpgsqlDbType.Date)
+                    PostgreSqlCommandUtils.CreateParam("@dtFrom", DateUtils.GetBeginOfDay(date), NpgsqlDbType.Date),
+                    PostgreSqlCommandUtils.CreateParam("@dtTo", DateUtils.GetBeginOfNextDay(date), NpgsqlDbType.Date)
                 };
                 LifeActivityLog[] logs = PostgreSqlCommandUtils.GetEntities(query, ReadLog, connection, parameters);
                 foreach (LifeActivityLog log in logs)
@@ -184,7 +185,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             {
                 PostgreSqlCommandUtils.CreateParam("@user_id", log.UserId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@life_activity_id", log.LifeActivityId, NpgsqlDbType.Integer),
-                PostgreSqlCommandUtils.CreateParam("@period", log.Period, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@period", log.Period.Date, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@comment", log.Comment, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@active", log.Active, NpgsqlDbType.Boolean)
             };
@@ -208,7 +209,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             {
                 PostgreSqlCommandUtils.CreateParam("@id", log.Id, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@life_activity_id", log.LifeActivityId, NpgsqlDbType.Integer),
-                PostgreSqlCommandUtils.CreateParam("@period", log.Period, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@period", log.Period.Date, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@comment", log.Comment, NpgsqlDbType.Varchar),
                 PostgreSqlCommandUtils.CreateParam("@active", log.Active, NpgsqlDbType.Boolean)
             };
@@ -245,7 +246,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             {
                 PostgreSqlCommandUtils.CreateParam("@user_id", logValue.UserId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@activity_log_id", logValue.ActivityLogId, NpgsqlDbType.Bigint),
-                PostgreSqlCommandUtils.CreateParam("@period", logValue.Period, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@period", logValue.Period.Date, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@activity_param_id", logValue.ActivityParamId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@numeric_value", logValue.NumericValue, NpgsqlDbType.Numeric),
                 PostgreSqlCommandUtils.CreateParam("@text_value", logValue.TextValue, NpgsqlDbType.Varchar)
@@ -269,7 +270,7 @@ namespace LifeStream108.Modules.LifeActivityManagement
             {
                 PostgreSqlCommandUtils.CreateParam("@id", logValue.Id, NpgsqlDbType.Bigint),
                 PostgreSqlCommandUtils.CreateParam("@activity_log_id", logValue.ActivityLogId, NpgsqlDbType.Bigint),
-                PostgreSqlCommandUtils.CreateParam("@period", logValue.Period, NpgsqlDbType.Timestamp),
+                PostgreSqlCommandUtils.CreateParam("@period", logValue.Period.Date, NpgsqlDbType.Timestamp),
                 PostgreSqlCommandUtils.CreateParam("@activity_param_id", logValue.ActivityParamId, NpgsqlDbType.Integer),
                 PostgreSqlCommandUtils.CreateParam("@numeric_value", logValue.NumericValue, NpgsqlDbType.Numeric),
                 PostgreSqlCommandUtils.CreateParam("@text_value", logValue.TextValue, NpgsqlDbType.Varchar)

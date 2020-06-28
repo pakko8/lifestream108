@@ -15,7 +15,8 @@ namespace LifeStream108.Tests.Tester
         {
             try
             {
-                AllEntitiesRunner.Run();
+                //AllEntitiesRunner.Run();
+                ProcessCommandTester.Run();
                 int a = 10;
 
                 /*DownloadFiles("https://www.oum.ru/upload/audio/c80/c802ca4d39265749a566cb03addecc9e.mp3", @"d:\Alexandr.mp3");

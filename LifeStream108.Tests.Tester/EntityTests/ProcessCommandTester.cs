@@ -15,7 +15,7 @@ namespace LifeStream108.Tests.Tester.EntityTests
                 ProjectId = 1
             };
 
-            string request = $"log:1;{DateTime.Now:dd.MM.yyyy};60+2+10";
+            string request = $"log:1;{DateTime.Now:dd.MM.yyyy};61+2+10";
             CommandExecutor commandExecututor = new CommandExecutor();
             ExecuteCommandResult execResult = commandExecututor.Run(request, session);
             Console.WriteLine(execResult.Success ? execResult.ResponseMessage : execResult.ErrorText);
