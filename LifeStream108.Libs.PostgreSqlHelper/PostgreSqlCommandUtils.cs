@@ -45,6 +45,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
                     resultObject = objectReader(reader);
                 }
             }
+            Logger.Info($"Found item {(resultObject != null ? "not null" : "null")}");
             return resultObject;
         }
 
@@ -63,6 +64,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
                     resultList.Add(objectReader(reader));
                 }
             }
+            Logger.Info($"Found {resultList.Count} items");
             return resultList.ToArray();
         }
 
@@ -95,6 +97,7 @@ namespace LifeStream108.Libs.PostgreSqlHelper
             command.Parameters.AddRange(parameters);
             LogCommand(command);
             object newIdObj = command.ExecuteScalar();
+            Logger.Info($"Item added with id " + newIdObj);
 
             return DataConverter.Parse<T>(newIdObj.ToString());
         }
