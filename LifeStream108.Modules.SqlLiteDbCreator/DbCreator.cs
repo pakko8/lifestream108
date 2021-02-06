@@ -7,10 +7,10 @@ namespace LifeStream108.Modules.SqlLiteDbCreator
     {
         public static void CreateSettingsTable()
         {
-            using (SqliteCommand command = new SqliteCommand(connection))
+            /*using (SqliteCommand command = new SqliteCommand(connection))
             {
 
-            }
+            }*/
         }
     }
 }
