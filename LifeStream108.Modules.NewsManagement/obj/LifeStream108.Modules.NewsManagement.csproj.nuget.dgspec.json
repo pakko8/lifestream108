@@ -1,29 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {}
+    "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj",
         "projectName": "LifeStream108.Libs.Common",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
         "projectName": "LifeStream108.Libs.Entities",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
               }
             }
           }
@@ -33,29 +33,29 @@
         "net472": {}
       }
     },
-    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj",
         "projectName": "LifeStream108.Libs.LiteDbHelper",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
         "projectName": "LifeStream108.Libs.PostgreSqlHelper",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
               },
-              "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
               }
             }
           }
@@ -65,14 +65,14 @@
         "net472": {}
       }
     },
-    "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
         "projectName": "LifeStream108.Modules.NewsManagement",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj",
         "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\obj\\",
+        "outputPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -91,20 +91,20 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Common\\LifeStream108.Libs.Common.csproj"
               },
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
               },
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.LiteDbHelper\\LifeStream108.Libs.LiteDbHelper.csproj"
               },
-              "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.PostgreSqlHelper\\LifeStream108.Libs.PostgreSqlHelper.csproj"
               },
-              "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
-                "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+              "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+                "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
               }
             }
           }
@@ -142,15 +142,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+    "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj",
+        "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj",
         "projectName": "LifeStream108.Modules.SettingsManagement",
-        "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+        "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
       },
       "frameworks": {
         "net472": {}

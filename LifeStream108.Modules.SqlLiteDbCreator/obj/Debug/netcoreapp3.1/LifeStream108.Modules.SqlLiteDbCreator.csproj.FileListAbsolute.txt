@@ -1,0 +1,9 @@
+D:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.deps.json
+D:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.dll
+D:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.csprojAssemblyReference.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.AssemblyInfoInputs.cache
+D:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.AssemblyInfo.cs
+d:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.csproj.CoreCompileInputs.cache
+d:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\bin\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.pdb
+d:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.dll
+d:\Projects\LifeStream108\LifeStream108.Modules.SqlLiteDbCreator\obj\Debug\netcoreapp3.1\LifeStream108.Modules.SqlLiteDbCreator.pdb

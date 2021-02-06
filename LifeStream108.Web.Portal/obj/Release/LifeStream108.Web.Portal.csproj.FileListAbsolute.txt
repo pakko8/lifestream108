@@ -109,3 +109,4 @@ D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Modules.ToD
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LiteDB.xml
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Libs.PostgreSqlHelper.pdb
 D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\LifeStream108.Libs.PostgreSqlHelper.dll.config
+D:\Projects\LifeStream108\LifeStream108.Web.Portal\bin\NLog.config

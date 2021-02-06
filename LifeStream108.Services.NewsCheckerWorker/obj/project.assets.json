@@ -6248,11 +6248,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\LifeStream108.Services.NewsCheckerWorker.csproj",
+      "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\LifeStream108.Services.NewsCheckerWorker.csproj",
       "projectName": "LifeStream108.Services.NewsCheckerWorker",
-      "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\LifeStream108.Services.NewsCheckerWorker.csproj",
+      "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\LifeStream108.Services.NewsCheckerWorker.csproj",
       "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\obj\\",
+      "outputPath": "d:\\Projects\\LifeStream108\\LifeStream108.Services.NewsCheckerWorker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6271,20 +6271,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Libs.Entities\\LifeStream108.Libs.Entities.csproj"
             },
-            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsManagement\\LifeStream108.Modules.NewsManagement.csproj"
             },
-            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsProcessors\\LifeStream108.Modules.NewsProcessors.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsProcessors\\LifeStream108.Modules.NewsProcessors.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsProcessors\\LifeStream108.Modules.NewsProcessors.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.NewsProcessors\\LifeStream108.Modules.NewsProcessors.csproj"
             },
-            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.SettingsManagement\\LifeStream108.Modules.SettingsManagement.csproj"
             },
-            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.UserManagement\\LifeStream108.Modules.UserManagement.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.UserManagement\\LifeStream108.Modules.UserManagement.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Modules.UserManagement\\LifeStream108.Modules.UserManagement.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.UserManagement\\LifeStream108.Modules.UserManagement.csproj"
             }
           }
         }
@@ -6330,7 +6330,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

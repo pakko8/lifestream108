@@ -4933,11 +4933,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\LifeStream108.Tests.AutoTester.csproj",
+      "projectUniqueName": "d:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\LifeStream108.Tests.AutoTester.csproj",
       "projectName": "LifeStream108.Tests.AutoTester",
-      "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\LifeStream108.Tests.AutoTester.csproj",
+      "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\LifeStream108.Tests.AutoTester.csproj",
       "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\obj\\",
+      "outputPath": "d:\\Projects\\LifeStream108\\LifeStream108.Tests.AutoTester\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4956,8 +4956,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Projects\\LifeStream108\\LifeStream108.Modules.DictionaryManagement\\LifeStream108.Modules.DictionaryManagement.csproj": {
-              "projectPath": "D:\\Projects\\LifeStream108\\LifeStream108.Modules.DictionaryManagement\\LifeStream108.Modules.DictionaryManagement.csproj"
+            "d:\\Projects\\LifeStream108\\LifeStream108.Modules.DictionaryManagement\\LifeStream108.Modules.DictionaryManagement.csproj": {
+              "projectPath": "d:\\Projects\\LifeStream108\\LifeStream108.Modules.DictionaryManagement\\LifeStream108.Modules.DictionaryManagement.csproj"
             }
           }
         }
@@ -5007,7 +5007,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
